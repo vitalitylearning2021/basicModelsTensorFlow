@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+# Basic machine learning models with TensorFlow
 
-You can use the [editor on GitHub](https://github.com/vitalitylearning2021/basicModelsTensorFlow/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## What is Machine Learning?
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Machine Learning is one of the fields of artificial intelligence and identifies the development of automatic learning systems capable to improve their own performance in a given task through experience. The applications of Machine Learning are the most varied and regard, to cite only a few examples, speech recognition, computer vision including autonomous driving cars, the classificiation of new astronomical structures exploited, for example, by NASA to automatically classify the celestial bodies in the sky surveys and the data-mining. 
 
-### Markdown
+### Classification of the Machine Learning algorithms
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Machine Learning algorithms are typically divided in three main categories, depending on the type of learning that influences the contruction of a forecast model.
 
-```markdown
-Syntax highlighted code block
+  - *Supervised Learning*: 
 
-# Header 1
-## Header 2
-### Header 3
+\subsection{Classificazione degli algoritmi di Machine Learning}
+Gli algoritmi di Machine Learning sono tipicamente suddivisi in tre principali categorie, in base alla natura dell'apprendimento che determina la modalità di costruzione di un modello previsionale.
 
-- Bulleted
-- List
+\begin{itemize}
+    \item \emph{Supervised Learning}: il calcolatore è preventivamente addestrato tramite un training set in cui ciascun elemento di input è costituito da un insieme di attributi ai quali è associato un valore di output chiamato label che indica il risultato di tale elemento. Terminata la fase di training e costruito un modello, le prestazioni dell'approccio possono essere valutate in una fase di testing in cui l'algoritmo viene applicato ad una serie di dati di prova e i suoi risultati vengono confrontati con i risultati ad essi associati.
+    \item \emph{Unsupervised Learning}: in questo caso, nessuna etichetta è associata ai dati di input e l'unico metodo che l'algoritmo ha a disposizione per trovare un modello è quello di confrontare fra di loro i dati in input che verranno classificati ed organizzati sulla base di caratteristiche comuni. Questo approccio può essere utilizzato sia per per scoprire modelli nascosti nei dati o a scopi previsionali.
+    \item \emph{Reinforced Learning}: con questo approccio, il programma interagisce con un ambiente dinamico, dal quale riceverà stimoli a seconda della correttezza delle scelte compiute. Il sistema riceverà quindi un premio nel caso la scelta sia corretta, mentre riceverà una penalizzazione nel caso non lo sia. 
+\end{itemize}
 
-1. Numbered
-2. List
+Un'altra suddivisione può essere effettuata sulla base dell'output desiderato. Nel caso dell'apprendimento supervisionato possiamo avere diversi tipi di approcci, tra cui:
 
-**Bold** and _Italic_ and `Code` text
+\begin{itemize}
+    \item \emph{Classificazione}: Nel caso dei classificatori, gli input sono suddivisi in due o più classi, e l'algoritmo deve produrre un modello che assegni i nuovi elementi testati ad una o a più di queste classi.
+    \item \emph{Regressione}: Nel caso della regressione, gli output assegnati sono risultati numerici, invece che classi.
+\end{itemize}
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+%\section{Linear regression}
+%http://www.ecostat.unical.it/Didattica/Statistica/didattica/StatAziendale2/StatAz2_cap2.pdf\\
+%https://www.germanorossi.it/mi/file/disp/Regression.pdf\\
+%http://www.dima.unige.it/~rogantin/ls_stat/N_scheda_5.pdf\\
+%https://sanjayasubedi.com.np/deeplearning/tensorflow-2-linear-regression-from-scratch/\\
+%https://towardsdatascience.com/get-started-with-tensorflow-2-0-and-linear-regression-29b5dbd65977
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vitalitylearning2021/basicModelsTensorFlow/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+%\section{Logistic regression}
