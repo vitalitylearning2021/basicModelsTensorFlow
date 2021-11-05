@@ -6,18 +6,11 @@ Machine Learning is one of the fields of artificial intelligence and identifies 
 
 ### Classification of the Machine Learning algorithms
 
-Machine Learning algorithms are typically divided in three main categories, depending on the type of learning that influences the contruction of a forecast model.
+Machine Learning algorithms are typically divided in three main categories, depending on the type of learning used to contruct a forecast model.
 
-  - *Supervised Learning*: 
-
-\subsection{Classificazione degli algoritmi di Machine Learning}
-Gli algoritmi di Machine Learning sono tipicamente suddivisi in tre principali categorie, in base alla natura dell'apprendimento che determina la modalità di costruzione di un modello previsionale.
-
-\begin{itemize}
-    \item \emph{Supervised Learning}: il calcolatore è preventivamente addestrato tramite un training set in cui ciascun elemento di input è costituito da un insieme di attributi ai quali è associato un valore di output chiamato label che indica il risultato di tale elemento. Terminata la fase di training e costruito un modello, le prestazioni dell'approccio possono essere valutate in una fase di testing in cui l'algoritmo viene applicato ad una serie di dati di prova e i suoi risultati vengono confrontati con i risultati ad essi associati.
-    \item \emph{Unsupervised Learning}: in questo caso, nessuna etichetta è associata ai dati di input e l'unico metodo che l'algoritmo ha a disposizione per trovare un modello è quello di confrontare fra di loro i dati in input che verranno classificati ed organizzati sulla base di caratteristiche comuni. Questo approccio può essere utilizzato sia per per scoprire modelli nascosti nei dati o a scopi previsionali.
-    \item \emph{Reinforced Learning}: con questo approccio, il programma interagisce con un ambiente dinamico, dal quale riceverà stimoli a seconda della correttezza delle scelte compiute. Il sistema riceverà quindi un premio nel caso la scelta sia corretta, mentre riceverà una penalizzazione nel caso non lo sia. 
-\end{itemize}
+  - *Supervised Learning*: the computer is trained by a learning set in which each input element is made up by a set of attributes to which an output value, called label, is attached. The output value represents the result associated to the corresponding input element. Once performed the training phase and built up the forecast model, the performance of the approach can be assessed by a testing phase in which the algorithm is applied to test data and the forecast results are compared to the "ground-truth" results.
+  - *Unsupervised Learning*: in this case, no label is associated to the input data and the only way the algorithm has to construct a model is analyzing the input data and organize them on the basis of common features. Such an approach can be used either to highlight models hidden within the data or to return forecasts.
+  - *Reinforced Learning*: by this approach, the program interacts with a dynamic environment from which it will receive feedbacks according to the correctness of the performed action choices. The system will receive a prize if the choice is right, while it will receive a penalty if the choice is wrong.
 
 Un'altra suddivisione può essere effettuata sulla base dell'output desiderato. Nel caso dell'apprendimento supervisionato possiamo avere diversi tipi di approcci, tra cui:
 
