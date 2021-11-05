@@ -10,7 +10,7 @@ Machine Learning algorithms are typically divided in three main categories, depe
 
   - *Supervised Learning*: the computer is trained by a learning set in which each input element is made up by a set of attributes to which an output value, called label, is attached. The output value represents the result associated to the corresponding input element. Once performed the training phase and built up the forecast model, the performance of the approach can be assessed by a testing phase in which the algorithm is applied to test data and the forecast results are compared to the "ground-truth" results.
   - *Unsupervised Learning*: in this case, no label is associated to the input data and the only way the algorithm has to construct a model is analyzing the input data and organize them on the basis of common features. Such an approach can be used either to highlight models hidden within the data or to return forecasts.
-  - *Reinforced Learning*: by this approach, the program interacts with a dynamic environment from which it will receive feedbacks according to the correctness of the performed action choices. The system will receive a prize if the choice is right, while it will receive a penalty if the choice is wrong.
+  - *Reinforced Learning*: by this approach, the program interacts with a dynamic environment from which it receives feedbacks according to the correctness of the performed action choices. The system receives a prize if the choice is right, while it receives a penalty if the choice is wrong.
 
 Un'altra suddivisione può essere effettuata sulla base dell'output desiderato. Nel caso dell'apprendimento supervisionato possiamo avere diversi tipi di approcci, tra cui:
 
