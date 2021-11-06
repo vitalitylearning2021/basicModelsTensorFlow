@@ -12,11 +12,11 @@ Machine Learning algorithms are typically divided in three main categories, depe
   - *Unsupervised Learning*: in this case, no label is associated to the input data and the only way the algorithm has to construct a model is analyzing the input data and organize them on the basis of common features. Such an approach can be used either to highlight models hidden within the data or to return forecasts.
   - *Reinforced Learning*: by this approach, the program interacts with a dynamic environment from which it receives feedbacks according to the correctness of the performed action choices. The system receives a prize if the choice is right, while it receives a penalty if the choice is wrong.
 
-Un'altra suddivisione può essere effettuata sulla base dell'output desiderato. Nel caso dell'apprendimento supervisionato possiamo avere diversi tipi di approcci, tra cui:
+A different division can be performed depending on the desired output. For the supervised learning, we have different approaches, among which:
 
 \begin{itemize}
-    \item \emph{Classificazione}: Nel caso dei classificatori, gli input sono suddivisi in due o più classi, e l'algoritmo deve produrre un modello che assegni i nuovi elementi testati ad una o a più di queste classi.
-    \item \emph{Regressione}: Nel caso della regressione, gli output assegnati sono risultati numerici, invece che classi.
+    \item \emph{Classification}: In the case of classifiers, the inputs are subdivided into two or more classes and the algorithm must return a model capable to assign possible new elements to one of these classes.
+    \item \emph{Regression}: In the case of regression, the outputs are numerical results, rather than classes.
 \end{itemize}
 
 
