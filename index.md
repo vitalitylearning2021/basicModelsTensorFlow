@@ -14,11 +14,8 @@ Machine Learning algorithms are typically divided in three main categories, depe
 
 A different division can be performed depending on the desired output. For the supervised learning, we have different approaches, among which:
 
-\begin{itemize}
-    \item \emph{Classification}: In the case of classifiers, the inputs are subdivided into two or more classes and the algorithm must return a model capable to assign possible new elements to one of these classes.
-    \item \emph{Regression}: In the case of regression, the outputs are numerical results, rather than classes.
-\end{itemize}
-
+  - *Classification*: in the case of classifiers, the inputs are subdivided into two or more classes and the algorithm must return a model capable to assign possible new elements to one of these classes.
+  - *Regression*: in the case of regression, the outputs are numerical results, rather than classes.
 
 %\section{Linear regression}
 %http://www.ecostat.unical.it/Didattica/Statistica/didattica/StatAziendale2/StatAz2_cap2.pdf\\
