@@ -25,8 +25,34 @@ Today, TensorFlow is used in many areas of science and industry for machine lear
 The name TensorFlow is composed by the two words “tensor” and “flow”. The use of “tensor” is due to the fact that a tensor is an algebraic object that describes a multilinear relationship between sets of algebraic objects related to a vector space, that such algebraic objects are often described by multidimensional matrices and that TensorFlow is based on the manipulation of multidimensional matrices. The word “flow” evokes the operations flow.
 TensorFlow is compatible with Windows, Linux, MaxOS, Raspbian and Android. It can be used under Python, C, Java, Go and Rust. At this [link](https://www.tensorflow.org/install), the installation instructions can be found along with the versions of the operating systems and of Python with which TensorFlow is compatible. TensorFlow is already installed under Google Colab and there is nothing simpler than using it under such a service.\\
 TensorFlow  runs on both CPUs and GPUs. Nevertheless, it must be mentioned that, since 2016, Google has released a new Application Specific Integrated Circuit (ASIC) processor named Tensor Processing Unit (TPU) and purposely designed for AI applications that require TensorFlow. It is capable to accelerate machine learning processing and to execute TensorFlow operations much quicker as compared to a standard CPU. By Google Colab, it is possible to choose the desired computing platform among CPU, GPU and TPU.
-Today, we have TensorFlow 2.6.1 which dramatically simplfies the coding as compared to TensorFlow 1.x. 
+Today, we have TensorFlow `2.6.1` which dramatically simplfies the coding as compared to TensorFlow `1.x`. 
 
+### Lazy and eager evaluations
+
+One of the most relevant differences between TensorFlow `1.x` and TensorFlow `2.x` is the default execution modality: TensorFlow `1.x` adopts the *lazy* evaluation while TensorFlow `2.x` uses the *eager* evaluation. But what is the difference between the two?
+A programming language like Python implements the eager execution model. In other words, the operations are executed immediately as they are called. From the User's point of view, this has the advantage of simplfying the debugging since pieces of code can be easily integrated in tools for error check or simply the content of variables can be controlled in a direct way.
+Opposite to that, by the lazy evaluation, the operations are not executed at the point in which they are invoked, but they are exploited to create a computational graph, as illustrated in the following Fig. [1](#computationalGraph)
+
+\begin{figure}[H]
+%\sidecaption
+\begin{center}
+\includegraphics[scale=1.1]{Pictures/Chapter06/computationalGraph.png}
+\caption{Computational graph illustrating the $xy+2$ operation.}
+\label{computationalGraph}
+\end{center}
+\end{figure}
+
+Questo ovviamente complica il debugging in quanto, al contrario di prima, non è possibile, ad esempio, seguire i valori delle variabili nel tempo. Al contrario, la lazy execution ha i seguenti vantaggi:
+
+\begin{itemize}
+    \item \emph{Parallelism}. Con il computational graph, è più semplice individuare le porzioni parallelizzabili del codice.
+    \item \emph{Distributed execution}. Con il computational graph, è più semplice distribuire automaticamente l'esecuzione di porzioni di codice tra diversi devices (CPUs, GPUs and TPUs nei casi di nostro interesse), eventualmente presenti su macchine differenti.
+    \item \emph{Compilation}. Il computational graph può essere utilizzato anche per generare un codice più veloce in quanto può dar luogo a ``semplificazioni'' o fusioni di operazioni adiacenti.
+    \item \emph{Portability}. Il computational graph è language e platform-independent, cosa che ne favorisce la portabilità.
+\end{itemize}
+
+Utilizzare la lazy execution era cumbersome in TensorFlow \lstinline{1.x} in quanto richiedeva l'utilizzo di apposite \lstinline{session}. Ora questo non è più necessario, essendo, come detto, la eager execution la modalità di default per TensorFlow \lstinline{2.x}. Naturalmente, è possibile manualmente switchare dalla eager alla lazy in TensorFlow \lstinline{2.x}.\\
+Una volta chiarito il significato di lazy ed eager evaluation in TensorFlow, spendiamo qualche parola sulla tecnica della differenziazione automatica per il calcolo automatico delle derivate di una funzione multidimensionale. La differenziazione automatica, infatti, rappresenta una tecnica cruciale in molte applicazioni di machine learning e deep learning.
 
 %\section{Linear regression}
 %http://www.ecostat.unical.it/Didattica/Statistica/didattica/StatAziendale2/StatAz2_cap2.pdf\\
