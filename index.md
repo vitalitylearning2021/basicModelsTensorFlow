@@ -33,23 +33,18 @@ One of the most relevant differences between TensorFlow `1.x` and TensorFlow `2.
 A programming language like Python implements the eager execution model. In other words, the operations are executed immediately as they are called. From the User's point of view, this has the advantage of simplfying the debugging since pieces of code can be easily integrated in tools for error check or simply the content of variables can be controlled in a direct way.
 Opposite to that, by the lazy evaluation, the operations are not executed at the point in which they are invoked, but they are exploited to create a computational graph, as illustrated in the following Fig. [1](#computationalGraph)
 
-\begin{figure}[H]
-%\sidecaption
-\begin{center}
-\includegraphics[scale=1.1]{Pictures/Chapter06/computationalGraph.png}
-\caption{Computational graph illustrating the $xy+2$ operation.}
-\label{computationalGraph}
-\end{center}
-\end{figure}
+<p align="center">
+  <img src="PyCUDA_v2.JPG" width="400" id="computationalGraph">
+  <br>
+     <em>Figure 1. Computational graph illustrating the <img src="https://render.githubusercontent.com/render/math?math=xy %2B 2"> operation.</em>
+</p>
 
-Questo ovviamente complica il debugging in quanto, al contrario di prima, non è possibile, ad esempio, seguire i valori delle variabili nel tempo. Al contrario, la lazy execution ha i seguenti vantaggi:
+This, obviously, complicates the debugging phase since, opposite to the eager modality, it is not possible, for example, to follow the content of the variables during the execution. The lazy evaluation has however the following advantages:
 
-\begin{itemize}
-    \item \emph{Parallelism}. Con il computational graph, è più semplice individuare le porzioni parallelizzabili del codice.
-    \item \emph{Distributed execution}. Con il computational graph, è più semplice distribuire automaticamente l'esecuzione di porzioni di codice tra diversi devices (CPUs, GPUs and TPUs nei casi di nostro interesse), eventualmente presenti su macchine differenti.
-    \item \emph{Compilation}. Il computational graph può essere utilizzato anche per generare un codice più veloce in quanto può dar luogo a ``semplificazioni'' o fusioni di operazioni adiacenti.
-    \item \emph{Portability}. Il computational graph è language e platform-independent, cosa che ne favorisce la portabilità.
-\end{itemize}
+  - *Parallelism*. By the computational graph, spotting the parallelizable portions of the code is simpler.
+  - *Distributed execution*. By the computational graph, automatically distributing the execution of portions of the code among different devices (CPUs, GPUs and TPUs in the cases of our interest), possibly installed on different machines, is simpler.
+  - *Compilation*. The computational graph can be used to generate a faster code since it can lead to “simplifications” or fusions of adjacent operations.
+  - *Portability*. The computational graph is language and platform-independent which favors portability.
 
 Utilizzare la lazy execution era cumbersome in TensorFlow \lstinline{1.x} in quanto richiedeva l'utilizzo di apposite \lstinline{session}. Ora questo non è più necessario, essendo, come detto, la eager execution la modalità di default per TensorFlow \lstinline{2.x}. Naturalmente, è possibile manualmente switchare dalla eager alla lazy in TensorFlow \lstinline{2.x}.\\
 Una volta chiarito il significato di lazy ed eager evaluation in TensorFlow, spendiamo qualche parola sulla tecnica della differenziazione automatica per il calcolo automatico delle derivate di una funzione multidimensionale. La differenziazione automatica, infatti, rappresenta una tecnica cruciale in molte applicazioni di machine learning e deep learning.
