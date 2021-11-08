@@ -46,8 +46,8 @@ This, obviously, complicates the debugging phase since, opposite to the eager mo
   - *Compilation*. The computational graph can be used to generate a faster code since it can lead to “simplifications” or fusions of adjacent operations.
   - *Portability*. The computational graph is language and platform-independent which favors portability.
 
-Utilizzare la lazy execution era cumbersome in TensorFlow \lstinline{1.x} in quanto richiedeva l'utilizzo di apposite \lstinline{session}. Ora questo non è più necessario, essendo, come detto, la eager execution la modalità di default per TensorFlow \lstinline{2.x}. Naturalmente, è possibile manualmente switchare dalla eager alla lazy in TensorFlow \lstinline{2.x}.\\
-Una volta chiarito il significato di lazy ed eager evaluation in TensorFlow, spendiamo qualche parola sulla tecnica della differenziazione automatica per il calcolo automatico delle derivate di una funzione multidimensionale. La differenziazione automatica, infatti, rappresenta una tecnica cruciale in molte applicazioni di machine learning e deep learning.
+Using lazy execution was cumbersome in TensorFlow `1.x` since it required the use of proper *sessions*. Now this is not necessary anymore, since, as mentioned, lazy execution is the default computational modality for TensorFlow `2.x`. Of course, it is possible to manually switch to eager computation in TensorFlow `2.x` too.
+Once clarified the meaning of lazy and eager evaluations in TensorFlow, let us spend some words on *automatic differentiation* for the automatic computation of the derivatives of a multidimensional function. Automatic differentiation, indeed, is a crucial technique in many machine and deep learning applications.
 
 %\section{Linear regression}
 %http://www.ecostat.unical.it/Didattica/Statistica/didattica/StatAziendale2/StatAz2_cap2.pdf\\
