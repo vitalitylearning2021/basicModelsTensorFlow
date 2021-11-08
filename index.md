@@ -47,6 +47,7 @@ This, obviously, complicates the debugging phase since, opposite to the eager mo
   - *Portability*. The computational graph is language and platform-independent which favors portability.
 
 Using lazy execution was cumbersome in TensorFlow `1.x` since it required the use of proper *sessions*. Now this is not necessary anymore, since, as mentioned, lazy execution is the default computational modality for TensorFlow `2.x`. Of course, it is possible to manually switch to eager computation in TensorFlow `2.x` too.
+
 Once clarified the meaning of lazy and eager evaluations in TensorFlow, let us spend some words on *automatic differentiation* for the automatic computation of the derivatives of a multidimensional function. Automatic differentiation, indeed, is a crucial technique in many machine and deep learning applications.
 
 %\section{Linear regression}
