@@ -67,11 +67,13 @@ The second is using a symbolic differentiation tool, as those available in Matla
 
 A third possibility is to regard the expression to differentiate as a series of elementary operations that can be implemented by any programming language. On applying the differentiation rules to each individual elementary operation, we can obtain a code enabling the numerical computation of the derivatives. To better clarify the idea, let us suppose that the expression of <img src="https://render.githubusercontent.com/render/math?math=f(x_1,x_2)"> is the following:
 
-\begin{equation}\label{functionToBeDifferentiated}
-f(x_1, x_2) = x_2 \cdot \sin \left( 2\cdot x_1 + x_2 \right).
-\end{equation}
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=f(x_1, x_2) = x_2 \cdot \sin \left( 2\cdot x_1 + x_2 \right)." id="functionToBeDifferentiated">       [9]
+</p>
 
-In questo caso, le operazioni elementari che possiamo individuare sono le seguenti:
+In this case, the elementary operations that can be isolated are:
+
+
 
 \begin{equation}
   \left\{
