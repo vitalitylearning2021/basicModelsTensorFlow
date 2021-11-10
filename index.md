@@ -80,7 +80,7 @@ In this case, the elementary operations that can be isolated are:
 These operations correspond to the following graph:
 
 <p align="center">
-  <img src="computationalGraphAutoDiff.png" width="500" id="computationalGraphAutodiff">
+  <img src="computationalGraphAutoDiff.png" width="400" id="computationalGraphAutodiff">
   <br>
      <em>Figure 2. Computational graph for the automatic differentiation example.</em>
 </p>
