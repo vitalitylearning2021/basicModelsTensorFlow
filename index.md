@@ -74,33 +74,18 @@ A third possibility is to regard the expression to differentiate as a series of 
 In this case, the elementary operations that can be isolated are:
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\left\{
-    \begin{array}{lc}
-      x_1=\ldots\\
-      x_2=\ldots\\
-      z_1=2\cdot x_1 \\
-      z_2 = z_1 + x_2 \\
-      z_3 = \sin\left(z_2\right) \\
-      z_4 = x_2\cdot z_3 \\
-    \end{array}\right.." id="elementaryOperationsAutomaticDiff">       [2]
+   <img src="equation_2.png" width="200" id="elementaryOperationsAutomaticDiff">     [2]
+</p>
+
+These operations correspond to the following graph:
+
+<p align="center">
+  <img src="computationalGraphAutoDiff.png" width="500" id="computationalGraphAutodiff">
+  <br>
+     <em>Figure 2. Computational graph for the automatic differentiation example.</em>
 </p>
 
 
-\begin{equation}
-  
-  \label{}
-\end{equation}
-
-Queste operazioni corrispondono al grafo illustrato nella seguente figura:
-
-\begin{figure}[H]
-%\sidecaption
-\begin{center}
-\includegraphics[scale=0.8]{Pictures/Chapter06/computationalGraphAutoDiff.png}
-\caption{Computational graph for the automatic differentiation example.}
-\label{computationalGraphAutodiff}
-\end{center}
-\end{figure}
 
 Le prime due operazioni si intendono di assegnazione dei valori. Il grafo in Fig. \ref{elementaryOperationsAutomaticDiff} è esattamente il grafo che TensorFlow costruirebbe per la lazy execution. \\ 
 Immaginiamo ora di dover calcolare $\partial f/\partial x_1$ utilizzando la cosiddetta \emph{forward mode automatic differentiation}. Tale tecnica parte dalla funzione più interna e calcola le derivate, utilizzando le opportune regole di derivazione, muovendosi verso le funzioni più esterne. Nel caso in esame, essa compirebbe le seguenti operazioni paired with respect to those in (\ref{elementaryOperationsAutomaticDiff}):
