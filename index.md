@@ -74,7 +74,7 @@ A third possibility is to regard the expression to differentiate as a series of 
 In this case, the elementary operations that can be isolated are:
 
 <p align="center">
-   <img src="equation_2.png" width="200" id="elementaryOperationsAutomaticDiff">     [2]
+   <img src="equation_2.png" width="150" id="elementaryOperationsAutomaticDiff">     [2]
 </p>
 
 These operations correspond to the following graph:
