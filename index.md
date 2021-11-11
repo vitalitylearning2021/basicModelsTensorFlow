@@ -40,7 +40,7 @@ A programming language like Python implements the eager execution model. In othe
 Opposite to that, by the lazy evaluation, the operations are not executed at the point in which they are invoked, but they are exploited to create a computational graph, as illustrated in the following Fig. [1](#computationalGraph)
 
 <p align="center">
-  <img src="computationalGraph.png" width="350" id="computationalGraph">
+  <img src="computationalGraph.png" width="300" id="computationalGraph">
   <br>
      <em>Figure 1. Computational graph illustrating the <img src="https://render.githubusercontent.com/render/math?math=2 x_1 %2B x_2"> operation.</em>
 </p>
