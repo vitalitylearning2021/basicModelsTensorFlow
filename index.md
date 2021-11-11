@@ -42,7 +42,7 @@ Opposite to that, by the lazy evaluation, the operations are not executed at the
 <p align="center">
   <img src="computationalGraph.png" width="400" id="computationalGraph">
   <br>
-     <em>Figure 1. Computational graph illustrating the <img src="https://render.githubusercontent.com/render/math?math=xy %2B 2"> operation.</em>
+     <em>Figure 1. Computational graph illustrating the <img src="https://render.githubusercontent.com/render/math?math=2 x_1 %2B x_2"> operation.</em>
 </p>
 
 This, obviously, complicates the debugging phase since, opposite to the eager modality, it is not possible, for example, to follow the content of the variables during the execution. The lazy evaluation has however the following advantages:
