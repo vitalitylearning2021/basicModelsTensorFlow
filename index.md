@@ -115,7 +115,7 @@ An alternative to forward mode automatic differentiation, which is used by almos
 Reconsidering eqs. [\[2\]](#elementaryOperationsAutomaticDiff) in a reverse way, we have
 
 <p align="center">
-   <img src="equation_.png" width="350" id="elementaryOperationsAutomaticDiffDerivativeReverse">     [5]
+   <img src="equation_5.png" width="350" id="elementaryOperationsAutomaticDiffDerivativeReverse">     [5]
 </p>
 
 
