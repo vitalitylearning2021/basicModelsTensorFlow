@@ -96,7 +96,19 @@ Let us suppose now to compute <img src="https://render.githubusercontent.com/ren
   - as penultimate step, we would need to compute <img src="https://render.githubusercontent.com/render/math?math=\partial z_3/\partial x_1">; by the *chain rule*, we would obtain <img src="https://render.githubusercontent.com/render/math?math=\cos\left(z_2\right)\partial z_2/\partial x_1">; we could exploit the result at the previous step to evaluate <img src="https://render.githubusercontent.com/render/math?math=\partial z_2/\partial x_1">;
   - finally, the last step would consist of computing <img src="https://render.githubusercontent.com/render/math?math=\partial z_4/\partial x_1">; using the chain rule again, we would obtain <img src="https://render.githubusercontent.com/render/math?math=\partial x_2/\partial x_1 \cdot z_3 %2B x_2 \cdot \partial z_3/\partial x_1">.
 
-Come si può vedere, ad ogni passo, le derivate calcolate dipendono solo dalle derivate ai passi precedenti. Confrontando le operazioni di sopra con il grafo in Fig. \ref{computationalGraphAutodiff}, si può vedere che le operazioni di derivazione corrispondenti a ciascun nodo dipendono solo da quelle dei nodi immediatamente a monte sul grafo. Grazie a ciò, possiamo esprimere il calcolo della derivata parziale rispetto ad $x_1$ come la seguente sequenza di operazioni
+As it can be seen, at each step, the computed derivatives depend only on the derivatives at the previous steps. By comparing the above operations with the graph in Fig. [2](#computationalGraphAutodiff), we can see that the operations corresponding to each node depend only on those of the nodes immediately upstream on the graph. Thanks to that, we can express the computation of the partial derivative with respect to <img src="https://render.githubusercontent.com/render/math?math=x_1"> as the following sequence of operations
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\left\{
+    \begin{array}{lc}
+      \partial x_1/\partial x_1=1\\
+      \partial x_2/\partial x_1=0\\
+      \partial z_1/\partial x_1=2 \\
+      \partial z_2/\partial x_1= \partial z_1/\partial x_1 + \partial x_2/\partial x_1= \partial z_1/\partial x_1\\
+      \partial z_3/\partial x_1= \partial z_2/\partial x_1\cos\left(z_2\right) \\
+      \partial z_4/\partial x_1= \partial x_2/\partial x_1\cdot z_3 +x_2\partial z_3/\partial x_1\\
+    \end{array}\right.." id="elementaryOperationsAutomaticDiffDerivative">       [3]
+</p>
 
 \begin{equation}
   \left\{
@@ -108,7 +120,7 @@ Come si può vedere, ad ogni passo, le derivate calcolate dipendono solo dalle d
       \partial z_3/\partial x_1= \partial z_2/\partial x_1\cos\left(z_2\right) \\
       \partial z_4/\partial x_1= \partial x_2/\partial x_1\cdot z_3 +x_2\partial z_3/\partial x_1\\
     \end{array}\right..
-  \label{elementaryOperationsAutomaticDiffDerivative}
+  \label{}
 \end{equation}
 
 Given that, il procedimento per il calcolo di $\partial f/\partial x_2$ è del tutto simile.\\
