@@ -109,7 +109,7 @@ It should be noticed that the forward mode automatic differentiation is effectiv
 An alternative to forward mode automatic differentiation, which is used by almost all the machine learning and deep learning tools, is called *reverse mode automatic differentiation* and consists of traversing the graph in a reversed order. To clarify this point, let us consider again eqs. [\[2\]](#elementaryOperationsAutomaticDiff) and suppose that we want to compute <img src="https://render.githubusercontent.com/render/math?math=\partial z_4/\partial x_1">. Thanks to the chain rule, we can compute <img src="https://render.githubusercontent.com/render/math?math=\partial z_4/\partial x_1"> as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial z_4}{\partial x_1}=\frac{\partial z_4}{\partial z_3}\cdot\frac{\partial z_3}{\partial z_2}\cdot \frac{\partial z_2}{\partial z_1}\cdot \frac{\partial z_1}{\partial x_1}." id="xxx">       [4]
+  <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial z_4}{\partial x_1}=\frac{\partial z_4}{\partial z_3}\cdot\frac{\partial z_3}{\partial z_2}\cdot \frac{\partial z_2}{\partial z_1}\cdot \frac{\partial z_1}{\partial x_1}." id="reverseModeAutoDiff">       [4]
 </p>
 
 Reconsidering eqs. [\[2\]](#elementaryOperationsAutomaticDiff) in a reverse way, we have
@@ -118,13 +118,34 @@ Reconsidering eqs. [\[2\]](#elementaryOperationsAutomaticDiff) in a reverse way,
    <img src="equation_5.png" width="180" id="elementaryOperationsAutomaticDiffDerivativeReverse">     [5]
 </p>
 
+By substituting eqs. [\[5\]](#elementaryOperationsAutomaticDiffDerivativeReverse) in [\[2\]](#elementaryOperationsAutomaticDiff), the partial derivative of interest remains computed.
 
+## What is TensorFlow?
 
-Per rendere il tutorial più concreto possibile, supponiamo di avere questa espressione:
-% https://iaml.it/blog/differenziazione-automatica-parte-1
-% https://iaml.it/blog/differenziazione-automatica-parte-2
+Introduciamo il primo, semplice, classico esempio per iniziare ad utilizzare TensorFlow:
 
-%https://gdcoder.com/tensorflow-2-0-in-5-minutes/\\
+\begin{lstlisting}[language=Python]
+import tensorflow as tf
+
+print(tf.__version__)
+
+message = tf.constant('Hello World')
+
+print(message)
+
+tf.print(message)
+\end{lstlisting}
+
+Il Listing è molto semplice da leggere. La prima istruzione esegue l'import della libreria TensorFlow, mentre la seconda ne mostra la versione. Viene successivamente definito un tensore costante, cioè immutabile, di tipo stringa, avente valore \lstinline{Hello World}. \\
+Le ultime due istruzioni mostrano il \lstinline{print} di un tensore. \\
+Il primo \lstinline{print} utilizza una funzione di Python ed il risultato non è nient'altro che le proprietà dell'oggetto \lstinline{message}. Infatti, viene visualizzata la seguente stringa
+
+\begin{lstlisting}[language=Python]
+tf.Tensor(b'Hello World', shape=(), dtype=string)
+\end{lstlisting}
+
+Essa ci informa che l'oggetto \lstinline{message} è un tensore di TensorFlow, con valore \lstinline{Hello World}, di \lstinline{shape} indefinita e di tipo \lstinline{string}.\\
+Se vogliamo visualizzare il solo valore del tensore, allora dobbiamo utilizzare the TensorFlow primitive \lstinline{tf.print}.
 
 
 %\section{Linear regression}
