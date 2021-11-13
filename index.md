@@ -122,9 +122,9 @@ By substituting eqs. [\[5\]](#elementaryOperationsAutomaticDiffDerivativeReverse
 
 ## What is TensorFlow?
 
-Introduciamo il primo, semplice, classico esempio per iniziare ad utilizzare TensorFlow:
+Let us present the first, simple, classical example employing TensorFlow:
 
-\begin{lstlisting}[language=Python]
+``` python
 import tensorflow as tf
 
 print(tf.__version__)
@@ -134,18 +134,18 @@ message = tf.constant('Hello World')
 print(message)
 
 tf.print(message)
-\end{lstlisting}
+```
 
-Il Listing è molto semplice da leggere. La prima istruzione esegue l'import della libreria TensorFlow, mentre la seconda ne mostra la versione. Viene successivamente definito un tensore costante, cioè immutabile, di tipo stringa, avente valore \lstinline{Hello World}. \\
-Le ultime due istruzioni mostrano il \lstinline{print} di un tensore. \\
-Il primo \lstinline{print} utilizza una funzione di Python ed il risultato non è nient'altro che le proprietà dell'oggetto \lstinline{message}. Infatti, viene visualizzata la seguente stringa
+The Listing is much simple to be read. The first instruction performs the import of the TensorFlow library, while the second shows the version. Then, a constant tensor, namely, an immutable sensor, of string type, is defined which has `Hello World` as value. 
 
-\begin{lstlisting}[language=Python]
+The last two instructions perform the printout of the tensor. The first `print` uses a Python function and the printout consists of just the properties of the `message` object. Indeed, the printout is
+
+``` python
 tf.Tensor(b'Hello World', shape=(), dtype=string)
-\end{lstlisting}
+```
 
-Essa ci informa che l'oggetto \lstinline{message} è un tensore di TensorFlow, con valore \lstinline{Hello World}, di \lstinline{shape} indefinita e di tipo \lstinline{string}.\\
-Se vogliamo visualizzare il solo valore del tensore, allora dobbiamo utilizzare the TensorFlow primitive \lstinline{tf.print}.
+It informs us that the `message` object is a TensorFlow tensor, having the value `Hello World`, of undefined `shape` and of `string` type. If we want to print out the only value of a tensor, then we need the TensorFlow primitive `tf.print`.
+
 
 
 %\section{Linear regression}
