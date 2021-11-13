@@ -102,7 +102,7 @@ As it can be seen, at each step, the computed derivatives depend only on the der
    <img src="equation_3.png" width="350" id="elementaryOperationsAutomaticDiffDerivative">     [3]
 </p>
 
-Given that, the procedure to compute <img src="https://render.githubusercontent.com/render/math?math=\partial f/\partial x_2"> is totally analogous.
+By forward substitution in the last equation of the eqs. [\[3\]](#elementaryOperationsAutomaticDiffDerivative), the derivative of interest remains computed. Given that, the procedure to compute <img src="https://render.githubusercontent.com/render/math?math=\partial f/\partial x_2"> is totally analogous.
 
 It should be noticed that the forward mode automatic differentiation is effective when the functions of which computing the derivatives have few inputs and many outputs. Opposite to that, in machine learning applications, as it will be seen, the functions have tipically different inputs and only one output.
 
@@ -112,25 +112,13 @@ An alternative to forward mode automatic differentiation, which is used by almos
   <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial z_4}{\partial x_1}=\frac{\partial z_4}{\partial z_3}\cdot\frac{\partial z_3}{\partial z_2}\cdot \frac{\partial z_2}{\partial z_1}\cdot \frac{\partial z_1}{\partial x_1}." id="xxx">       [4]
 </p>
 
-
-\begin{equation}
-    \frac{\partial z_4}{\partial x_1}=\frac{\partial z_4}{\partial z_3}\cdot\frac{\partial z_3}{\partial z_2}\cdot \frac{\partial z_2}{\partial z_1}\cdot \frac{\partial z_1}{\partial x_1}
-\end{equation}
-
 Reconsidering eqs. [\[2\]](#elementaryOperationsAutomaticDiff) in a reverse way, we have
 
-\begin{equation}
-  \left\{
-    \begin{array}{lc}
-      \frac{\partial z_4}{\partial z_3}=x_2\\
-      \frac{\partial z_3}{\partial z_2}=\cos\left(z_2\right)\\
-      \frac{\partial z_2}{\partial z_1}=1 \\
-      \frac{\partial z_1}{\partial x_1}=2 \\
-    \end{array}\right..
-  \label{elementaryOperationsAutomaticDiffDerivativeReverse}
-\end{equation}
+<p align="center">
+   <img src="equation_.png" width="350" id="elementaryOperationsAutomaticDiffDerivativeReverse">     [5]
+</p>
 
-\\
+
 
 Per rendere il tutorial più concreto possibile, supponiamo di avere questa espressione:
 % https://iaml.it/blog/differenziazione-automatica-parte-1
