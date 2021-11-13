@@ -99,7 +99,7 @@ Let us suppose now to compute <img src="https://render.githubusercontent.com/ren
 As it can be seen, at each step, the computed derivatives depend only on the derivatives at the previous steps. By comparing the above operations with the graph in Fig. [2](#computationalGraphAutodiff), we can see that the operations corresponding to each node depend only on those of the nodes immediately upstream on the graph. Thanks to that, we can express the computation of the partial derivative with respect to <img src="https://render.githubusercontent.com/render/math?math=x_1"> as the following sequence of operations
 
 <p align="center">
-   <img src="equation_3.png" width="150" id="elementaryOperationsAutomaticDiffDerivative">     [3]
+   <img src="equation_3.png" width="250" id="elementaryOperationsAutomaticDiffDerivative">     [3]
 </p>
 
 <p align="center">
