@@ -102,33 +102,16 @@ As it can be seen, at each step, the computed derivatives depend only on the der
    <img src="equation_3.png" width="350" id="elementaryOperationsAutomaticDiffDerivative">     [3]
 </p>
 
+Given that, the procedure to compute <img src="https://render.githubusercontent.com/render/math?math=\partial f/\partial x_2"> is totally analogous.
+
+It should be noticed that the forward mode automatic differentiation is effective when the functions of which computing the derivatives have few inputs and many outputs. Opposite to that, in machine learning applications, as it will be seen, the functions have tipically different inputs and only one output.
+
+An alternative to forward mode automatic differentiation, which is used by almost all the machine learning and deep learning tools, is called *reverse mode automatic differentiation* and consists of traversing the graph in a reversed order. To clarify this point, let us consider again eq. [\[2\]](#elementaryOperationsAutomaticDiff) and suppose that we want to compute <img src="https://render.githubusercontent.com/render/math?math=\partial z_4/\partial x_1">. Thanks to the chain rule, we can compute <img src="https://render.githubusercontent.com/render/math?math=\partial z_4/\partial x_1"> as
+
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\left\{
-    \begin{array}{lc}
-      \partial x_1/\partial x_1=1\\
-      \partial x_2/\partial x_1=0\\
-      \partial z_1/\partial x_1=2 \\
-      \partial z_2/\partial x_1= \partial z_1/\partial x_1 + \partial x_2/\partial x_1= \partial z_1/\partial x_1\\
-      \partial z_3/\partial x_1= \partial z_2/\partial x_1\cos\left(z_2\right) \\
-      \partial z_4/\partial x_1= \partial x_2/\partial x_1\cdot z_3 +x_2\partial z_3/\partial x_1\\
-    \end{array}\right.." id="">       [3]
+  <img src="https://render.githubusercontent.com/render/math?math=\frac{\partial z_4}{\partial x_1}=\frac{\partial z_4}{\partial z_3}\cdot\frac{\partial z_3}{\partial z_2}\cdot \frac{\partial z_2}{\partial z_1}\cdot \frac{\partial z_1}{\partial x_1}." id="xxx">       [4]
 </p>
 
-\begin{equation}
-  \left\{
-    \begin{array}{lc}
-      \partial x_1/\partial x_1=1\\
-      \partial x_2/\partial x_1=0\\
-      \partial z_1/\partial x_1=2 \\
-      \partial z_2/\partial x_1= \partial z_1/\partial x_1 + \partial x_2/\partial x_1= \partial z_1/\partial x_1\\
-      \partial z_3/\partial x_1= \partial z_2/\partial x_1\cos\left(z_2\right) \\
-      \partial z_4/\partial x_1= \partial x_2/\partial x_1\cdot z_3 +x_2\partial z_3/\partial x_1\\
-    \end{array}\right..
-  \label{}
-\end{equation}
-
-Given that, il procedimento per il calcolo di $\partial f/\partial x_2$ è del tutto simile.\\
-E' da notare che la forward mode automatic differentiation è efficiente quando le funzioni di cui calcolare le derivate hanno pochi ingressi e molte uscite. Al contrario, nelle applicazioni di machine learning, come si vedrà, le funzioni hanno tipicamente differenti ingressi ed una sola uscita.\\ Un'alternativa della forward mode automatic differentiation, che poi è quella usata da quasi tutti gli strumenti di machine learning o deep learning prende il nome di \emph{reverse mode automatic differentiation} e consiste nel percorrere il grafo al contrario. Per chiarire questo punto, riprendiamo in considerazione le (\ref{elementaryOperationsAutomaticDiff}) e supponiamo di voler calcolare $\partial z_4/\partial x_1$. Grazie alla chain rule, possiamo scrivere $\partial z_4/\partial x_1$ come
 
 \begin{equation}
     \frac{\partial z_4}{\partial x_1}=\frac{\partial z_4}{\partial z_3}\cdot\frac{\partial z_3}{\partial z_2}\cdot \frac{\partial z_2}{\partial z_1}\cdot \frac{\partial z_1}{\partial x_1}
