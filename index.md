@@ -22,7 +22,7 @@ A different division can be performed depending on the desired output. For super
 TensorFlow is an open source library used in machine learning.
 
 It has been developed by Google in the framework of the Google Brain (AI) project and, in 2015, its code has been released with an open source license.
-Today, TensorFlow is used in many areas of science and industry for machine learning applications and, more generally, for artificial intelligence. For example, Google uses TensorFlow for image recognition algorithms and in its own RankBrain algorithm developed and used by its search engine to interpret the meaning of a query. Moreover, TensorFlow is often employed for reading handwritten text and for the automatic recognition of objects or people.
+Today, TensorFlow is used in many areas of science and industry for machine learning applications and, more generally, for artificial intelligence. For example, Google uses TensorFlow for image recognition algorithms and in its own RankBrain algorithm developed and used by its search engine to interpret the meaning of a query. Moreover, TensorFlow is often employed for reading handwritten text and for the automatic recognition of objects or people. Generally speaking, TensorFlow is routinely adopted in commercial or research developments to create and distribute automatic learning modules. In few years, it has evolved from a simple library to a whole ecosystem for all types of machine learning.
 
 The name TensorFlow is composed by the two words “tensor” and “flow”. The use of “tensor” is due to the fact that a tensor is an algebraic object that describes a multilinear relationship between sets of algebraic objects related to a vector space, that such algebraic objects are often described by multidimensional matrices and that TensorFlow is based on the manipulation of multidimensional matrices. The word “flow” evokes the operations flow.
 
@@ -136,7 +136,7 @@ print(message)
 tf.print(message)
 ```
 
-The Listing is much simple to be read. The first instruction performs the import of the TensorFlow library, while the second shows the version. Then, a constant tensor, namely, an immutable sensor, of string type, is defined which has `Hello World` as value. 
+The Listing is much simple to be read. The first instruction performs the import of the TensorFlow library, while the second shows the version, `2.7.0` at the time of writing. Then, a constant tensor, namely, an immutable sensor, of string type, is defined which has `Hello World` as value. 
 
 The last two instructions perform the printout of the tensor. The first `print` uses a Python function and the printout consists of just the properties of the `message` object. Indeed, the printout is
 
@@ -146,7 +146,19 @@ tf.Tensor(b'Hello World', shape=(), dtype=string)
 
 It informs us that the `message` object is a TensorFlow tensor, having the value `Hello World`, of undefined `shape` and of `string` type. If we want to print out the only value of a tensor, then we need the TensorFlow primitive `tf.print`.
 
+https://ichi.pro/it/la-guida-definitiva-per-principianti-a-tensorflow-72377596104903
+https://ichi.pro/it/tutorial-su-tensorflow-una-guida-completa-all-apprendimento-approfondito-con-tensorflow-204595782052810
+https://riptutorial.com/Download/tensorflow-it.pdf
+https://vittoriomazzia.com/tensorflow-lite/
+https://ichi.pro/it/guida-per-principianti-a-tensorflow-2-x-per-applicazioni-di-deep-learning-219815635385326
 
+Regressione lineare?
+https://www.andreaminini.com/ai/tensorflow/esempio-tutorial-tensorflow
+
+Semplice rete neurale?
+https://andreaprovino.it/start-tensorflow-2-esempio-semplice-tutorial/
+https://medium.com/@cosimo.iaia/machine-learning-tensorflow-per-luomo-di-strada-2c71a948b4e3
+https://ichi.pro/it/introduzione-a-tensorflow-2-0-275931290659758
 
 %\section{Linear regression}
 %http://www.ecostat.unical.it/Didattica/Statistica/didattica/StatAziendale2/StatAz2_cap2.pdf\\
