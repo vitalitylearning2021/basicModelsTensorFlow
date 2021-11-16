@@ -120,7 +120,7 @@ Reconsidering eqs. [\[2\]](#elementaryOperationsAutomaticDiff) in a reverse way,
 
 By substituting eqs. [\[5\]](#elementaryOperationsAutomaticDiffDerivativeReverse) in [\[2\]](#elementaryOperationsAutomaticDiff), the partial derivative of interest remains computed.
 
-## What is TensorFlow?
+## “Hello World” in TensorFlow?
 
 Let us present the first, simple, classical example employing TensorFlow:
 
@@ -146,6 +146,110 @@ tf.Tensor(b'Hello World', shape=(), dtype=string)
 
 It informs us that the `message` object is a TensorFlow tensor, having the value `Hello World`, of undefined `shape` and of `string` type. If we want to print out the only value of a tensor, then we need the TensorFlow primitive `tf.print`.
 
+## Basic operations in TensorFlow?
+
+Internamente, Tensorflow rappresenta i tensor come array n-dimensionali di datatypes base (int, string, etc..)
+
+A eccezione del tf.Variable, i tensori sono immutabili.
+
+Devi sapere che ogni elemento in un tensor condivide poi il data type, che è sempre noto, con quello degli altri elementi.
+
+La shape di un tensor (vale a dire il numero di dimensioni e la lunghezza di ogni dimensione) può invece essere anche parzialmente nota.
+
+Questo perché la maggior parte delle operazioni produce tensori di dimensioni completamente note (full-known) se quelle degli input sono altrettanto conosciute. In altri casi è possibile determinare la shape finale solo al termine dell’esecuzione dei grafi.
+
+Un grafo è la rappresentazione, per mezzo di nodi, di operazioni eseguite sui tensori.
+
+Il rank di un tensor è invece il numero di dimensioni (n-dimenions), e può essere considerato l’ordine di grandezza del tensore.
+
+Facciamo comunque qualche esempio:
+
+``` python
+# create 1-d Tensors from vectors and lists
+sports = tf.constant(["Tennis", "Basketball"], tf.string)
+numbers = tf.constant([3.141592, 1.414213, 2.71821], tf.float64)
+
+print("`sports` is a {}-d Tensor with shape: {}".format(tf.rank(sports).numpy(), tf.shape(sports)))
+print("`numbers` is a {}-d Tensor with shape: {}".format(tf.rank(numbers).numpy(), tf.shape(numbers)))
+
+# Output:
+#`sports` is a 1-d Tensor with shape: [2]
+#`numbers` is a 1-d Tensor with shape: [3]
+```
+
+Perfetto.
+
+Abbiamo preso dimestichezza con gli elementi base, i tensori, ora è arrivato il momento di passare all rappresentazione di tensor dalle dimensioni maggiori.
+
+In applicazioni reali, come vedremo, avremo bisogno anche di 4-d Tensor, con i quali rappresentare ad esempio immagini in task di image preprocessing e computer vision.
+
+Consideriamo dunque un tensor pronto a gestire 10 immagini quadrate a colori di 256px nello spazio RGB: 10 x 256*256*3.
+
+``` python
+'''Define a 4-d Tensor.'''
+# Use tf.zeros to initialize a 4-d Tensor of zeros with size 10 x 256 x 256 x 3.
+# You can think of this as 10 images where each image is RGB 256 x 256.
+
+#  Creates a tensor with all elements set to zero.
+images = tf.constant(tf.zeros((10,256,256,3), tf.int32, "The name of the operation"))
+
+assert isinstance(images, tf.Tensor), "matrix must be a tf Tensor object"
+assert tf.rank(images).numpy() == 4, "matrix must be of rank 4"
+assert tf.shape(images).numpy().tolist() == [10, 256, 256, 3], "matrix is incorrect shape"
+```
+
+Per comprendere il flow dei dati e delle operazioni in Tensorflow, possiamo servirci dei grafi, rappresentazioni convenienti di computazioni.
+
+Un grafo, o graph, e sarà quindi costituito da tensori, che gestiranno i dati, e dalle operazioni compiuti su di essi.
+
+Vediamo una semplice operazione di somma: due tensori costanti e una sommatoria.
+
+``` python
+# Create the nodes in the graph, and initialize values
+a = tf.constant(15)
+b = tf.constant(61)
+
+# Add them!
+c1 = tf.add(a,b)
+c2 = a + b # TensorFlow overrides the "+" operation so that it is able to act on Tensors
+print(c1)
+print(c2)
+
+# Output:
+# tf.Tensor(76, shape=(), dtype=int32)
+# tf.Tensor(76, shape=(), dtype=int32)
+```
+
+Ora consideriamo un esempio più complesso:
+
+Andiamo ora a costruire una funzione che riproduca le operazioni rappresentate nel grafo:
+
+``` python
+'''Defining Tensor computations''''
+
+# Construct a simple computation function
+def func(a,b):
+  c = tf.add(a,b)
+  d = tf.subtract(b,1)
+  e = tf.multiply(c,d)
+  return e
+```
+
+Quindi calcoliamo il risultato:
+
+``` python
+# Consider example values for a,b
+a, b = 1.5, 2.5
+# Execute the computation
+e_out = func(a,b)
+print(e_out)
+
+# Output:
+# tf.Tensor(6.0, shape=(), dtype=float32)
+```
+
+L’ouput è un semplice scalare, privo di dimensoni.
+
 https://ichi.pro/it/la-guida-definitiva-per-principianti-a-tensorflow-72377596104903
 https://ichi.pro/it/tutorial-su-tensorflow-una-guida-completa-all-apprendimento-approfondito-con-tensorflow-204595782052810
 https://riptutorial.com/Download/tensorflow-it.pdf
@@ -159,6 +263,7 @@ Semplice rete neurale?
 https://andreaprovino.it/start-tensorflow-2-esempio-semplice-tutorial/
 https://medium.com/@cosimo.iaia/machine-learning-tensorflow-per-luomo-di-strada-2c71a948b4e3
 https://ichi.pro/it/introduzione-a-tensorflow-2-0-275931290659758
+https://andreaprovino.it/tensorflow-guida-italiano-primi-passi-con-tensorflow/
 
 %\section{Linear regression}
 %http://www.ecostat.unical.it/Didattica/Statistica/didattica/StatAziendale2/StatAz2_cap2.pdf\\
