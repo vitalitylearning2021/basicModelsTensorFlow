@@ -268,8 +268,29 @@ https://riptutorial.com/Download/tensorflow-it.pdf
 https://vittoriomazzia.com/tensorflow-lite/
 https://ichi.pro/it/guida-per-principianti-a-tensorflow-2-x-per-applicazioni-di-deep-learning-219815635385326
 
+Variabili e costanti
+https://www.it-swarm.it/it/python/variabili-e-costanti-tensorflow/833521263/
+
+https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
+
+https://www.it-swarm.it/it/python/perche-denominiamo-le-variabili-tensorflow/1056840775/
+
+https://pretagteam.com/question/in-tensorflow-what-is-the-difference-between-a-variable-and-a-tensor
+
+https://people.unica.it/diegoreforgiato/files/2012/04/TesiNicolaPes.pdf
+
+https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
+
+Placeholder
+
+https://www.it-swarm.it/it/tensorflow/qual-e-la-differenza-tra-tf.placeholder-e-tf.variable/824943616/
+
+https://amslaurea.unibo.it/14173/1/tesi_piscaglia.pdf
+
 Regressione lineare?
 https://www.andreaminini.com/ai/tensorflow/esempio-tutorial-tensorflow
+
+https://learntutorials.net/it/tensorflow/topic/856/iniziare-con-tensorflow
 
 Semplice rete neurale?
 https://andreaprovino.it/start-tensorflow-2-esempio-semplice-tutorial/
