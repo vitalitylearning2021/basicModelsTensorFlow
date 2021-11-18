@@ -180,23 +180,17 @@ print("`rationalNumbers` is a {}-d Tensor with shape: {}".format(tf.rank(rationa
 
 ### Tensori <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali costanti
 
-In applicazioni reali, come vedremo, avremo bisogno anche di 4-d Tensor, con i quali rappresentare ad esempio immagini in task di image preprocessing e computer vision.
-
-Consideriamo dunque un tensor pronto a gestire 10 immagini quadrate a colori di 256px nello spazio RGB: 10 x 256*256*3.
+Nelle tipiche applicazioni di TensorFlow (e.g., image processing or computer vision), può essere necessario gestire anche immagini 2d o 3d o sequenze di immagini 2d o 3d. Da questo punto di vista, può essere necessario riuscire a gestire anche 4d tensor. Nell'esempio riportato di seguito, si definisce un 4d constant tensor doppia precisione per gestire 3 immagini 128 x 128 x 16. 
 
 ``` python
-'''Define a 4-d Tensor.'''
-# Use tf.zeros to initialize a 4-d Tensor of zeros with size 10 x 256 x 256 x 3.
-# You can think of this as 10 images where each image is RGB 256 x 256.
+images = tf.constant(tf.zeros((3, 128, 128, 16), tf.float64, "4d constant tensor definition"))
 
-#  Creates a tensor with all elements set to zero.
-images = tf.constant(tf.zeros((10,256,256,3), tf.int32, "The name of the operation"))
-
-assert isinstance(images, tf.Tensor), "matrix must be a tf Tensor object"
-assert tf.rank(images).numpy() == 4, "matrix must be of rank 4"
-assert tf.shape(images).numpy().tolist() == [10, 256, 256, 3], "matrix is incorrect shape"
+assert isinstance(images, tf.Tensor), "Matrix must be a TensorFlow tensor object"
+assert tf.rank(images).numpy() == 4, "Matrix must be of rank 4"
+assert tf.shape(images).numpy().tolist() == [3, 128, 128, 16], "Matrix has incorrect shape"
 ```
 
+Per attivare gli assert, è necessario modificare o la natura dell'oggetto, o il rank oppure lo shape.
 
 A eccezione del `tf.Variable`, i tensori sono immutabili.
 
