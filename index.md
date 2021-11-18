@@ -148,8 +148,35 @@ It informs us that the `message` object is a TensorFlow tensor, having the value
 
 ## Basic operations in TensorFlow
 
-Internamente, Tensorflow rappresenta i tensor come array <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali di *datatypes* base (`int`, `string`, etc..). Il datatype di un tensore è sempre noto in qualsiasi momento dell'esecuzione del codice ed è condiviso da tutti gli elementi del tensore. Nella modalità di esecuzione lazy, la *shape* di un tensore, ossia il numero di dimensioni e la lunghezza di ogni dimensione, può invece essere anche solo parzialmente nota. Questo avviene perché le operazioni in un grafo producono tensori di dimensioni full-known solo se quelle degli input sono altrettanto conosciute. Dunque, spesso è possibile determinare la shape finale di un tensore solo al termine dell’esecuzione dei grafi. Il *rank* di un tensor è infine il numero di sue dimensioni (n-dimenions). Datatype, shape and rank rappresentano le tre caratteristiche fondamentali di un tensore.
+Internamente, Tensorflow rappresenta i tensor come array <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali di *datatypes* base (`int`, `string`, etc..). Il datatype di un tensore è sempre noto in qualsiasi momento dell'esecuzione del codice ed è condiviso da tutti gli elementi del tensore. Nella modalità di esecuzione lazy, la *shape* di un tensore, ossia il numero di dimensioni e la lunghezza di ogni dimensione, può invece essere anche solo parzialmente nota. Questo avviene perché le operazioni in un grafo producono tensori di dimensioni full-known solo se quelle degli input sono altrettanto conosciute. Dunque, spesso è possibile determinare la shape finale di un tensore solo al termine dell’esecuzione dei grafi. Il *rank* di un tensor è infine il numero di sue dimensioni. Datatype, shape and rank rappresentano le tre caratteristiche fondamentali di un tensore.
 
+Nel seguito, mostreremo semplici esempi con difficoltà incrementale. The import of the TensorFlow library
+
+``` python
+import tensorflow as tf
+```
+
+will be always assumed and suppressed.
+
+### Tensori monodimensionali costanti
+
+Facciamo un primo semplice esempio di tensore monodimensionale costante il cui prototipo generale è
+
+``` python
+tf.constant(
+   value, dtype=None, shape=None, name='Const'
+)
+```
+
+Nell'esempio che segue, si creano due tensori monodimensionali costanti a partire da liste dei loro elementi. Il primo è un tensore di stringhe, mentre il secondo è un tensore di numeri razionali
+
+``` python
+instruments       = tf.constant(["Violin", "Piano"], tf.string)
+rationalNumbers   = tf.constant([1.223, 2.131, -10.43], tf.float32)
+
+print("`instruments` is a {}-d Tensor with shape: {}".format(tf.rank(instruments).numpy(), tf.shape(instruments)))
+print("`rationalNumbers` is a {}-d Tensor with shape: {}".format(tf.rank(rationalNumbers).numpy(), tf.shape(rationalNumbers)))
+```
 
 
 A eccezione del `tf.Variable`, i tensori sono immutabili.
