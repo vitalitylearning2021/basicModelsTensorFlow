@@ -120,7 +120,7 @@ Reconsidering eqs. [\[2\]](#elementaryOperationsAutomaticDiff) in a reverse way,
 
 By substituting eqs. [\[5\]](#elementaryOperationsAutomaticDiffDerivativeReverse) in [\[2\]](#elementaryOperationsAutomaticDiff), the partial derivative of interest remains computed.
 
-## “Hello World” in TensorFlow?
+## “Hello World” in TensorFlow
 
 Let us present the first, simple, classical example employing TensorFlow:
 
@@ -146,9 +146,13 @@ tf.Tensor(b'Hello World', shape=(), dtype=string)
 
 It informs us that the `message` object is a TensorFlow tensor, having the value `Hello World`, of undefined `shape` and of `string` type. If we want to print out the only value of a tensor, then we need the TensorFlow primitive `tf.print`.
 
-## Basic operations in TensorFlow?
+## Basic operations in TensorFlow
 
-Internamente, Tensorflow rappresenta i tensor come array n-dimensionali di datatypes base (int, string, etc..)
+Internamente, Tensorflow rappresenta i tensor come array <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali di *datatypes* base (`int`, `string`, etc..). Il datatype di un tensore è sempre noto in qualsiasi momento dell'esecuzione del codice ed è condiviso da tutti gli elementi del tensore. Nella modalità di esecuzione lazy, la *shape* di un tensore, ossia il numero di dimensioni e la lunghezza di ogni dimensione, può invece essere anche solo parzialmente nota. Questo avviene perché le operazioni in un grafo producono tensori di dimensioni full-known solo se quelle degli input sono altrettanto conosciute. Dunque, spesso è possibile determinare la shape finale di un tensore solo al termine dell’esecuzione dei grafi. Il *rank* di un tensor è infine il numero di sue dimensioni (n-dimenions). Datatype, shape and rank rappresentano le tre caratteristiche fondamentali di un tensore.
+
+
+
+A eccezione del `tf.Variable`, i tensori sono immutabili.
 
 ``` python
 tf.Variable(
@@ -162,17 +166,13 @@ tf.constant(
 )
 ```
 
-A eccezione del tf.Variable, i tensori sono immutabili.
 
-Devi sapere che ogni elemento in un tensor condivide poi il data type, che è sempre noto, con quello degli altri elementi.
 
-La shape di un tensor (vale a dire il numero di dimensioni e la lunghezza di ogni dimensione) può invece essere anche parzialmente nota.
 
-Questo perché la maggior parte delle operazioni produce tensori di dimensioni completamente note (full-known) se quelle degli input sono altrettanto conosciute. In altri casi è possibile determinare la shape finale solo al termine dell’esecuzione dei grafi.
+
 
 Un grafo è la rappresentazione, per mezzo di nodi, di operazioni eseguite sui tensori.
 
-Il rank di un tensor è invece il numero di dimensioni (n-dimenions), e può essere considerato l’ordine di grandezza del tensore.
 
 Facciamo comunque qualche esempio:
 
@@ -280,6 +280,8 @@ https://pretagteam.com/question/in-tensorflow-what-is-the-difference-between-a-v
 https://people.unica.it/diegoreforgiato/files/2012/04/TesiNicolaPes.pdf
 
 https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
+
+https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
 
 Placeholder
 
