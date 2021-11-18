@@ -178,47 +178,7 @@ print("`instruments` is a {}-d Tensor with shape: {}".format(tf.rank(instruments
 print("`rationalNumbers` is a {}-d Tensor with shape: {}".format(tf.rank(rationalNumbers).numpy(), tf.shape(rationalNumbers)))
 ```
 
-
-A eccezione del `tf.Variable`, i tensori sono immutabili.
-
-``` python
-tf.Variable(
- initial_value=None, trainable=None, validate_shape=True, caching_device=None,
-    name=None, variable_def=None, dtype=None, import_scope=None, constraint=None,
-    synchronization=tf.VariableSynchronization.AUTO,
-    aggregation=tf.compat.v1.VariableAggregation.NONE, shape=None
-)
-tf.constant(
-   value, dtype=None, shape=None, name='Const'
-)
-```
-
-
-
-
-
-
-Un grafo è la rappresentazione, per mezzo di nodi, di operazioni eseguite sui tensori.
-
-
-Facciamo comunque qualche esempio:
-
-``` python
-# create 1-d Tensors from vectors and lists
-sports = tf.constant(["Tennis", "Basketball"], tf.string)
-numbers = tf.constant([3.141592, 1.414213, 2.71821], tf.float64)
-
-print("`sports` is a {}-d Tensor with shape: {}".format(tf.rank(sports).numpy(), tf.shape(sports)))
-print("`numbers` is a {}-d Tensor with shape: {}".format(tf.rank(numbers).numpy(), tf.shape(numbers)))
-
-# Output:
-#`sports` is a 1-d Tensor with shape: [2]
-#`numbers` is a 1-d Tensor with shape: [3]
-```
-
-Perfetto.
-
-Abbiamo preso dimestichezza con gli elementi base, i tensori, ora è arrivato il momento di passare all rappresentazione di tensor dalle dimensioni maggiori.
+### Tensori <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali costanti
 
 In applicazioni reali, come vedremo, avremo bisogno anche di 4-d Tensor, con i quali rappresentare ad esempio immagini in task di image preprocessing e computer vision.
 
@@ -236,6 +196,27 @@ assert isinstance(images, tf.Tensor), "matrix must be a tf Tensor object"
 assert tf.rank(images).numpy() == 4, "matrix must be of rank 4"
 assert tf.shape(images).numpy().tolist() == [10, 256, 256, 3], "matrix is incorrect shape"
 ```
+
+
+A eccezione del `tf.Variable`, i tensori sono immutabili.
+
+``` python
+tf.Variable(
+ initial_value=None, trainable=None, validate_shape=True, caching_device=None,
+    name=None, variable_def=None, dtype=None, import_scope=None, constraint=None,
+    synchronization=tf.VariableSynchronization.AUTO,
+    aggregation=tf.compat.v1.VariableAggregation.NONE, shape=None
+)
+```
+
+
+
+
+
+
+Un grafo è la rappresentazione, per mezzo di nodi, di operazioni eseguite sui tensori.
+
+
 
 Per comprendere il flow dei dati e delle operazioni in Tensorflow, possiamo servirci dei grafi, rappresentazioni convenienti di computazioni.
 
