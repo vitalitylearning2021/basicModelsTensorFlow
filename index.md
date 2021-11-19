@@ -201,6 +201,8 @@ threeDimensionalList = [[[0, 1, 2],
                          [9, 10, 11]]]
 rank3Tensor = tf.constant(threeDimensionalList)
 print(rank3Tensor)
+print("The number tensor dimensions is", rank3Tensor.ndim)
+print("The tensor shape is", rank3Tensor.shape)
 ```
 
 ### Prossimo paragrafo
