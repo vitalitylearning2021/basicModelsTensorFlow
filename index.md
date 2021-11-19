@@ -148,7 +148,7 @@ It informs us that the `message` object is a TensorFlow tensor, having the value
 
 ## Basic operations in TensorFlow
 
-Internamente, Tensorflow rappresenta i tensor come array <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali di *datatypes* base (`int`, `string`, etc..). Il datatype di un tensore è sempre noto in qualsiasi momento dell'esecuzione del codice ed è condiviso da tutti gli elementi del tensore. Nella modalità di esecuzione lazy, la *shape* di un tensore, ossia il numero di dimensioni e la lunghezza di ogni dimensione, può invece essere anche solo parzialmente nota. Questo avviene perché le operazioni in un grafo producono tensori di dimensioni full-known solo se quelle degli input sono altrettanto conosciute. Dunque, spesso è possibile determinare la shape finale di un tensore solo al termine dell’esecuzione dei grafi. Il *rank* di un tensor è infine il numero di sue dimensioni. Datatype, shape and rank rappresentano le tre caratteristiche fondamentali di un tensore.
+Internamente, Tensorflow rappresenta i tensor come array <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali di *datatypes* base (`int`, `string`, etc..). Il datatype di un tensore è sempre noto in qualsiasi momento dell'esecuzione del codice ed è condiviso da tutti gli elementi del tensore. Nella modalità di esecuzione lazy, la *shape* di un tensore, ossia il numero di dimensioni e la lunghezza di ogni dimensione, può invece essere anche solo parzialmente nota. Questo avviene perché le operazioni in un grafo producono tensori di dimensioni full-known solo se quelle degli input sono altrettanto conosciute. Dunque, spesso è possibile determinare la shape finale di un tensore solo al termine dell’esecuzione dei grafi. Il *rank* di un tensor è infine il numero di sue dimensioni. Datatype, shape and rank rappresentano le tre caratteristiche fondamentali di un tensore. Tutti i tensori hanno anche una dimensione, che è il numero totale di elementi al loro interno. Come si vede, i tensori di TensorFlow sono simili agli array della libreria NumPy.
 
 Nel seguito, mostreremo semplici esempi con difficoltà incrementale. The import of the TensorFlow library
 
@@ -192,6 +192,25 @@ assert tf.shape(images).numpy().tolist() == [3, 128, 128, 16], "Matrix has incor
 
 Per attivare gli assert, è necessario modificare o la natura dell'oggetto, o il rank oppure lo shape.
 
+Un tensore <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionale può anche essere costruito a partire da una lista <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionale, come nell'esempio seguente
+
+``` python
+threeDimensionalList = [[[0, 1, 2], 
+                         [3, 4, 5]], 
+                        [[6, 7, 8], 
+                         [9, 10, 11]]]
+rank3Tensor = tf.constant(threeDimensionalList)
+print(rank3Tensor)
+```
+
+### Prossimo paragrafo
+
+Stiamo vedendo questo
+
+https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
+
+
+
 A eccezione del `tf.Variable`, i tensori sono immutabili.
 
 ``` python
@@ -203,7 +222,11 @@ tf.Variable(
 )
 ```
 
+### TensorBoard
 
+Qui si può spiegare perché le variabili constanti apparentemente possono essere modificate
+
+https://stackoverflow.com/questions/46786463/modifying-tensorflow-constant-tensor
 
 
 
@@ -271,7 +294,8 @@ https://vittoriomazzia.com/tensorflow-lite/
 https://ichi.pro/it/guida-per-principianti-a-tensorflow-2-x-per-applicazioni-di-deep-learning-219815635385326
 
 Variabili e costanti
-https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
+
+
 
 https://www.it-swarm.it/it/python/variabili-e-costanti-tensorflow/833521263/
 
