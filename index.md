@@ -271,6 +271,8 @@ https://vittoriomazzia.com/tensorflow-lite/
 https://ichi.pro/it/guida-per-principianti-a-tensorflow-2-x-per-applicazioni-di-deep-learning-219815635385326
 
 Variabili e costanti
+https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
+
 https://www.it-swarm.it/it/python/variabili-e-costanti-tensorflow/833521263/
 
 https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
