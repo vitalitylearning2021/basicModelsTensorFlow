@@ -203,7 +203,35 @@ rank3Tensor = tf.constant(threeDimensionalList)
 print(rank3Tensor)
 print("The number tensor dimensions is", rank3Tensor.ndim)
 print("The tensor shape is", rank3Tensor.shape)
+print("The tensor data type is", rank3Tensor.dtype)
+print("The tensor size is", tf.size(rank3Tensor).numpy())
 ```
+
+Nell'esempio di sopra, vengono anche `print`-ed the number of dimensions, the shape, the data type and the size of the tensor. La size indica il numero totale di elementi di un tensore. Come si può vedere, non è possibile to `print` the size con un attributo dell'oggetto tensore. Invece, è necessario usare la funzione `tf.size()` e convertire il suo output con la funzione di istanza `.numpy()` per ottenere un risultato più leggibile.
+
+### Indexing
+
+TensorFlow segue anche le regole di indicizzazione Python standard.
+
+``` python
+aList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+aTensor = tf.constant(aList)
+
+print("The first element is:", aTensor[0].numpy())
+print("The last element is:", aTensor[-1].numpy())
+print("Elements in between the first and the last:", aTensor[1 : -1].numpy())
+```
+
+Nell'esempio sopra riportato, si può notare che:
+
+  - gli indici iniziano da zero (`0`);
+  - il valore dell'indice negativo (`-n`) indica il conteggio all'indietro dalla fine;
+  - the colon syntax (`:`) is used to slide: `start : stop : step`.
+  - not shown in the example above, but the comma syntax (`,`) vengono utilizzate per raggiungere livelli più profondi.
+
+### Basic operations
+
+
 
 ### Prossimo paragrafo
 
