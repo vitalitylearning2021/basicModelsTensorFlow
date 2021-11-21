@@ -333,6 +333,9 @@ tf.print(tf.sparse.to_dense(sparseTensor))
 
 Stiamo vedendo questo
 
+https://ichi.pro/it/la-guida-definitiva-per-principianti-a-tensorflow-72377596104903
+
+QUESTO L'HO VISTO
 https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
 
 
@@ -413,7 +416,7 @@ print(e_out)
 
 L’ouput è un semplice scalare, privo di dimensoni.
 
-https://ichi.pro/it/la-guida-definitiva-per-principianti-a-tensorflow-72377596104903
+
 https://ichi.pro/it/tutorial-su-tensorflow-una-guida-completa-all-apprendimento-approfondito-con-tensorflow-204595782052810
 https://riptutorial.com/Download/tensorflow-it.pdf
 https://vittoriomazzia.com/tensorflow-lite/
