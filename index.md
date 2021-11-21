@@ -231,7 +231,103 @@ Nell'esempio sopra riportato, si può notare che:
 
 ### Basic operations
 
+Nell'esempio che segue, si mostra come si possano eseguire operazioni matematiche di base su tensori come addizione, elementwise multiplication, matrix multiplication e determinare il massimo o l'indice di massimo di un tensore.
 
+``` python
+a = tf.constant([[3, 2], [-10, 7]], dtype=tf.float32)
+b = tf.constant([[0, 2], [  6, 1]], dtype=tf.float32)
+
+addingTensors         = tf.add(a, b)
+multiplyingTensors    = tf.multiply(a, b)
+matrixMultiplication  = tf.matmul(a, b)
+tf.print(addingTensors)
+tf.print(multiplyingTensors)
+tf.print(matrixMultiplication)
+
+print("The maximum value of b is:", tf.reduce_max(b).numpy())
+print("The index position of the maximum element of b is:", tf.argmax(b).numpy())
+```
+
+### Reshaping
+
+Proprio come negli array NumPy, è possibile effettuare il reshaping di oggetti TensorFlow. L'operazione `tf.reshape()` è molto veloce poiché i dati sottostanti non devono essere elaborati, ma solo i parametri che descrivono le dimensioni modificati. 
+
+``` python
+a = tf.constant([[1, 2, 3, 4, 5, 6]])
+print('Initial shape:', a.shape)
+
+b = tf.reshape(a, [6, 1])
+print('First reshaping:', b.shape)
+
+c = tf.reshape(a, [3, 2])
+print('Second reshaping:', c.shape)
+
+# --- Flattening
+print('Flattening:', tf.reshape(a, [-1]))
+```
+
+### Operator overload
+
+Quando eseguiamo operazioni tra tensori di dimensioni diverse, la differenza delle dimensioni può essere gestita automaticamente da TensorFlow tramite opportuni overload delle operazioni in questione, esattamente come in NumPy. Ad esempio, quando si tenta di moltiplicare un tensore scalare con un tensore di rango `2`, ogni elemento tensore di rango `2` viene moltiplicato per lo scalare, come nell'esempio che segue:
+
+``` python
+m = tf.constant([5])
+
+n = tf.constant([[1, 2], [3, 4]])
+
+tf.print(tf.multiply(m, n))
+```
+
+### Irregular tensors
+
+Generalmente, i tensori di interesse hanno forma rettangolare. Tuttavia, TensorFlow supporta anche tipi di tensori irregolari come:
+
+  - ragged tensors,
+  - string tensors,
+  - sparse tensors.
+
+<p align="center">
+  <img src="irregularTensors.png" width="120" id="irregularTensors">
+  <br>
+     <em>Figure 3. Irregular tensor.</em>
+</p>
+
+#### Ragged tensors
+
+I ragged tensors sono tensori con un numero diverso di elementi lungo le varie dimensioni, come mostrato in Fig. [3](#irregularTensors). Un ragged tensor può essere costruito come segue:
+
+``` python
+raggedList = [[1, 2, 3], [4, 5], [6]]
+
+raggedTensor = tf.ragged.constant(raggedList)
+
+tf.print(raggedTensor)
+```
+
+#### String tensors
+
+I tensori stringa sono tensori che memorizzano gli oggetti stringa. Possiamo costruire un tensore stringa come un normale oggetto tensore passando oggetti stringa come elementi al posto di oggetti numerici, come mostrato di seguito:
+
+``` python
+stringTensor = tf.constant(["I like", 
+                            "TensorFlow", 
+                            "very much"])
+
+tf.print(stringTensor)
+```
+
+#### Sparse tensors
+
+Quando molti degli elementi di un tensore sono nulli anzicché diversi da zero, è conveniente utilizzare tensori sparsi. Essi si costruiscono indicando solo gli elementi non nulli e la loro posizione all'interno del tensore:
+
+``` python
+sparseTensor = tf.sparse.SparseTensor(indices      = [[0, 0], [2, 2], [4, 4]], 
+                                      values       = [25, 50, 100], 
+                                      dense_shape  = [5, 5])
+
+tf.print(sparseTensor)
+tf.print(tf.sparse.to_dense(sparseTensor))
+```
 
 ### Prossimo paragrafo
 
