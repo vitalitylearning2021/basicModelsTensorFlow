@@ -331,16 +331,38 @@ tf.print(sparseTensor)
 tf.print(tf.sparse.to_dense(sparseTensor))
 ```
 
+#### Variable tensors
+
+https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
+
+#### Placeholders
+
+### Nodes, edges and TensorBoard
+
+Abbiamo sopra accennato alle motivazioni della parola TensorFlow. Ora vogliamo mettere in evidenza che i concentti di “tensor” and “flow” si concretizzano in un grafo costituito da nodi e connessioni (detti edge) fra gli stessi, dove:
+
+  - i nodi contengono le operazioni sui dati, come, ad esempio, una somma;
+  - gli edge contengono i tensori.
+
+Nell'ambito della lazy execution, il codice definisce un grafo che, come detto, descrive le strutture dati e le loro operazioni, ma non contiene dati. Il grafo viene eseguito creando una “tensor”. Una sessione alloca risorse, su una o più macchine, e conserva i valori di variabili, costanti e risultati intermedi:
+
+METTERE QUI ESEMPIO DI EAGEREXECUTION
+
+https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
+
 ### Prossimo paragrafo
 
 Stiamo vedendo questo
 
 https://ichi.pro/it/la-guida-definitiva-per-principianti-a-tensorflow-72377596104903
 
-QUESTO L'HO VISTO
+____________________________________________________________________________________________
+POST VISTI
+
 https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
 
-
+https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
+____________________________________________________________________________________________
 
 A eccezione del `tf.Variable`, i tensori sono immutabili.
 
@@ -430,7 +452,7 @@ Variabili e costanti
 
 https://www.it-swarm.it/it/python/variabili-e-costanti-tensorflow/833521263/
 
-https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
+
 
 https://www.it-swarm.it/it/python/perche-denominiamo-le-variabili-tensorflow/1056840775/
 
@@ -440,7 +462,7 @@ https://people.unica.it/diegoreforgiato/files/2012/04/TesiNicolaPes.pdf
 
 https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
 
-https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
+
 
 Placeholder
 
