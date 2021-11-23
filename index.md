@@ -333,6 +333,34 @@ tf.print(tf.sparse.to_dense(sparseTensor))
 
 #### Variable tensors
 
+Una variabile è un oggetto di TensorFlow che è possibile manipolare. Essa è registrate come `tf.Variable` e può essere aggiornata, ad esempio, con la funzione `tf.assign()`. 
+
+Così come per gli oggetti visti in precedenza, la forma di un oggetto `tf.Variable` può essere modificata con la funzione `tf.reshape()` e un oggetto `tf.Variable` ha attributi come `.shape` e `.dtype`. Tuttavia, le variabili hanno anche caratteristiche uniche come `.trainable`, `.devicee` e `.name`.
+
+``` python
+constantA = tf.constant([[0.0, 1.0],
+                         [2.0, 3.0]])
+variableA = tf.Variable(constantA)
+tf.print(variableA)
+
+variableB = tf.Variable(1000)
+tf.print(variableB)
+
+listC = [[0.0, 1.0],
+         [2.0, 3.0]]
+variableC = tf.Variable(listC)
+tf.print(variableC)
+
+variableD = tf.Variable("Sample string")
+tf.print(variableD)
+
+stringListE = ["I like", "TensorFlow", "very much"]
+variableE   = tf.Variable(stringListE)
+tf.print(variableE)
+```
+
+Nell'esempio di sopra, si mostra come sia possibile inizializzare una `tf.Variable` con un `tf.constant`, un singolo `int`, un elenco di `float`, una singola `string` o un elenco di `string`.
+
 https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
 
 #### Placeholders
