@@ -333,14 +333,14 @@ tf.print(tf.sparse.to_dense(sparseTensor))
 
 #### Variable tensors
 
-Una variabile è un oggetto di TensorFlow che è possibile manipolare. Essa è registrate come `tf.Variable` e può essere aggiornata, ad esempio, con la funzione `tf.assign()`. 
+Una variabile è un oggetto di TensorFlow che è possibile manipolare. Essa è registrata come `tf.Variable` e può essere aggiornata, ad esempio, con la funzione `tf.assign()`. 
 
-Così come per gli oggetti visti in precedenza, la forma di un oggetto `tf.Variable` può essere modificata con la funzione `tf.reshape()` e un oggetto `tf.Variable` ha attributi come `.shape` e `.dtype`. Tuttavia, le variabili hanno anche caratteristiche uniche come `.trainable`, `.devicee` e `.name`.
+Così come per gli oggetti visti in precedenza, la forma di un oggetto `tf.Variable` può essere modificata con la funzione `tf.reshape()` e un oggetto `tf.Variable` ha attributi come `.shape` e `.dtype`. Tuttavia, le variabili hanno anche caratteristiche uniche come `.trainable`, `.device` e `.name`.
 
 ``` python
 constantA = tf.constant([[0.0, 1.0],
                          [2.0, 3.0]])
-variableA = tf.Variable(constantA)
+variableA = tf.Variable(constantA, name = "variableAName")
 tf.print(variableA)
 
 variableB = tf.Variable(1000)
@@ -359,13 +359,41 @@ variableE   = tf.Variable(stringListE)
 tf.print(variableE)
 ```
 
-Nell'esempio di sopra, si mostra come sia possibile inizializzare una `tf.Variable` con un `tf.constant`, un singolo `int`, un elenco di `float`, una singola `string` o un elenco di `string`.
+Nell'esempio di sopra, si mostra come sia possibile inizializzare una `tf.Variable` con un `tf.constant`, un singolo `int`, un elenco di `float`, una singola `string` o un elenco di `string`. Ogni variabile deve essere opportunamente inizializzata, altrimenti TensorFlow genera un messaggio di errore. Durante la loro creazione, alle variabili può essere anche assegnato un nome, la cui utilità sarà maggiormente chiara nel seguito. Se non si specifica un nome, TensorFlow assegna un nome predefinito.
+
+Nell'esempio di sotto, si mostra come, per poter visualizzare i valori di una variabile, possano utilizzare le funzioni `.value()` e `.numpy()`.
+
+``` python
+print("Values stored in variableA: \n", variableA.value())
+print("Values stored in variableA: \n", variableA.numpy())
+tf.print("Values stored in variableA: \n", variableA.value())
+
+print("Variable name: ", variableA.name)
+
+print("Datatype of variableA: ", variableA.dtype)
+
+print("Shape of variableA: ", variableA.shape)
+
+print("Number of dimensions of variableA:", tf.rank(variableA).numpy())
+
+print("Number of elements of variableA:", tf.size(variableA).numpy())
+```
+
+
+
+
+
+Ogni variabile deve avere un tipo di dati uniforme che memorizza. Poiché esiste un unico tipo di dati archiviati per ogni variabile, è anche possibile visualizzare questo tipo con l' .dtypeattributo. Guarda l'esempio di seguito:
+
+La proprietà shape mostra la dimensione di ogni dimensione sotto forma di un elenco. Possiamo visualizzare la forma dell'oggetto Variabile con l' .shapeattributo. Quindi, possiamo visualizzare il numero di dimensioni che un oggetto Variable ha con la tf.size()funzione. Infine, la dimensione corrisponde al numero totale di elementi di una variabile. Dobbiamo usare la tf.size()funzione per contare il numero di elementi in una variabile. Vedere il codice seguente per tutte e tre le proprietà:
 
 https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
 
 #### Placeholders
 
 ### Nodes, edges and TensorBoard
+
+CHIARIRE A COSA SERVE IL NOME DI UNA VARIABILE
 
 Abbiamo sopra accennato alle motivazioni della parola TensorFlow. Ora vogliamo mettere in evidenza che i concentti di “tensor” and “flow” si concretizzano in un grafo costituito da nodi e connessioni (detti edge) fra gli stessi, dove:
 
