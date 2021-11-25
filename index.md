@@ -212,7 +212,7 @@ print("The tensor size is", tf.size(rank3Tensor).numpy())
 Nell'esempio di sopra, vengono anche `print`-ed the number of dimensions, the shape, the data type and the size of the tensor. La size indica il numero totale di elementi di un tensore. Come si può vedere, non è possibile to `print` the size con un attributo dell'oggetto tensore. Invece, è necessario usare la funzione `tf.size()` e convertire il suo output con la funzione di istanza `.numpy()` per ottenere un risultato più leggibile.
 
 <p align="center">
-  <img src="Tensor_Rank.png" width="120" id="tensorRank">
+  <img src="Tensor_Rank.png" width="250" id="tensorRank">
   <br>
      <em>Figure 3. Tensor rank.</em>
 </p>
@@ -297,7 +297,7 @@ Generalmente, i tensori di interesse hanno forma rettangolare. Tuttavia, TensorF
 <p align="center">
   <img src="irregularTensors.png" width="120" id="irregularTensors">
   <br>
-     <em>Figure 3. Irregular tensor.</em>
+     <em>Figure 4. Irregular tensor.</em>
 </p>
 
 #### Ragged tensors
