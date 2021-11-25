@@ -361,7 +361,7 @@ tf.print(variableE)
 
 Nell'esempio di sopra, si mostra come sia possibile inizializzare una `tf.Variable` con un `tf.constant`, un singolo `int`, un elenco di `float`, una singola `string` o un elenco di `string`. Ogni variabile deve essere opportunamente inizializzata, altrimenti TensorFlow genera un messaggio di errore. Durante la loro creazione, alle variabili può essere anche assegnato un nome, la cui utilità sarà maggiormente chiara nel seguito. Se non si specifica un nome, TensorFlow assegna un nome predefinito.
 
-Nell'esempio di sotto, si mostra come, per poter visualizzare i valori di una variabile, possano utilizzare le funzioni `.value()` e `.numpy()`.
+Nell'esempio di sotto, si mostra come, per poter visualizzare i valori di una variabile, possano utilizzare le funzioni `.value()` e `.numpy()`. Si mostra anche come, durante la creazione della variabile, le si possa assegnare un nome la cui utilità sarà chiara di sotto. Se non si specifica un nome, TensorFlow assegna un nome predefinito. L'esempio illustra anche le altre proprietà di una variabile analoghe a quelle già discusse per il caso `tf.constant`.
 
 ``` python
 print("Values stored in variableA: \n", variableA.value())
@@ -379,15 +379,59 @@ print("Number of dimensions of variableA:", tf.rank(variableA).numpy())
 print("Number of elements of variableA:", tf.size(variableA).numpy())
 ```
 
+Le operazioni di base che è possibile eseguire con le funzioni di TensorFlow sono state già illustrate per il caso `tf.constant`. Oltre a ciò, si possono anche utilizzare gli operatori matematici. Inoltre, con `tf.assign()`, è possibile assegnare nuovi valori a un oggetto `tf.Variable` senza crearne uno nuovo. La possibilità di assegnare nuovi valori è appunto uno dei vantaggi delle variabili. Infine, proprio come per `tf.constant`, si può accedere facilmente a particolari elementi del tensore attraverso un opportuno indexing. L'esempio di seguito riassume queste considerazioni:
 
+``` python
+a = tf.Variable([[1.0, 2.0], [3.0, 4.0]])
 
+tf.print("Addition by 2:\n", a + 2)
+tf.print("Substraction by 2:\n", a - 2)
+tf.print("Multiplication by 2:\n", a * 2)
+tf.print("Division by 2:\n", a / 2)
+tf.print("Matmul operation with itself:\n", a @ a)
+tf.print("Modulo operation by 2:\n", a % 2)
 
+a.assign(([[3, 20], [-2, 110]]))
+tf.print(a)
 
-Ogni variabile deve avere un tipo di dati uniforme che memorizza. Poiché esiste un unico tipo di dati archiviati per ogni variabile, è anche possibile visualizzare questo tipo con l' .dtypeattributo. Guarda l'esempio di seguito:
+print("The 1st element of the first level is:", a[0].numpy())
+print("The 2nd element of the first level is:", a[1].numpy())
+print("The 1st element of the second level is:", a[0, 0].numpy())
+print("The 3rd element of the second level is:", a[0, 1].numpy())
+```
 
-La proprietà shape mostra la dimensione di ogni dimensione sotto forma di un elenco. Possiamo visualizzare la forma dell'oggetto Variabile con l' .shapeattributo. Quindi, possiamo visualizzare il numero di dimensioni che un oggetto Variable ha con la tf.size()funzione. Infine, la dimensione corrisponde al numero totale di elementi di una variabile. Dobbiamo usare la tf.size()funzione per contare il numero di elementi in una variabile. Vedere il codice seguente per tutte e tre le proprietà:
+L'operator overload esiste anche per gli oggetti `tf.Variable` così come visto per gli oggetti `tf.constant`:
 
-https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
+``` python
+b = tf.Variable([5])
+c = tf.Variable([[1, 2], [3, 4]])
+tf.print(b * c)
+```
+
+E' possibile effettuare il reshape di una `tf.Variable`:
+
+``` python
+a = tf.Variable([[1.0, 2.0], [1.0, 2.0]])
+
+tf.print(tf.reshape(a, (4, 1)))
+```
+
+Infine, è possibile accelerare il processing con GPU e TPU e verificare con quale tipo di processore viene elaborata la nostra variabile tramite l'attributo `.device`:
+
+``` python
+print("Device processing variable a:\n", a.device)
+
+with tf.device('CPU:0'):
+  a = tf.Variable([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+  b = tf.Variable([[1.0, 2.0, 3.0]])
+  print("Device processing variable a:\n", a.device)
+  print("Device processing variable b:\n", b.device)
+
+with tf.device('GPU:0'):
+  # Element-wise multiply
+  k = a * b
+  print("Device processing the calculation:\n", k.device)
+```
 
 #### Placeholders
 
@@ -418,6 +462,9 @@ POST VISTI
 https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
 
 https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
+
+https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
+
 ____________________________________________________________________________________________
 
 A eccezione del `tf.Variable`, i tensori sono immutabili.
