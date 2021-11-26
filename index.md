@@ -1,5 +1,9 @@
 # Basic machine learning models with TensorFlow
 
+## Getting started
+
+Questo tutorial presuppone una conoscenza di base di Python 3 e un certo grado di familiarità con l'algebra lineare.
+
 ## What is Machine Learning?
 
 Machine Learning is one of the fields of artificial intelligence and identifies the development of automatic learning systems capable to improve their own performance in a given task through experience. The applications of Machine Learning are the most varied and regard, to cite only a few examples, speech recognition, computer vision including autonomous driving cars, the classificiation of new astronomical structures exploited, for example, by NASA to automatically classify the celestial bodies in the sky surveys and the data-mining. 
@@ -439,9 +443,62 @@ with tf.device('GPU:0'):
   print("Device processing the calculation:\n", k.device)
 ```
 
-#### Placeholders
+Con riferimento al codice precedente, per farlo funzionare come inteso e se si sta utilizzando Google Colab, è necessario cambiare il tipo di runtime to GPU.
+
+### Disabling and enabling the eager execution
+
+As already mentioned, eager execution means that le operazioni vengono eseguite passo passo, semplificando la fase di debug. Tuttavia, la eager execution previene una serie di accelerazioni altrimenti disponibili. Fortunatamente, c'è la possibilità di disabilitare la eager execution.
+
+Possiamo innanzitutto verificare che la eager execution è il modello di esecuzione di default:
+
+``` python
+tf.executing_eagerly()
+tf.compat.v1.disable_eager_execution()
+```
+
+Le righe di sopra verificano se la eager execution è il modello di esecuzione attivo e, successivamente, la disabilitano.
 
 ### Nodes, edges and TensorBoard
+
+Come menzionato precedentemente, al centro di TensorFlow c'è il concetto di grafo. Tuttavia, come si esamina un grafo una volta che è stato creato? E' possibile usare uno strumento noto come Tensorboard. Questo è uno strumento integrato con TensorFlow `2.x` e può essere utilizzato per visualizzare un grafo. Di seguito, un semplice esempio di uso di TensorBoard. L'esempio è stato conceived per essere eseguito su Google Colab e presuppone l'aver disabilitato la eager execution, come nell'esempio precedente.
+
+``` python
+%load_ext tensorboard
+tf.compat.v1.reset_default_graph()
+
+a = tf.Variable(5, name='variableA')
+b = tf.Variable(6, name='variableB')
+c = tf.multiply(a, b, name='Mul')
+
+sess = tf.compat.v1.Session()
+sess.run(tf.compat.v1.global_variables_initializer())
+
+writer = tf.compat.v1.summary.FileWriter('./graphs', graph=sess.graph)
+
+print(sess.run(c)) 
+
+writer.flush()
+writer.close()
+%tensorboard --logdir='./graphs'
+```
+
+Il grafo consiste nella creazione di due variabili, `a` e `b`, e nella loro moltiplicazione e viene mostrato di seguito.
+
+<p align="center">
+  <img src="simpleTensorBoard.png" width="120" id="simpleTensorBoard">
+  <br>
+     <em>Figure 5. Simple graph using TensorBoard.</em>
+</p>
+
+Ora si può comprendere l'utilità di assegnare un nome alle variabili. In particolare, alle variabili  `a` e `b` vengono assegnati i nomi di `variableA` e `variableB`, respectively. Come si vede, viene assegnato un nome anche all'operazione di moltiplicazione che viene indicata come `Mul`. I nomi assegnati sono chiaramente visibili nel grafo in Figure [5](#simpleTensorBoard).
+
+https://learntutorials.net/it/tensorflow/topic/2952/segnaposto
+
+https://medium.com/analytics-vidhya/basics-of-using-tensorboard-in-tensorflow-1-2-b715b068ac5a
+
+
+
+Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
 CHIARIRE A COSA SERVE IL NOME DI UNA VARIABILE
 
@@ -454,7 +511,10 @@ Nell'ambito della lazy execution, il codice definisce un grafo che, come detto, 
 
 METTERE QUI ESEMPIO DI EAGEREXECUTION
 
-https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
+
+
+#### Placeholders
+
 
 ### Prossimo paragrafo
 
@@ -470,6 +530,8 @@ https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59
 https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
 
 https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
+
+https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
 
 ____________________________________________________________________________________________
 
@@ -490,8 +552,13 @@ Qui si può spiegare perché le variabili constanti apparentemente possono esser
 
 https://stackoverflow.com/questions/46786463/modifying-tensorflow-constant-tensor
 
+https://www.intelligenzaartificialeitalia.net/post/tutorial-pratico-tensorflow-tensorboard-e-python-per-capire-come-funzionano-le-reti-neurali
 
+https://newstecnologiche.altervista.org/esercitazione-su-tensorboard/
 
+https://ichi.pro/it/una-guida-rapida-a-tensorboard-276092819192783
+
+https://ichi.pro/it/introduzione-a-tensorflow-2-0-275931290659758
 
 Un grafo è la rappresentazione, per mezzo di nodi, di operazioni eseguite sui tensori.
 
@@ -501,53 +568,6 @@ Per comprendere il flow dei dati e delle operazioni in Tensorflow, possiamo serv
 
 Un grafo, o graph, e sarà quindi costituito da tensori, che gestiranno i dati, e dalle operazioni compiuti su di essi.
 
-Vediamo una semplice operazione di somma: due tensori costanti e una sommatoria.
-
-``` python
-# Create the nodes in the graph, and initialize values
-a = tf.constant(15)
-b = tf.constant(61)
-
-# Add them!
-c1 = tf.add(a,b)
-c2 = a + b # TensorFlow overrides the "+" operation so that it is able to act on Tensors
-print(c1)
-print(c2)
-
-# Output:
-# tf.Tensor(76, shape=(), dtype=int32)
-# tf.Tensor(76, shape=(), dtype=int32)
-```
-
-Ora consideriamo un esempio più complesso:
-
-Andiamo ora a costruire una funzione che riproduca le operazioni rappresentate nel grafo:
-
-``` python
-'''Defining Tensor computations''''
-
-# Construct a simple computation function
-def func(a,b):
-  c = tf.add(a,b)
-  d = tf.subtract(b,1)
-  e = tf.multiply(c,d)
-  return e
-```
-
-Quindi calcoliamo il risultato:
-
-``` python
-# Consider example values for a,b
-a, b = 1.5, 2.5
-# Execute the computation
-e_out = func(a,b)
-print(e_out)
-
-# Output:
-# tf.Tensor(6.0, shape=(), dtype=float32)
-```
-
-L’ouput è un semplice scalare, privo di dimensoni.
 
 
 https://ichi.pro/it/tutorial-su-tensorflow-una-guida-completa-all-apprendimento-approfondito-con-tensorflow-204595782052810
