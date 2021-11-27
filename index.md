@@ -21,11 +21,13 @@ A different division can be performed depending on the desired output. For super
   - *Classification*: in the case of classifiers, the inputs are subdivided into two or more classes and the algorithm must return a model capable to assign possible new elements to one of these classes.
   - *Regression*: in the case of regression, the outputs are numerical results, rather than classes.
 
+
 ## What is TensorFlow?
 
 TensorFlow is an open source library used in machine learning.
 
 It has been developed by Google in the framework of the Google Brain (AI) project and, in 2015, its code has been released with an open source license.
+
 Today, TensorFlow is used in many areas of science and industry for machine learning applications and, more generally, for artificial intelligence. For example, Google uses TensorFlow for image recognition algorithms and in its own RankBrain algorithm developed and used by its search engine to interpret the meaning of a query. Moreover, TensorFlow is often employed for reading handwritten text and for the automatic recognition of objects or people. Generally speaking, TensorFlow is routinely adopted in commercial or research developments to create and distribute automatic learning modules. In few years, it has evolved from a simple library to a whole ecosystem for all types of machine learning.
 
 The name TensorFlow is composed by the two words “tensor” and “flow”. The use of “tensor” is due to the fact that a tensor is an algebraic object that describes a multilinear relationship between sets of algebraic objects related to a vector space, that such algebraic objects are often described by multidimensional matrices and that TensorFlow is based on the manipulation of multidimensional matrices. The word “flow” evokes the operations flow.
@@ -33,7 +35,7 @@ The name TensorFlow is composed by the two words “tensor” and “flow”. Th
 TensorFlow is compatible with Windows, Linux, MaxOS, Raspbian and Android. It can be used under Python, C, Java, Go and Rust. At this [link](https://www.tensorflow.org/install), the installation instructions can be found along with the versions of the operating systems and of Python with which TensorFlow is compatible. TensorFlow is already installed under Google Colab and there is nothing simpler than using it under such a service.
 
 TensorFlow runs on both CPUs and GPUs. Nevertheless, it must be mentioned that, since 2016, Google has released a new Application Specific Integrated Circuit (ASIC) processor named Tensor Processing Unit (TPU) and purposely designed for AI applications that require TensorFlow. It is capable to accelerate machine learning processing and to execute TensorFlow operations much quicker as compared to a standard CPU. By Google Colab, it is possible to choose the desired computing platform among CPU, GPU and TPU.
-Today, we have TensorFlow `2.6.1` which dramatically simplfies the coding as compared to TensorFlow `1.x`. 
+Today, we have TensorFlow `2.6.1` which dramatically simplifies the coding as compared to TensorFlow `1.x`. 
 
 Enabling the execution on heterogeneous devices allows to develop an application and to execute it on the same development machine, typically with a reduced dataset, and later to transfer it, without altering the code, on a more powerful system or on a mobile device, if enough powerful, or on a cloud service benefitting of a potentially unlimited computing capabilities and making available CPUs, GPUs, TPUs and Microsoft Azure FPGAs.
 
@@ -460,7 +462,7 @@ Le righe di sopra verificano se la eager execution è il modello di esecuzione a
 
 ### Nodes, edges and TensorBoard
 
-Come menzionato precedentemente, al centro di TensorFlow c'è il concetto di grafo. Tuttavia, come si esamina un grafo una volta che è stato creato? E' possibile usare uno strumento noto come Tensorboard. Questo è uno strumento integrato con TensorFlow `2.x` e può essere utilizzato per visualizzare un grafo. Di seguito, un semplice esempio di uso di TensorBoard. L'esempio è stato conceived per essere eseguito su Google Colab e presuppone l'aver disabilitato la eager execution, come nell'esempio precedente.
+Come menzionato precedentemente, al centro di TensorFlow c'è il concetto di grafo. Tuttavia, come si esamina un grafo una volta che è stato creato? E' possibile usare uno strumento noto come Tensorboard. Questo è uno strumento integrato con TensorFlow `2.x` e può essere utilizzato per visualizzare un grafo. Di seguito, un semplice esempio di uso di TensorBoard. L'esempio è stato conceived per essere eseguito su Google Colab e presuppone l'aver disabilitato la eager execution, come nell'esempio precedente. Come si vede, il codice è costruito nell'ambito della lazy execution e definisce un grafo che descrive le strutture dati e le loro operazioni, ma non contiene dati. 
 
 ``` python
 %load_ext tensorboard
@@ -492,59 +494,54 @@ Il grafo consiste nella creazione di due variabili, `a` e `b`, e nella loro molt
 
 Ora si può comprendere l'utilità di assegnare un nome alle variabili. In particolare, alle variabili  `a` e `b` vengono assegnati i nomi di `variableA` e `variableB`, respectively. Come si vede, viene assegnato un nome anche all'operazione di moltiplicazione che viene indicata come `Mul`. I nomi assegnati sono chiaramente visibili nel grafo in Figure [5](#simpleTensorBoard).
 
-https://learntutorials.net/it/tensorflow/topic/2952/segnaposto
+### Are TensorFlow constants really constant?
 
-https://medium.com/analytics-vidhya/basics-of-using-tensorboard-in-tensorflow-1-2-b715b068ac5a
+Se proviamo ad eseguire l'operazione
+
+``` python
+a = tf.constant(2)
+a = a + 1
+```
+
+e poi stampiamo il risultato con
+
+``` python
+tf.print(a)
+```
+
+ci accorgeremo che il risultato è `3`. Questo ci fa chiedere se i tensori costanti in TensorFlow siano davvero costanti.
+
+In realtà, quando scriviamo
+
+``` python
+a = tf.constant(2)
+```
+
+definiamo `a` come una variabile di Python that holds a constant node of the computational graph. Let us call it `constant:0`. Quando scriviamo
+
+``` python
+a = a + 1
+```
+
+since the assignment is a destructive operation, `a` is a new Python variable that holds the add operation between the `constant:0` node that is still defined in the graph and a new constant node, automatically created when using `1.0`.
 
 
 
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
-CHIARIRE A COSA SERVE IL NOME DI UNA VARIABILE
-
-Abbiamo sopra accennato alle motivazioni della parola TensorFlow. Ora vogliamo mettere in evidenza che i concentti di “tensor” and “flow” si concretizzano in un grafo costituito da nodi e connessioni (detti edge) fra gli stessi, dove:
-
-  - i nodi contengono le operazioni sui dati, come, ad esempio, una somma;
-  - gli edge contengono i tensori.
-
-Nell'ambito della lazy execution, il codice definisce un grafo che, come detto, descrive le strutture dati e le loro operazioni, ma non contiene dati. Il grafo viene eseguito creando una “tensor”. Una sessione alloca risorse, su una o più macchine, e conserva i valori di variabili, costanti e risultati intermedi:
-
-METTERE QUI ESEMPIO DI EAGEREXECUTION
 
 
 
 #### Placeholders
+
+https://learntutorials.net/it/tensorflow/topic/2952/segnaposto
 
 
 ### Prossimo paragrafo
 
 Stiamo vedendo questo
 
-https://ichi.pro/it/la-guida-definitiva-per-principianti-a-tensorflow-72377596104903
 
-____________________________________________________________________________________________
-POST VISTI
-
-https://ichi.pro/it/padroneggiare-i-tensori-tensorflow-in-5-semplici-passaggi-59313927797638
-
-https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
-
-https://ichi.pro/it/padroneggiare-le-variabili-di-tensorflow-in-5-semplici-passaggi-100777216055126
-
-https://it.linkedin.com/pulse/tensorflow-what-why-how-when-mauro-minella
-
-____________________________________________________________________________________________
-
-A eccezione del `tf.Variable`, i tensori sono immutabili.
-
-``` python
-tf.Variable(
- initial_value=None, trainable=None, validate_shape=True, caching_device=None,
-    name=None, variable_def=None, dtype=None, import_scope=None, constraint=None,
-    synchronization=tf.VariableSynchronization.AUTO,
-    aggregation=tf.compat.v1.VariableAggregation.NONE, shape=None
-)
-```
 
 ### TensorBoard
 
