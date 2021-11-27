@@ -525,7 +525,22 @@ a = a + 1
 
 since the assignment is a destructive operation, `a` is a new Python variable that holds the add operation between the `constant:0` node that is still defined in the graph and a new constant node, automatically created when using `1.0`.
 
+## Linear regression with TensorFlow
 
+Linear regression falls into the broad category of supervised learning and is a simple and commonly used machine learning algorithm. It is thus a good starting point to illustrate how TensorFlow can be used in this field. We will sum up first the cornerstones of the approach and, later on, we will walk through its TensorFlow implementation.
+
+### Linear regression: Theory
+
+Linear regression models the relation of independent and dependent variables by linear equations. Let us begin by dealing with a one-dimensional problem and let us suppose to have at our disposal a certain number of experimental measurements of a certain phenomenon. For example, let us consider observations reporting the birth rate as a function of the poverty level, see figure below:
+
+<p align="center">
+  <img src="LinearRegressionData.png" width="400" id="LinearRegressionData">
+  <br>
+     <em>Figure 5. Observation of birth rates against poverty level.</em>
+</p>
+
+In particular, Figure [5](#LinearRegressionData) reports, sull'asse $x$, il livello di povertà per ciascuno dei $50$ stati degli USA con in più il District of Columbia, valutato nell'anno $2000$, misurato come la percentuale of each state's population living in households with incomes below the federally defined poverty
+level. Inoltre, la figura riporta, sull'asse $y$, la birth rate, relativa all'anno $2002$, per $1000$ females $15$ to $17$ years old. Dalla Fig. \ref{birthRate}, si può intuire come il legame tra birth rate and poverty level possa essere approssimato as linear. In altre parole, la relazione tra la variable dipendente $y$ e la variabile indipendente $x$ può essere valutata come
 
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
