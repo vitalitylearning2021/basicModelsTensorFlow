@@ -539,8 +539,61 @@ Linear regression models the relation of independent and dependent variables by 
      <em>Figure 5. Observation of birth rates against poverty level.</em>
 </p>
 
-In particular, Figure [5](#LinearRegressionData) reports, sull'asse $x$, il livello di povertà per ciascuno dei $50$ stati degli USA con in più il District of Columbia, valutato nell'anno $2000$, misurato come la percentuale of each state's population living in households with incomes below the federally defined poverty
-level. Inoltre, la figura riporta, sull'asse $y$, la birth rate, relativa all'anno $2002$, per $1000$ females $15$ to $17$ years old. Dalla Fig. \ref{birthRate}, si può intuire come il legame tra birth rate and poverty level possa essere approssimato as linear. In altre parole, la relazione tra la variable dipendente $y$ e la variabile indipendente $x$ può essere valutata come
+In particular, Figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [5](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=y"> can be evaluated as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=y=mx+b," id="linearRegression"> [6]
+</p>
+
+where <img src="https://render.githubusercontent.com/render/math?math=m"> is the slope and <img src="https://render.githubusercontent.com/render/math?math=b"> the intercept with the <img src="https://render.githubusercontent.com/render/math?math=y"> axis. Once established the approximation in equation [\[6\]](#linearRegression), the line can be used to perform forecasts. In other words, whenever one is interested into estimating the birth rate corresponding to a certain poverty level <img src="https://render.githubusercontent.com/render/math?math=\overline{x}"> not present in the scatter plot, an estimate of the birth rate can be achieved as <img src="https://render.githubusercontent.com/render/math?math=m\overline{x}+b">.
+
+In order to approximate the scatter plot with a line, a measure of the fidelity of the approximation must be introduced first and, afterwards, the values of <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b"> corresponding to the best approximation must be computed.
+
+There are many measures of the goodness of our prediction, the most popular one being the *mean squared error* (MSE)
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(m,b)=\frac{1}{N}\sum_{n=1}^N \left(f_n-y_n\right)^2," id="MSELinearRegression"> [7]
+</p>
+
+dove <img src="https://render.githubusercontent.com/render/math?math=N"> is the number of experimental measurements corresponding to the scatter plot (<img src="https://render.githubusercontent.com/render/math?math=51"> for the example under examination), the <img src="https://render.githubusercontent.com/render/math?math=f_n">'s are the experimental observations and the <img src="https://render.githubusercontent.com/render/math?math=y_n">'s are the values returned by the model, namely, <img src="https://render.githubusercontent.com/render/math?math=y_n=mx_n+b">, where the <img src="https://render.githubusercontent.com/render/math?math=x_n">'s are the observed poverty levels. Functions like the one in equation [\[7\]](#MSELinearRegression) are called *loss functions* or *objective functions*.
+
+On using the measure in equation [\[7\]](#MSELinearRegression), linear regression consists of determining the values of <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b"> minimizing the MSE. The search for the “optimal” parameters, namely, those minimizing <img src="https://render.githubusercontent.com/render/math?math=\Phi(m,b)">, can be iteratively performed using a loop that, following initial guesses for <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b">, essentially performs two main operations:
+
+  - measure the goodness of the fit based on equation [\[7\]](#MSELinearRegression);
+  - adjust the unknown parameters.
+
+The operations in the loop are repeated until the MSE “looks good”.
+
+In more detail, the adjustment, or update, of the unknown parameters can be operated using methods based on the gradient of the functional [\[7\]](#MSELinearRegression). Among various optimization algorithms based on the gradient, in the following, we will use the so called *gradient descent* which is very used in approaches of artificial intelligence and so it is useful to know. On denoting with <img src="https://render.githubusercontent.com/render/math?math=\underline{p}=(m,b)"> the unknowns vector, the gradient descent updates the unknowns according to the following rule
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}=\underline{p}_{old}-\alpha \underline{\nabla}\Phi(\underline{p}_{old})," id="gradientDescent"> [9]
+</p>
+
+where <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{old}"> represents the value of the unknowns at the current step, <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}"> represents the updated unknowns vector, <img src="https://render.githubusercontent.com/render/math?math=\underline{\nabla}\Phi(\underline{p}_{old})"> is the value of the gradient at the current step and <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is the so-called *learning rate*. The learning rate is a parameter chosen by the user and represents how large the change of the unknowns vector must be for having a non-vanishing gradient.
+
+The iterations can be stopped using different stopping criteria. For example:
+
+  - the algorithm is terminated once a specified number of iterations is reached;
+  - the algorithm once a specified maximum MSE is satisfied;
+  - the algorithm is terminated if the MSE does not decrease in the next iteration; for example, if the difference between two successive MSEs is less than <img src="https://render.githubusercontent.com/render/math?math=0.001">, then the algorithm is stopped.
+
+In the case when the observations are not one-dimensional, but multi-dimensional, the experimental observation become vectors <img src="https://render.githubusercontent.com/render/math?math=\underline{f}_n"> and model [\[6\]](#linearRegression) becomes
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\underline{y}=\underline{\underline{M}} \underline{x}+\underline{b}," id="linearRegressionMultiDimensional"> [10]
+</p>
+
+dove <img src="https://render.githubusercontent.com/render/math?math=\underline{x}"> is the vector of independent parameters, <img src="https://render.githubusercontent.com/render/math?math=\underline{\underline{M}}"> is the coefficients matrix, <img src="https://render.githubusercontent.com/render/math?math=\underline{b}"> is the offset vector and <img src="https://render.githubusercontent.com/render/math?math=\underline{y}"> is the vector of the dependent variables. 
+
+In next subsection, we will see how it is possible to put the exposed theory into practice using TensorFlow `2.x`.
+
+
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=f^{(1)}(x,y)=(1-\alpha_y)f_{x,n} %2B \alpha_y f_{x,n %2B 1}," id="linearInterpolation2Dfull">, [6]
+</p>
+
 
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
