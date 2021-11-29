@@ -588,6 +588,89 @@ dove <img src="https://render.githubusercontent.com/render/math?math=\underline{
 
 In next subsection, we will see how it is possible to put the exposed theory into practice using TensorFlow `2.x`.
 
+### Linear regression: Practice
+
+Starting to discuss about the code, the first performed operations are the `import`s:
+
+``` python
+import tensorflow as tf
+import numpy as np
+
+import matplotlib.pyplot as plt
+```
+<p align="center" id="xxx" >
+     <em>Listing 1. Imports for the linear regression code.</em>
+</p>
+
+The TensorFlow library is imported as `tf`, while we do not have anything to add concerning the other `import`s besides what already said.
+
+The next operation is giving a name to the `numpy` library to handle random numbers, namely
+
+``` python
+rng = np.random
+```
+
+Next step is defining the parameters of the simulation, namely, the learning rate `alpha`, the number of iterations `numIter` and `skipIter`. The idea behind `skipIter` is to outputting the simulation state in terms of current interation number, cost function and current values of the unknowns every `skipIter` iterations:
+
+``` python
+alpha     = 0.0001  
+numIter   = 1000    
+skipIter  = 50      
+```
+<p align="center" id="xxx" >
+     <em>Listing 2. Optimization parameters for the linear regression code.</em>
+</p>
+
+At this point, we need to define the training dataset, namely, the couples “poverty level” (`X`) - “birth rate” (`Y`):
+
+``` python
+X = np.array([20.1, 7.1, 16.1, 14.9, 16.7, 8.8, 9.7, 10.3, 22, 16.2, 12.1, 10.3, 14.5, 12.4, 9.6, 12.2, 10.8, 14.7, 19.7, 11.2,	
+              10.1, 11, 12.2, 9.2, 23.5, 9.4, 15.3, 9.6, 11.1, 5.3, 7.8, 25.3, 16.5, 12.6, 12, 11.5, 17.1, 11.2, 12.2, 10.6, 19.9, 
+              14.5, 15.5, 17.4, 8.4, 10.3, 0.2, 12.5, 16.7, 8.5, 12.2	])
+Y = np.array([31.5, 18.9, 35, 31.6, 22.6, 26.2, 14.1, 24.7, 44.8, 23.2, 31.4, 17.7, 18.4, 23.4, 22.6, 16.4, 21.4, 26.5, 31.7, 11.9, 
+              20, 12.5, 18, 14.2, 37.6, 22.2, 17.8, 18.3, 28, 8.1, 14.7, 37.8, 15.7, 28.6, 11.7, 20.1, 30.1, 18.2, 17.2, 19.6, 29.2, 
+              17.3, 28.2, 38.2, 17.8, 10.4, 19, 16.8, 21.5, 15.9, 17.7	])
+```
+
+These data have been taken from [\[2\]](#MIND_ON_STATISTICS). Subsequently, two TensorFlow variables are defined, namely, `m` and `b` and initialized with random values using a Gaussian distribution with zero mean and variance `1`. These variables will be appointed to store the current values of the unknowns:
+
+``` python
+m = tf.Variable(rng.randn())
+b = tf.Variable(rng.randn())
+```
+<p align="center" id="xxx" >
+     <em>Listing 3. Unknown variables definition for the linear regression algorithm.</em>
+</p>
+
+Now we need to define two functions. The first function represents the linear model [\[6\]](#linearRegression), that is,
+
+``` python
+def linearModel(x):
+    return m * x + b
+```
+<p align="center" id="xxx" >
+     <em>Listing 4. Linear model for linear regression.</em>
+</p>
+
+The second represents functional [\[7\]](#MSELinearRegression), namely
+
+``` python
+def costFunction(y_model, y_data):
+    return tf.reduce_mean(tf.square(y_model - y_data))
+```
+<p align="center" id="xxx" >
+     <em>Listing 5. Cost functional for linear regression.</em>
+</p>
+
+Following the definition of the two functions implementing linear regression, the optimizer is defined as *stochastic gradient descent* with a learning rate equal to `alpha`:
+
+``` python
+optimizer = tf.optimizers.SGD(alpha)
+```
+<p align="center" id="xxx" >
+     <em>Listing 6. Setting the optimizer for the linear regression method.</em>
+</p>
+
 
 
 <p align="center">
@@ -686,5 +769,7 @@ https://andreaprovino.it/tensorflow-guida-italiano-primi-passi-con-tensorflow/
 <p align="center" id="AUTODIFF" >
 </p>
 [1] A.G. Baydin, B.A. Pearlmutter, A.A. Radul, J.M. Siskind, "Automatic differentiation in machine learning: a survey," J. Machine Learn. Res., vol. 18, pp. 1-43, 2018.
-
+<p align="center" id="MIND_ON_STATISTICS" >
+</p>
+[2] J.M. Utts, R.F. Heckard, "Mind on Statistics, Fifth Ed.," Cengage Learning, Stamford, CT, 2015.
 
