@@ -667,10 +667,47 @@ Following the definition of the two functions implementing linear regression, th
 ``` python
 optimizer = tf.optimizers.SGD(alpha)
 ```
-<p align="center" id="xxx" >
+<p align="center" id="SGD" >
      <em>Listing 6. Setting the optimizer for the linear regression method.</em>
 </p>
 
+On skipping further details, let us just mention that, with the setting in Listing [6](#SGD),  menzioniamo semplicemente che, con il setting in Listing \ref{SGD}, `optimizer` particularizes as the classical gradient descent.
+
+Let us now present the main optimization loop:
+
+``` python
+def optimizationStep():
+    with tf.GradientTape() as g:
+        y_model           = linearModel(X)
+        costFunctionValue = costFunction(y_model, Y)
+
+    gradients = g.gradient(costFunctionValue, [m, b])
+    
+    optimizer.apply_gradients(zip(gradients, [m, b]))
+```
+<p align="center" id="xxx" >
+     <em>Listing 7. Optimization loop for linear regression.</em>
+</p>
+
+As it can be seen, the main loop is divided in two parts. The first represents the generic optimization step `optimizationStep()`. The second deals with the printout, each `skipIter` iterations, of the current optimization result corresponding to the actual values of the forecasts `Y`. The optimization step is provided by the following function
+
+``` python
+for iter in range(1, numIter + 1):
+
+    optimizationStep()
+    
+    if iter % skipIter == 0:
+        y_model           = linearModel(X)
+        costFunctionValue = costFunction(y_model, Y)
+        print("iteration number: %i, cost function: %f, m: %f, b: %f" % (iter, costFunctionValue, m.numpy(), b.numpy()))
+```
+<p align="center" id="xxx" >
+     <em>Listing 8. Optimization step for linear regression.</em>
+</p>
+
+It should be noticed that the optimization step comprises also the computation of the gradient by automatic differentiation. In particular, the construct `with` serves to record all the operations to be performed when invoking `tf.GradientTape()` for the forward calculation of the functional. In this way, `tf.GradientTape()` returns the derivative of loss with respect to weight and bias later on. This information is passed to `optimizer.apply_gradients` which performs so that the optimization step occurs with gradient information.
+
+The result of the processing is depicted in the following figure:
 
 
 <p align="center">
