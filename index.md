@@ -621,7 +621,7 @@ skipIter  = 50
      <em>Listing 2. Optimization parameters for the linear regression code.</em>
 </p>
 
-At this point, we need to define the training dataset, namely, the couples “poverty level” (`X`) - “birth rate” (`Y`):
+At this point, we need to define the *training dataset*, namely, the couples “poverty level” (`X`) - “birth rate” (`Y`):
 
 ``` python
 X = np.array([20.1, 7.1, 16.1, 14.9, 16.7, 8.8, 9.7, 10.3, 22, 16.2, 12.1, 10.3, 14.5, 12.4, 9.6, 12.2, 10.8, 14.7, 19.7, 11.2,	
@@ -709,11 +709,39 @@ It should be noticed that the optimization step comprises also the computation o
 
 The result of the processing is depicted in the following figure:
 
+<p align="center">
+  <img src="LinearRegression.png" width="250" id="LinearRegression">
+  <br>
+     <em>Figure 4. Linear regression results on the observation of birth rates against poverty level.</em>
+</p>
 
+## Logistic regression in TensorFlow
+
+Linear regression assumes that the relationship between dependent and independent variables is approximately linear and allows to forecast outputs corresponding to inputs that do not belong to the training dataset.
+
+As linear regression, logistic regression is a supervised learning algorithm. Opposite to linear regression, however, it is a classification algorithm since its target is different: the purpose now is to classify inputs that do not appear in the training set.
+
+In the following, we will illustrate logistic regression with reference to a binary classification problem, namely, when the inputs can exclusively belong to two only classes. Examples of such a kind of classification may concern the decision whether a mail is spam or not-spam or if a bank transaction is fraudulent or not.
+
+### Logistic regression: Theory
+
+In a binary logistic regression problem, the probability that an input <img src="https://render.githubusercontent.com/render/math?math=x"> corresponds to the class <img src="https://render.githubusercontent.com/render/math?math=0"> is determined by the conditional probability <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)=\widetilde{p}">, while the probability that it belongs to the other class <img src="https://render.githubusercontent.com/render/math?math=1"> will obviously be <img src="https://render.githubusercontent.com/render/math?math=p(y=1|x)=1-\widetilde{p}">. Let us consider the illustrative problem of modelling the gender of people, like male or female, depending on the height. In this case, we will have two classes, like female, <img src="https://render.githubusercontent.com/render/math?math=0">, and male, <img src="https://render.githubusercontent.com/render/math?math=1">, and a single input <img src="https://render.githubusercontent.com/render/math?math=x">, i.e., the height. Given a person with a height of <img src="https://render.githubusercontent.com/render/math?math=150cm">, we want to determine whether it is most probable that he/she is female or male. For this kind of problem, logistic regression models <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)"> as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)=F(x;b_0,b_1)=\frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}," id="logisticProbability">, [11]
+</p>
+
+where <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are parameters determining the shape. Obviously, having modelled <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">, the conditional probability <img src="https://render.githubusercontent.com/render/math?math=p(y=1|x)=1-p(y=0|x)"> remains equally modelled. Function <img src="https://render.githubusercontent.com/render/math?math=F(x;b_0,b_1)"> appearing at the right hand side of equation [\[11\]](#logisticProbability) and representing the model is also called *logistic function* or *sigmoid function* and an illustration of its shape is depicted in the following figure
+
+
+
+FORMULA
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=f^{(1)}(x,y)=(1-\alpha_y)f_{x,n} %2B \alpha_y f_{x,n %2B 1}," id="linearInterpolation2Dfull">, [6]
 </p>
 
+REFERENCE TO FORMULA
+[\[1\]](#nearestNeighborInterpolatingFunction)
 
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
