@@ -733,15 +733,57 @@ In a binary logistic regression problem, the probability that an input <img src=
 
 where <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are parameters determining the shape. Obviously, having modelled <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">, the conditional probability <img src="https://render.githubusercontent.com/render/math?math=p(y=1|x)=1-p(y=0|x)"> remains equally modelled. Function <img src="https://render.githubusercontent.com/render/math?math=F(x;b_0,b_1)"> appearing at the right hand side of equation [\[11\]](#logisticProbability) and representing the model is also called *logistic function* or *sigmoid function* and an illustration of its shape is depicted in the following figure
 
+<p align="center">
+  <img src="logistic.png" width="250" id="logistic">
+  <br>
+     <em>Figure 5. Example of logistic function.</em>
+</p>
 
+From the example of logisitic function represented in figure Figure [5](#logistic), we deduce that, if <img src="https://render.githubusercontent.com/render/math?math=x=150cm">, then the probability that <img src="https://render.githubusercontent.com/render/math?math=y=0"> is larger than <img src="https://render.githubusercontent.com/render/math?math=0.5">. This tells us that, if a person is <img src="https://render.githubusercontent.com/render/math?math=150cm"> tall, then there would be a larger probability that such a person is female rather than male. In other words, we will assign a person <img src="https://render.githubusercontent.com/render/math?math=150cm"> tall to class <img src="https://render.githubusercontent.com/render/math?math=0"> because there is a larger probability that he/she belongs to such a class rather than class <img src="https://render.githubusercontent.com/render/math?math=1">.
 
-FORMULA
+The problem now is how defining the parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> determining the shape of the logistic function starting from a training set. Let us suppose to have at our disposal a training set made up of a certain number of <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> to which the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> correspond. In the considered example, the observations <img src="https://render.githubusercontent.com/render/math?math=x_n"> represent the heights and the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> are equal to <img src="https://render.githubusercontent.com/render/math?math=0"> if a person, <img src="https://render.githubusercontent.com/render/math?math=x_n"> tall is female or <img src="https://render.githubusercontent.com/render/math?math=1"> if he is male. Let us suppose now to use the model in equation [\[11\]](#logisticProbability). The probability that the classes <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> actually correspond to the observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> given the inputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> is given by
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=
+    \prod_{n=1}^{N}p(y_n=\overline{y}_n|x_n)," id="jointProbability">, [12]
+</p>
+
+being the events independent. We also observe that, according to model [\[11\]](#logisticProbability), 
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=p(y_n=\overline{y}_n|x_n)=(1-\overline{y}_n)F(x_n;b_0,b_1)+\overline{y}_n(1-F(x_n;b_0,b_1))," id="individualProbability">, [13]
+</p>
+
+so that probability [\[12\]](#jointProbability) can be expressed as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\left[
+    \prod_{n=1}^{N}(1-\overline{y}_n)F(x_n;b_0,b_1)+\overline{y}_n(1-F(x_n;b_0,b_1))\right]." id="jointProbability2">, [14]
+</p>
+
+The most reasonable choice for parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> is thus that of maximizing the probability [\[14\]](#jointProbability2), that is, of modelling each probability [\[13\]](#individualProbability) so that the joint one models the observations at the best.
+
+Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the 
+
+Tuttavia, è da notare che, allo scopo di evitare il problema della gestione di un funzionale di costo i cui valori possono diventare eccessivamente piccoli a causa della presenza della produttoria ed essendo il logaritmo una funzione strettamente crescente, allora si massimizza il logaritmo della (\ref{jointProbability2}). In verità, essendo poi tipicamente disponibili algoritmi di minimizzazione invece che di massimizzazione, allora $b_0$ e $b_1$ si scelgono in modo tale da minimizzare l'opposto del logaritmo della probabilità (\ref{jointProbability2}), cioè si minimizza il funzionale di costo
+
+FIGURA
+<p align="center">
+  <img src="logistic.png" width="250" id="logistic">
+  <br>
+     <em>Figure 5. Example of logistic function.</em>
+</p>
+
+EQUATION
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=f^{(1)}(x,y)=(1-\alpha_y)f_{x,n} %2B \alpha_y f_{x,n %2B 1}," id="linearInterpolation2Dfull">, [6]
 </p>
 
 REFERENCE TO FORMULA
 [\[1\]](#nearestNeighborInterpolatingFunction)
+
+FORMULA NEL TESTO
+<img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">
 
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
