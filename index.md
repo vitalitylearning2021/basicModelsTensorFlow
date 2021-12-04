@@ -763,9 +763,65 @@ so that probability [\[12\]](#jointProbability) can be expressed as
 
 The most reasonable choice for parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> is thus that of maximizing the probability [\[14\]](#jointProbability2), that is, of modelling each probability [\[13\]](#individualProbability) so that the joint one models the observations at the best.
 
-Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the 
+Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the products and being the logarithm a strictly increasing function, then the logarithm of [\[14\]](#jointProbability2) is maximized. Actually, being minimization more popular than maximization, in order to employ minimization algorithms instead of maximization ones, then <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are chosen so to minimize the opposite of the probability [\[14\]](#jointProbability2), namely the following cost functional is minimized
 
-Tuttavia, è da notare che, allo scopo di evitare il problema della gestione di un funzionale di costo i cui valori possono diventare eccessivamente piccoli a causa della presenza della produttoria ed essendo il logaritmo una funzione strettamente crescente, allora si massimizza il logaritmo della (\ref{jointProbability2}). In verità, essendo poi tipicamente disponibili algoritmi di minimizzazione invece che di massimizzazione, allora $b_0$ e $b_1$ si scelgono in modo tale da minimizzare l'opposto del logaritmo della probabilità (\ref{jointProbability2}), cioè si minimizza il funzionale di costo
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
+    -\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n;b_0,b_1)+\overline{y}_n(1-F(x_n;b_0,b_1)))." id="logisticRegressionCost">, [15]
+</p>
+
+Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n;b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n;b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
+    -\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n;b_0,b_1))+\overline{y}_n\log((1-F(x_n;b_0,b_1)))." id="logisticRegressionCost2">, [16]
+</p>
+
+Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the technique already illustrated for linear regression. It should be noticed that functional [\[16\]](#logisticRegressionCost2) is convex and so it exhibits only one global minimum and no subsidiary minima. Finally, it should be observed that functional [\[16\]](#logisticRegressionCost2) can be rewritten as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
+    -\sum_{n=1}^{N}\log(p(y=\overline{y}_n|x_n))." id="logisticRegressionCost3">, [17]
+</p>
+
+In the case of a multiclass logistic regression problem with <img src="https://render.githubusercontent.com/render/math?math=K"> classes, then the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> can get values in <img src="https://render.githubusercontent.com/render/math?math=0,1,\ldots,K-1">. Moreover, in the general case, the observable <img src="https://render.githubusercontent.com/render/math?math=x"> is not just a single number, but a <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional array, namely, <img src="https://render.githubusercontent.com/render/math?math=\underline{x}=(x_0,x_1,\ldots,x_{P-1})">. Finally, the probability that the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> is equal to <img src="https://render.githubusercontent.com/render/math?math=k"> is modelled, analogously to [\[11\]](#logisticProbability), as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x})=\frac{e^{b_k+\underline{w}_k\cdot \underline{x}}}{1+\sum_{k=0}^{K-1}e^{b_k+\underline{w}_k\cdot \underline{x}}}." id="logisticProbabilityMulticlass">, [18]
+</p>
+
+while, given <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=(\underline{x}_n, \underline{y}_n)">, functional [\[17\]](#logisticRegressionCost3) generalizes as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{\underline{W}},\underline{b})=
+    -\sum_{n=1}^{N}\log(p(y=\overline{y}_n|\underline{x}_n))." id="logisticRegressionCost4">, [19]
+</p>
+
+In [\[18\]](#logisticProbabilityMulticlass), the <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_k">'s are <img src="https://render.githubusercontent.com/render/math?math=K">, <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional arrays, while, in [\[19\]](#logisticRegressionCost4), matrix <img src="https://render.githubusercontent.com/render/math?math=\underline{\underline{W}}"> performs a row-wise collection of the arrays <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_k">'s, while <img src="https://render.githubusercontent.com/render/math?math=\underline{b}"> is a column array collecting the <img src="https://render.githubusercontent.com/render/math?math=K"> <img src="https://render.githubusercontent.com/render/math?math=b_k">'s.
+
+Let us finally code the generinc training output <img src="https://render.githubusercontent.com/render/math?math=y_n"> as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\overline{\underline{y}}_n=(0 0 \ldots 1 0 \ldots 0)," id="oneHotVector">, [20]
+</p>
+
+namely, with an array whose elements are identically equal to zero except for the <img src="https://render.githubusercontent.com/render/math?math=k">-th if <img src="https://render.githubusercontent.com/render/math?math=y_n=k"> and let us group the various probabilities <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x}_n)"> in the array
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_n=(p(y=0|\underline{x}_n), p(y=1|\underline{x}_n), \ldots,p(y=K-1|\underline{x}_n))." id="oneHotVector">, [21]
+</p>
+
+Then, functional [\[19\]](#logisticRegressionCost4) can be rewritten as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{\underline{W}},\underline{b})=
+    -\sum_{n=1}^{N}\overline{\underline{y}}^T_n\log(\underline{p}_n)." id="logisticRegressionCost5">, [22]
+</p>
+
+Before proceeding with practice, let us take some time for three digressions. One concerns the organization of a dataset to be used during the training with shuffling and batching operations. The second regards some words on the training dataset used in the practical example. The last regards some works on *Keras*. In the next subsection, let us begin with the first one.
+
+
+
 
 FIGURA
 <p align="center">
