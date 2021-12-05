@@ -820,8 +820,74 @@ Then, functional [\[19\]](#logisticRegressionCost4) can be rewritten as
 
 Before proceeding with practice, let us take some time for three digressions. One concerns the organization of a dataset to be used during the training with shuffling and batching operations. The second regards some words on the training dataset used in the practical example. The last regards some works on *Keras*. In the next subsection, let us begin with the first one.
 
+### Dataset shuffling and batching
+
+In a large portion of applications of machine learning or artificial intelligence, the Stochastic Gradient Descent estimates the gradient by using only a subset or a random sample of the training data and updates the gradient for each subset. A new update is produced after a new iteration. In this way, for large-scale problems, Stochastic Gradient Descent benefits from lower computational complexity at each iteration although it may require more steps to converge than the full gradient descent method. To ensure that the stochastic gradient is an unbiased estimator of the full gradient, the sampling of the training data must be independent and identically distributed. For this reason, in subsection [Logistic regression: practice](#logisticRegressionPractice), the algorithm that will implement logistic regression will use a shuffled and batched dataset so that a different batch is employed at each interation for the training and the gradient estimate.
+
+Before concluding this subsection, let us show how performing suffling and batching using a TensorFlow's *pipeline*. To this end, let us construct a test dataset as follows:
+
+``` python
+tensor1 = tf.constant(value = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+tensor2 = tf.constant(value = [20, 21, 22, 23])
+```
+
+The dataset contains only <img src="https://render.githubusercontent.com/render/math?math=4"> elements representing rows of `tensor1`, while the features are <img src="https://render.githubusercontent.com/render/math?math=3"> and coincide with the columns of the same tensor. On referring to the above example concerning the classification of the gender according to the height, the rows correspond to the analyzed individuals, while the columns refer to their features, like height, weight, etc. A faithful reproduction of the above example would require only a column corresponding to the height. Here, we are dealing with a more general example. On the other side, the corresponding classes are accommodated in `tensor2`. We can joint features and classes in a unique dataset using
+
+``` python
+dataset = tf.data.Dataset.from_tensor_slices((tensor1, tensor2))
+```
+
+The result of such an operation is:
+
+``` python
+([1 2 3], 20)
+([4 5 6], 21)
+([7 8 9], 22)
+([10 11 12], 23)
+```
+
+namely, a tensor “merging” `tensor1` and `tensor2`.
+
+In order to create the data flow feeding the training procedure, the `repeat` method is used which generates a dataset repetition. For example
+
+``` python
+dataset = dataset.repeat(3)
+```
+
+repeats the dataset <img src="https://render.githubusercontent.com/render/math?math=3"> times, having the following as a result:
+
+``` python
+([1 2 3], 20)
+([4 5 6], 21)
+([7 8 9], 22)
+([10 11 12], 23)
+([1 2 3], 20)
+([4 5 6], 21)
+([7 8 9], 22)
+([10 11 12], 23)
+([1 2 3], 20)
+([4 5 6], 21)
+([7 8 9], 22)
+([10 11 12], 23)
+```
+
+In the example we will discuss shortly, a flow with an infinite number of repetitions will be generated.
+
+After having repeated the dataset, a shuffling is worked out using, for example,
+
+``` python
+dataset = dataset.shuffle(3)
+```
+
+The input parameter of `dataset.shuffle` is the size of the shuffle buffer. In other words, a buffer of <img src="https://render.githubusercontent.com/render/math?math=3"> elements is created and initially populated with the first three elements of `dataset`. Later on, an element is picked up from the buffer randomly and the picked up element is replaced with the first element of `dataset` not yet withdrawn. In the next step, a second element is randomly picked up from the buffer and replaced with the first remaining element of `dataset`.
+
+Una volta effettuato lo shuffling, batching takes place thanks to, for example,
 
 
+
+<p align="center" id="logisticRegressionPractice" >
+</p>
+### Logistic regression: Practice
 
 FIGURA
 <p align="center">
@@ -841,6 +907,21 @@ REFERENCE TO FORMULA
 FORMULA NEL TESTO
 <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">
 
+CHIAMATA SUBSECTION
+subsection [Solution to the inviscid Burgers’ equation using the MacCormack method](#solutionInviscidBurgerSection)
+
+RIFERIMENTO SUBSECTION
+<p align="center" id="solutionInviscidBurgerSection" >
+</p>
+Da mettere prima del titolo della subsection
+
+CHIAMATA ISTRUZIONE NEL TESTO
+`tensor1`
+
+VIRGOLETTATO
+“jetphotos.net”
+
+RIMANE DA METTERE QUALCOSA SU TENSORBOARD
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
 
 
