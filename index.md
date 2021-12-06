@@ -879,10 +879,33 @@ After having repeated the dataset, a shuffling is worked out using, for example,
 dataset = dataset.shuffle(3)
 ```
 
-The input parameter of `dataset.shuffle` is the size of the shuffle buffer. In other words, a buffer of <img src="https://render.githubusercontent.com/render/math?math=3"> elements is created and initially populated with the first three elements of `dataset`. Later on, an element is picked up from the buffer randomly and the picked up element is replaced with the first element of `dataset` not yet withdrawn. In the next step, a second element is randomly picked up from the buffer and replaced with the first remaining element of `dataset`.
+The input parameter of `dataset.shuffle` is the size of the shuffle buffer. In other words, a buffer of <img src="https://render.githubusercontent.com/render/math?math=3"> elements is created and initially populated with the first three elements of `dataset`. Later on, an element is picked up from the buffer randomly and the picked up element is replaced with the first element of `dataset` not yet withdrawn. In the next step, a second element is randomly picked up from the buffer and replaced with the second, noy-yet-withdrawn element of `dataset`. The operations proceed until all the elements of `dataset` have been withdrawn.
 
-Una volta effettuato lo shuffling, batching takes place thanks to, for example,
+Once operated the shuffling, batching takes place thanks to, for example, to
 
+``` python
+dataset = dataset.batch(2)
+```
+
+Such operation organizes the shuffled dataset in batches of <img src="https://render.githubusercontent.com/render/math?math=2"> elements. In the logistic regression example to be discussed in the sequel, the training is worked out, at each iteration, by considering batched portions of `dataset`.
+
+Finally, a prefetching is operated by
+
+``` python
+dataset = dataset.prefetch(1)
+```
+
+Prefetching enables elements to be prepared while the current element of the pipeline is being processed. Generally speaking, this improves latency and throughput, at the cost of additional memory to store prefetched elements.
+
+The file `test_from_tensor_slices.ipynb` contains a worked example of pipeline construction according to what above said. To correctly interpret the results of the various partial `tf.print`'s, we should take into account that, each time the result is invoked, the pipeline is executed from the beginning. This explains the reason of the inconsistency of the visualized results between two consecutive `tf.print`'s.
+
+In the next subsection, we will shortly describe the dataset used for the implementation of logistic regression.
+
+### The MNIST dataset
+
+The logistic regression algorithm will be employed on the MNIST data.
+
+MNIST stands for Modified National Institute of Standards and Technology database and is a database of handwritten digits. The digits are in the form of <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> grayscale images that is commonly used for training image processing systems and contains <img src="https://render.githubusercontent.com/render/math?math=55,000"> training images and <img src="https://render.githubusercontent.com/render/math?math=10,000"> test examples. Samples from the MNIST dataset can be appreciated below.
 
 
 <p align="center" id="logisticRegressionPractice" >
