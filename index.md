@@ -907,10 +907,52 @@ The logistic regression algorithm will be employed on the MNIST data.
 
 MNIST stands for Modified National Institute of Standards and Technology database and is a database of handwritten digits. The digits are in the form of <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> grayscale images that is commonly used for training image processing systems and contains <img src="https://render.githubusercontent.com/render/math?math=55,000"> training images and <img src="https://render.githubusercontent.com/render/math?math=10,000"> test examples. Samples from the MNIST dataset can be appreciated below.
 
+<p align="center">
+  <img src="MNIST.png" width="250" id="MNIST">
+  <br>
+     <em>Figure 6. Samples from the MNIST dataset.</em>
+</p>
+
+Finally, some words on Keras.
+
+### Keras
+
+Keras is an open source API written in Python for automatic learning and neural networks and supports TensorFlow as back-end. The other supported back-end is Theano, a library analogous to TensorFlow developed by LISA/MILA Lab at Université de Montréal. “Back-end” means that Keras provides high-level building blocks for deep learning, but it does not handle itself low-level operations such as tensor products, convolutions and so on. Instead, it relies on “back-end” engines as TensorFlow or Theano.
+
+Let us now jump to practice of logistic regression.
 
 <p align="center" id="logisticRegressionPractice" >
 </p>
 ### Logistic regression: Practice
+
+The first operations executed by the logistic regression code are the imports in Listing [1](#linearRegressionImports), as for linear regression. Later on, the optimization parameters are defined as in Listing [2](#linearRegressionOptimizationParameters). Finally, the number of features and classes are defined as
+
+``` python
+numClasses          = 10      
+numFeatures         = 784     
+```
+
+The number of classes is <img src="https://render.githubusercontent.com/render/math?math=10"> because <img src="https://render.githubusercontent.com/render/math?math=10"> are the handwritten digits ranging from <img src="https://render.githubusercontent.com/render/math?math=0"> to <img src="https://render.githubusercontent.com/render/math?math=9">, while the number of features is <img src="https://render.githubusercontent.com/render/math?math=784"> because the images are <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> sized.
+
+Let us now deal with the loading of the training and test data. This is performed by using Keras functionalities
+
+``` python
+from tensorflow.keras.datasets import mnist
+(xTrain, yTrain), (xTest, yTest) = mnist.load_data()
+```
+
+In this way, `xTrain` and `xTest`contain the features of the training and test sets, respectively, while `yTrain` and `yTest` contain the training and test set classes, respectively.
+
+The dataset arrays are of `uint8` type and so they must be cast to `np.float32` to be used in the optimization process:
+
+``` python
+xTrain, xTest = np.array(xTrain, np.float32), np.array(xTest, np.float32)
+```
+
+Moreover, the images are <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> sized, so that they must be flattened to achieve a database made up by a <img src="https://render.githubusercontent.com/render/math?math=60,000 \times 784"> elements matrix:
+
+
+
 
 FIGURA
 <p align="center">
@@ -930,6 +972,14 @@ REFERENCE TO FORMULA
 FORMULA NEL TESTO
 <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">
 
+REFERENCE TO LISTING
+Listing [1](#texture_1)
+
+LISTING
+``` python
+dataset = dataset.prefetch(1)
+```
+
 CHIAMATA SUBSECTION
 subsection [Solution to the inviscid Burgers’ equation using the MacCormack method](#solutionInviscidBurgerSection)
 
@@ -943,6 +993,9 @@ CHIAMATA ISTRUZIONE NEL TESTO
 
 VIRGOLETTATO
 “jetphotos.net”
+
+
+
 
 RIMANE DA METTERE QUALCOSA SU TENSORBOARD
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
