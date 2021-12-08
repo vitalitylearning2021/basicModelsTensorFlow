@@ -820,6 +820,8 @@ Then, functional [\[19\]](#logisticRegressionCost4) can be rewritten as
 
 Before proceeding with practice, let us take some time for three digressions. One concerns the organization of a dataset to be used during the training with shuffling and batching operations. The second regards some words on the training dataset used in the practical example. The last regards some works on *Keras*. In the next subsection, let us begin with the first one.
 
+<p align="center" id="shufflingBatching" >
+</p>
 ### Dataset shuffling and batching
 
 In a large portion of applications of machine learning or artificial intelligence, the Stochastic Gradient Descent estimates the gradient by using only a subset or a random sample of the training data and updates the gradient for each subset. A new update is produced after a new iteration. In this way, for large-scale problems, Stochastic Gradient Descent benefits from lower computational complexity at each iteration although it may require more steps to converge than the full gradient descent method. To ensure that the stochastic gradient is an unbiased estimator of the full gradient, the sampling of the training data must be independent and identically distributed. For this reason, in subsection [Logistic regression: practice](#logisticRegressionPractice), the algorithm that will implement logistic regression will use a shuffled and batched dataset so that a different batch is employed at each interation for the training and the gradient estimate.
@@ -951,6 +953,59 @@ xTrain, xTest = np.array(xTrain, np.float32), np.array(xTest, np.float32)
 
 Moreover, the images are <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> sized, so that they must be flattened to achieve a database made up by a <img src="https://render.githubusercontent.com/render/math?math=60,000 \times 784"> elements matrix:
 
+``` python
+xTrain, xTest = xTrain.reshape([-1, numFeatures]), xTest.reshape([-1, numFeatures])
+```
+
+Finally, the images are <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> black and white ones with values ranging from <img src="https://render.githubusercontent.com/render/math?math=0"> to <img src="https://render.githubusercontent.com/render/math?math=1">, so that they are normalized between <img src="https://render.githubusercontent.com/render/math?math=0"> and <img src="https://render.githubusercontent.com/render/math?math=1">:
+
+``` python
+xTrain, xTest = xTrain / 255., xTest / 255.
+```
+
+At this point, it is necessary to perform the shuffling and the batching, just as pointed out in the [Dataset shuffling and batching](#shufflingBatching) subsection. This is performed by the following instructions
+
+``` python
+trainData = tf.data.Dataset.from_tensor_slices((xTrain, yTrain))
+trainData = trainData.repeat().shuffle(shuffleBufferSize).batch(batchSize).prefetch(1)
+```
+
+Differently from the example in the [Dataset shuffling and batching](#shufflingBatching) subsection, now the dataset repetitions continue forever. Although, as mentioned in subsection [Dataset shuffling and batching](#shufflingBatching), shuffling the data is a good practice, in this case it is not really necessary because the data from MNIST are already randomly organized, but we do it anyways for practice.
+
+The following operations retrace those already discussed for the case of linear regression.
+
+In particular, analogously to Listing [3](#unknownVariablesLinearRegression), the variables appointed to contain the weights matrix <img src="https://render.githubusercontent.com/render/math?math=\underline{\underline{W}}"> and the bias vector <img src="https://render.githubusercontent.com/render/math?math=\underline{b}"> are defined, namely
+
+``` python
+W = tf.Variable(tf.ones([numFeatures, numClasses]))
+b = tf.Variable(tf.zeros([numClasses]))
+```
+
+At variance with linear regression, the weights matrix is initialized to <img src="https://render.githubusercontent.com/render/math?math=1">'s while the bias vector to <img src="https://render.githubusercontent.com/render/math?math=0">'s.
+
+The model is then defined, in a fashion similar to the linear one in Listing [4](#linearModelLinearRegression). In the case of logistic regression, the model is provided by equation [\[18\]](#logisticProbabilityMulticlass) and is implemented by the `tf.nn.softmax` function as
+
+``` python
+def logisticRegression(x):
+    return tf.nn.softmax(tf.matmul(x, W) + b)
+```
+
+It is now time to define the cost function [\[22\]](#logisticRegressionCost5) in a way totally analogous to the linear regression case of Listing [5](#costFunctionalLinearRegression). The logistic regression case is the following
+
+``` python
+def costFunction(pVector, yOverbar):
+
+    yOverbar = tf.one_hot(yOverbar, depth = numClasses)
+    pVector = tf.clip_by_value(pVector, 1e-9, 1.)
+
+    return tf.reduce_mean(-tf.reduce_sum(yOverbar * tf.math.log(pVector), 1))
+```
+
+Let us now spend some words to clarify the main points of the above snippet. Firstly, `tf.one_hot` converts the `tf.numClasses` classes in arrays whose elements are identically zero expect for the `yOverbar`-th which is set equal to `1`, according to [\[20\]](#oneHotVector). Moreover, by `tf.clip_by_value`, we clip the low probabilities to <img src="https://render.githubusercontent.com/render/math?math=10^{-9}"> to avoid the computation of logarithms with argument close to <img src="https://render.githubusercontent.com/render/math?math=0">. We highest probabilities are obviouslty clipped to <img src="https://render.githubusercontent.com/render/math?math=1">. Finally, functional [\[22\]](#logisticRegressionCost5) is computed by a double reduction implemented by `tf.reduce_sum` which performs row-wise reductions, namely, it reduces the <img src="https://render.githubusercontent.com/render/math?math=10"> element of the “one-hot” vectors, and by `tf.reduce_mean` which executes a reduction along the elements of the batch.
+
+Once defined the cost function to minimize, it is necessary to define the optimizer to be employed. This occurs by the same snippet as in Listing [6](#SGD) which is not reported here again.
+
+The generic optimization step is also achieved in a way similar to Listing [8](#optimizationStepLinearRegression) as
 
 
 
