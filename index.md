@@ -1007,6 +1007,69 @@ Once defined the cost function to minimize, it is necessary to define the optimi
 
 The generic optimization step is also achieved in a way similar to Listing [8](#optimizationStepLinearRegression) as
 
+``` python
+def optimizationStep(features, classes):
+    with tf.GradientTape() as g:
+        prob              = logisticRegression(features)
+        costFunctionValue = costFunction(prob, classes)
+
+    gradients = g.gradient(costFunctionValue, [W, b])
+    
+    optimizer.apply_gradients(zip(gradients, [W, b]))
+ ```
+
+The differences with Listing [8](#optimizationStepLinearRegression) are:
+  - `linearModel` which is now replaced by `logisticRegression`; 
+  - the cost functional; 
+  - the variables to be optimized which are now `W` and `b`; notice that `b` is now a vector;
+  - the optimization step is executed on a data batch; the optimization requires the current batch as input.
+
+The optimization loop is similar to Listing [7](#optimizationLoopLinearRegression), too:
+
+``` python
+for iter, (featuresBatch, classesBatch) in enumerate(trainData.take(numIter), 1):
+
+    optimizationStep(featuresBatch, classesBatch)
+    
+    if iter % skipIter == 0:
+        prob              = logisticRegression(featuresBatch)
+        costFunctionValue = costFunction(prob, classesBatch)
+        print("iteration number: %i, cost function: %f" % (iter, costFunctionValue))
+ ```
+
+This time, though, the optimization is executed on a data batch withdrawn by a pipeline created starting from an infinite repetition of the dataset. As a metter of fact, the batches are enumerated by `enumerate` and stopped when `numIter` batches have been withdrawn. The `iter` loop index is obtained through the enumerated list.
+
+Once performed the optimization, we can proceed to check the accuracy of the predictions. The check is executed on the test dataset by using the following snippets:
+
+``` python
+def accuracy(y_pred, yOverbar):
+    correctPrediction = tf.equal(tf.argmax(y_pred, 1), tf.cast(yOverbar, tf.int64))
+    return tf.reduce_mean(tf.cast(correctPrediction, tf.float32))
+```
+
+and
+
+``` python
+prob = logisticRegression(xTest)
+print("Test Accuracy: %f" % accuracy(prob, yTest))
+```
+
+First, the model [\[18\]](#logisticProbabilityMulticlass) is computed. The prediction accuracy is evaluated by the `accuracy` function. Inside that, `tf.argmax(y_pred, 1)` selects the class as the index maximizing the model [\[18\]](#logisticProbabilityMulticlass). Then, `tf.equal` verifies whether the prediction is equal to the “ground-truth” and `tf.reduce_mean` computes the fraction of correct results.
+
+Lastly, the prediction for the first <img src="https://render.githubusercontent.com/render/math?math=5"> elements of the test dataset are compared with the ground-truth by
+
+``` python
+numImages = 5
+testImages = xTest[:numImages]
+predictions = logisticRegression(testImages)
+
+for i in range(numImages):
+    plt.imshow(np.reshape(testImages[i], [28, 28]), cmap='gray')
+    plt.show()
+    print("Model prediction: %i" % np.argmax(predictions.numpy()[i]))
+```
+
+This concludes the description of the code implementing logistic regression. Next step regards the K-means algorithm which will be discussed in the next section.
 
 
 FIGURA
