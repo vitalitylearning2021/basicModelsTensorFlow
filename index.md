@@ -1071,6 +1071,24 @@ for i in range(numImages):
 
 This concludes the description of the code implementing logistic regression. Next step regards the K-means algorithm which will be discussed in the next section.
 
+## K-Means algorithm in TensorFlow
+
+In everyday life, we happen to group objects according to a certain likeness, starting from clothes in wardrobe to food on supermarket shelves. Even Google groups all its documents contained in its huge databes according to keywords.
+
+The purpose of grouping is to simplfy the way in which we relate to objects so that, for example, it is easier to find them when needed. Using the technical jargon of machine learning, grouping is addressed to as *clustering*. In machine learning, clustering is one of the most important techniques to group unlabelled objects.
+
+Clustering can be worked out using different methodologies. One of the most used is based in the k-means algorithm which will be discussed in the next section.
+
+k-means is an algorithm very often used in practice. One of the most recent applications regard the identification of places where criminal activities take place most probably [\[3\]](#KMEANS_CRIMINAL). 
+
+The k-means algorithm has the advantage of being computationally light and fast. Nevertheless, the most critical issues regard the choice of the number of clusters which is often performed by attempts by minimizing a total variation criterion [\[4\]](#TOTAL_VARIATION_KMEANS). Moreover, a random choice for the centroids can produce different and sub-optimal clustering results when the random initial choice changes.
+
+### K-means algorithm: Theory
+
+The k-means algorithm is a non-supervised learning algorithm which retrieves a fixed number of clusters from a dataset. In other words, it determines groups of objects sharing a “likeness” relation. The number of clusters is chosen *a priori* by the User.
+
+The likeness relation between the dataset elements is expressed by defining a centroid for each cluster. The centroid can coincide with a dataset element or be a “virtual” element. In the below image, a two-dimensional example is illustrated. In the example, the dataset elements are represented by red bullets, while the centroids for a possible clustering are depicted by the three coloured blue, red and green stars.
+
 
 FIGURA
 <p align="center">
@@ -1112,7 +1130,13 @@ CHIAMATA ISTRUZIONE NEL TESTO
 VIRGOLETTATO
 “jetphotos.net”
 
+RIFERIMENTO BIBLIOGRAFICO
+<p align="center" id="PYCUDA1" >
+</p>
+[1] A. Kl<span>ö</span>ckner, N. Pinto, Y. Lee, B. Catanzaro, P. Ivanov, A. Fasih, "PyCUDA and PyOpenCL: A scripting-based approach to GPU run-time code generation," Parallel Computing, vol. 38, n. 3, pp. 157-174, Mar. 2012.
 
+CHIAMATA A RIFERIMENTO BIBLIOGRAFICO
+[\[1\]](#PYCUDA1)
 
 
 RIMANE DA METTERE QUALCOSA SU TENSORBOARD
@@ -1207,7 +1231,17 @@ https://andreaprovino.it/tensorflow-guida-italiano-primi-passi-con-tensorflow/
 <p align="center" id="AUTODIFF" >
 </p>
 [1] A.G. Baydin, B.A. Pearlmutter, A.A. Radul, J.M. Siskind, "Automatic differentiation in machine learning: a survey," J. Machine Learn. Res., vol. 18, pp. 1-43, 2018.
+
 <p align="center" id="MIND_ON_STATISTICS" >
 </p>
 [2] J.M. Utts, R.F. Heckard, "Mind on Statistics, Fifth Ed.," Cengage Learning, Stamford, CT, 2015.
+
+<p align="center" id="KMEANS_CRIMINAL" >
+</p>
+[3] V. Jain, Y. Sharma, A. Bhatia, V. Arora, "Crime prediction using k-means algorithm," Global Res. Dev. J. for Eng., vol. 2, n. 5, pp. 206-209, Apr. 2017.
+
+<p align="center" id="KMEANS_CRIMINAL" >
+</p>
+[4] P. Pareek, "All about “k-means” clustering," Medium page.
+
 
