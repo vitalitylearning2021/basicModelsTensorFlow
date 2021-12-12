@@ -1089,6 +1089,40 @@ The k-means algorithm is a non-supervised learning algorithm which retrieves a f
 
 The likeness relation between the dataset elements is expressed by defining a centroid for each cluster. The centroid can coincide with a dataset element or be a “virtual” element. In the below image, a two-dimensional example is illustrated. In the example, the dataset elements are represented by red bullets, while the centroids for a possible clustering are depicted by the three coloured blue, red and green stars.
 
+<p align="center">
+  <img src="Clustering.png" width="250" id="clustering">
+  <br>
+     <em>Figure 7. Illustrating the clustering process.</em>
+</p>
+
+The k-means algorithm is an iterative algorithm organized in three steps:
+
+  - *Initialization*. The number of clusters <img src="https://render.githubusercontent.com/render/math?math=K"> and <img src="https://render.githubusercontent.com/render/math?math=K"> initial, randomly located centroids are defined. The choice of the centroids determines also an initial cluster partitioning if each dataset point is associated to the closest centroid.
+  - *Assignment of the dataset elements to the clusters*. Each dataset point is assigned to the closest cluster. In other words, for each dataset point <img src="https://render.githubusercontent.com/render/math?math=x">, the centroid is chosen as
+  
+  <p align="center">
+      <img src="https://render.githubusercontent.com/render/math?math=\arg \min_{\underline{c} \in {\mathcal S}}d(\underline{c}, \underline{x})^2," id="choiceCentroids">, [23]
+  </p>
+
+  where <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i"> is the generic centroid, <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}"> is the set of the current centroids and <img src="https://render.githubusercontent.com/render/math?math=d(\underline{c}_i, \underline{x})"> is the distance between <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i"> and <img src="https://render.githubusercontent.com/render/math?math=\underline{x}">. In equation [\[23\]](#choiceCentroids), we have assumed to represent the dataset points and the centroids as multidimensional arrays having <img src="https://render.githubusercontent.com/render/math?math=M"> dimensions, namely, <img src="https://render.githubusercontent.com/render/math?math=\underline{x}=(x_1,x_2,\ldots, x_M)">. A popular choice, which will be considered in the following subsection, consists of choosing the Euclidean distance for <img src="https://render.githubusercontent.com/render/math?math=d">, namely
+  
+  <p align="center">
+      <img src="https://render.githubusercontent.com/render/math?math=d(\underline{x}, \underline{y})^2=\sum_{m=1}^M |x_i-y_i|^2." id="euclideanDistance">, [24]
+  </p>
+  
+  - *Centroids update*. Following the previous step, the formation of new clusters is likely since dataset points could have been added to or removed from the clusters. As a consequence, the centroids position is computed again as the average of all the dataset points assigned to the new cluster, namely
+
+  <p align="center">
+      <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i=\frac{1}{|{\mathcal S}_i|}\sum_{\underline{x}_i\in {\mathcal S}_i}\underline{x}_i," id="averageDistance">, [25]
+  </p>
+
+    where <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}_i"> represents the <img src="https://render.githubusercontent.com/render/math?math=i">-th cluster and <img src="https://render.githubusercontent.com/render/math?math=|{\mathcal S}_i|"> is the corresponding number of elements.
+    
+Following the initialization, the algorithm repeats the second and third steps until the exit condition is reached. Among the possible termination conditions, we can consider the maximum number of iterations or the condition that the centroids, and thus the clusters, do not significantly change.
+
+After the theory, let us discuss a practical application of the k-means algorithm in TensorFlow 2.0.
+
+
 
 FIGURA
 <p align="center">
