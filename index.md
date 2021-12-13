@@ -1147,7 +1147,19 @@ numIter               = 20
 
 The number of iterations will be used to implement the native version of the approach.
 
-It is now...
+It is now time to generate a random dataset. To this end, the centroids around which the clusters must develop are defined
+
+``` python
+centroids = tf.cast([[3, 5], [-3, 0], [5, -1], [0, 2]], tf.float64)
+```
+
+Following the centroids definition, the dataset is generated thanks to the `skd.make_blobs` routine as
+
+``` python
+samples, labels = skd.make_blobs(n_samples = numSamples, centers = centroids, cluster_std = 0.9)
+```
+
+Notice that, as routine inputs, the number of dataset elements should be provided along with the centroids and the degree of dispersion of the clusters around the centroids. The `skd.make_blobs` routine provides the samples and the labels of their corresponding clusters as output.
 
 
 import sklearn.datasets as skd
