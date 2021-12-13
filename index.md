@@ -1122,7 +1122,35 @@ Following the initialization, the algorithm repeats the second and third steps u
 
 After the theory, let us discuss a practical application of the k-means algorithm in TensorFlow 2.0.
 
+### K-means algorithm: Practice
 
+It is now time to discuss a simple implementation example of the k-means algorithm in TensorFlow 2.0. We will present both a customized version of the k-means algorith and its native, TensorFlow 2.0 version. We will arbitrarily set the number of clusters to a value equal to the number of actual clusters. We will begin by first discussing the customized version and then switch to the native one.
+
+#### Customized k-means
+
+As it happened for the previous projects, the first step is defining the imports. Besides the usual `numpy`, `tensorflow` and `matplotlib`, for this case will will also need
+
+``` python
+import sklearn.datasets as skd
+```
+
+to generate random clusters.
+
+Immediately after the imports, we define the algorithm parameters, namely, the number of features, the number of dimensions of each dataset element, the number of clusters, the number of dataset samples and the number of iterations:
+
+``` python
+numFeatures           = 2
+numClusters           = 4
+numSamples            = 5000
+numIter               = 20    
+```
+
+The number of iterations will be used to implement the native version of the approach.
+
+It is now...
+
+
+import sklearn.datasets as skd
 
 FIGURA
 <p align="center">
