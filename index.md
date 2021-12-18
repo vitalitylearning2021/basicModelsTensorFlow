@@ -1161,8 +1161,119 @@ samples, labels = skd.make_blobs(n_samples = numSamples, centers = centroids, cl
 
 Notice that, as routine inputs, the number of dataset elements should be provided along with the centroids and the degree of dispersion of the clusters around the centroids. The `skd.make_blobs` routine provides the samples and the labels of their corresponding clusters as output.
 
+Once created the dataset, the centroids, the labels and the dataset samples are cast to TensorFlow tensors while keeping a `numpy` copy of the samples
 
-import sklearn.datasets as skd
+``` python
+points    = samples
+centroids = tf.convert_to_tensor(centroids)
+labels    = tf.convert_to_tensor(labels)
+samples   = tf.convert_to_tensor(samples)
+```
+
+In the following snippet, we present the main loop of the customized approach:
+
+``` python
+updateNorm    = float('inf') 
+
+oldCentroids  = initializeCentroids(samples, numClusters, numSamples)
+
+func          = np.empty((1, ), dtype = np.float64)
+func[0]       = np.infty
+
+while (updateNorm > 1e-4):
+
+  nearestIndices      = assign2NearestCentroid(samples, oldCentroids)
+  newCentroids        = 
+      updateCentroids(samples, nearestIndices, numClusters)
+  updateNorm          = 
+      tf.sqrt(tf.reduce_sum(tf.square(newCentroids - oldCentroids)) / tf.reduce_sum(tf.square(centroids)))
+  oldCentroids        = newCentroids
+  plotClusters(samples, labels, newCentroids)
+
+  updateNorm          = np.reshape(updateNorm.numpy(), (1, ))
+  func                = np.append(func, updateNorm, axis = 0)
+
+plt.plot(func)
+plt.show()
+```
+
+The stopping rule intervenes when the centroids at the current step are not significantly changed, in a percentage meaning, as compared to the previous step. For this reason, the variable evaluating the percentage error, namely, `updateNorm`, is initialized to infinity. The iterations are handled by a `while` which breaks if `updateNorm` gets smaller than <img src="https://render.githubusercontent.com/render/math?math=10^{-4}">.
+
+The `initializeCentroids` functions implements step #1 of the k-means algorithm and is reported in the following:
+
+``` python
+def initializeCentroids(samples, numClusters, numSamples):
+    randomIndices     = tf.random.shuffle(tf.range(0, numSamples))
+    centroidIndices   = tf.slice(randomIndices, begin = [0, ], size = [numClusters, ])
+    initialCentroids  = tf.gather(samples, centroidIndices)
+    return initialCentroids
+```
+
+The purpose is initializing the centroids using random choices of the dataset elements. To this end, a random index vector, with indices ranging from `0` to `numSamples - 1` (`tf.range(0, numSamples)`) is initialized. Later one, a slice of `numClusters` size is extracted starting from the beginning of `randomIndices` by using `tf.slice` and forming `centroidIndices`. The dataset elements corresponding to `centroidIndices` are collected in `initialCentroids` by `tf.gather`.
+
+Besides the centroids, an array is also initialized which will contain, iteration after iteration, the value of the percentage error between the centroids at the current step and those at the previous step with the aim of showing, at the end of the loop, the iterations behavior.
+
+The assignment of the dataset elements to the cluster is performed thanks to the `assign2NearestCentroid` function reported below:
+
+``` python
+def assign2NearestCentroid(samples, centroids):
+
+    expandedSamples   = tf.expand_dims(samples, 0)
+    expandedCentroids = tf.expand_dims(centroids, 1)
+    distances         = tf.reduce_sum(tf.square(tf.subtract(expandedSamples, expandedCentroids)), 2)
+    nearestIndices    = tf.argmin(distances, 0)
+    return nearestIndices
+```
+
+The `tf.expand_dims` function is used to expand the dimensions of both `samples` and `centroids`. In other words, `samples` is an array of size `(numSamples, numFeatures)`, while `expandedSamples` has size `(1, numSamples, numFeatures)`. In this way, an implicit `meshgrid` is defined for the subsequent evaluation of the squared distances among the database points and the centroids. In other words, the size of the `distances` tensor is `(numClusters, numSamples)`. The indices of the cluster closer to each sample can be deduced by determining the columnwise positions of the minima of `distances` thanks to `tf.argmin(distances, 0)`.
+
+The `updateCentroids` routine implements the second step of the k-means approach, namely, assigning the dataset elements to the cluster:
+
+``` python
+def updateCentroids(samples, nearestIndices, numClusters):
+    nearestIndices  = tf.cast(nearestIndices, tf.int32)
+    partitions      = tf.dynamic_partition(samples, nearestIndices, numClusters)
+    newCentroids    = tf.concat([tf.expand_dims(tf.reduce_mean(partition, 0), 0) for partition in partitions], 0)
+    return newCentroids
+ ```
+
+In particular, after having cast the `nearestIndices` to integers, these are used to partition the dataset in a number of `numClusters` partitions. The result is a `list` of tensors stored in `partitions`. The new centroids are computed by reducing each tensor in the `partitions` list along the columns and then collecting them by `tf.concat`.
+
+The last relevant function of the customized approach is the `plotClusters` function:
+
+``` python
+def plotClusters(samples, labels, centroids):
+
+  colour = plt.cm.rainbow(np.linspace(0, 1, len(centroids)))
+
+  for i, centroid in enumerate(centroids):
+
+    plt.scatter(samples[:, 0], samples[:, 1], c = colour[labels])
+
+    plt.plot(centroids[i, 0], centroids[i, 1], markersize = 35, marker = "x", color = 'k', mew = 10)
+    plt.plot(centroids[i, 0], centroids[i, 1], markersize = 30, marker = "x", color = 'm', mew = 5)
+    
+  plt.show()
+ ```
+ 
+Such function exploits the `rainbow` colormap by picking `numCentroids`, “equispaced” colors between `0` and `1`. Each color is then used to perform the plot of a different cluster. A possible result is shown in the below figure:
+
+<p align="center">
+  <img src="Customized_kmeans.png" width="250" id="logistic">
+  <br>
+     <em>Figure 8. k-means result example. Dots are cluster points, crosses are cluster centroids.</em>
+</p>
+
+A possible behavior of the percentage centroid variation against the previous step is shown in the following:
+
+<p align="center">
+  <img src="Customized_kmeans_functional.png" width="250" id="logistic">
+  <br>
+     <em>Figure 9. k-means result example. Percentage variation of the centroids with respect to the previous step.</em>
+</p>
+
+
+
 
 FIGURA
 <p align="center">
