@@ -1254,7 +1254,7 @@ def plotClusters(samples, labels, centroids):
     plt.plot(centroids[i, 0], centroids[i, 1], markersize = 30, marker = "x", color = 'm', mew = 5)
     
   plt.show()
- ```
+```
  
 Such function exploits the `rainbow` colormap by picking `numCentroids`, “equispaced” colors between `0` and `1`. Each color is then used to perform the plot of a different cluster. A possible result is shown in the below figure:
 
@@ -1271,6 +1271,89 @@ A possible behavior of the percentage centroid variation against the previous st
   <br>
      <em>Figure 9. k-means result example. Percentage variation of the centroids with respect to the previous step.</em>
 </p>
+
+This completes the description of the customized k-means approach. Let us investigate the TensorFlow native one.
+
+#### Native TensorFlow k-means
+
+In the TensorFlow case, the first step is defining a clustering estimator as
+
+``` python
+kmeans = tf.compat.v1.estimator.experimental.KMeans(num_clusters = numClusters, use_mini_batch = False)
+```
+
+In the reported example, mini batching is disallowed.
+
+The next step is defining a training loop of `numIter` iterations as 
+
+``` python
+previousCenters = None
+for _ in range(numIter):
+  kmeans.train(input_fn)
+  clusterCenters = kmeans.cluster_centers()
+  if previousCenters is not None:
+    print('Cluster centers variation:', clusterCenters - previousCenters)
+  previousCenters = clusterCenters
+  print('Algorithm score:', kmeans.score(input_fn))
+print('Cluster centers:', clusterCenters)
+```
+
+At each iteration, the actual training is performed by `kmeans.train` which requires a function as input, `input_fn` in our case, which returns the dataset on which we must operate. The `input_fn` function is defined, for the case of our interest, as
+
+``` python
+def input_fn():
+  return tf.compat.v1.train.limit_epochs(tf.convert_to_tensor(points, dtype = tf.float32), num_epochs = 1)
+```
+
+and returns the entire dataset, cast to a single precision tensor, a number `num_epochs = 1` of times. After the training phase, the cluster centers are updated as
+
+``` python
+clusterCenters = kmeans.cluster_centers()
+```
+
+Once completed the training loop, a list of labels corresponding to the clusters to which each dataset element belongs is built up by
+
+``` python
+for i, point in enumerate(points):
+  clusterIndex  = clusterLabels[i]
+  center        = clusterCenters[clusterIndex]
+  print('point:', point, 'is in cluster', clusterIndex, 'centered at', center)
+
+plotClusters(samples, clusterLabels, clusterCenters)
+```
+
+### Nearest neighbor with TensorFlow
+
+K-Nearest Neighbors (KNN) is a supervised learning algorithm and one of the most known and employed approach of machin learning thanks to its simplicity and to its often satisfactory results.
+
+The KNN algorithm is one of the first choices when facing classification problems. The applications of the KNN algorithm are different and range from political sciences to classify the vote of potential voters to the handwriting detection and facial recognition.
+
+#### Nearest neighbor: Theory
+
+In order to illustrate the algorithm with a simple example, let us suppose to predict to which class, among “fruit”, “vegetables” or “grains”, the sweet potato belongs [\[5\]](#NEAREST_NEIGHBOR).
+
+A possible dataset can be one containing, within the three mentioned classes:
+
+  - *fruit class*: apple, grape, kiwi, banana, pear;
+  - *vegetables class*: lettuce, carrot, celery, green bean;
+  - *grains class*: corn, grain, emmer.
+
+Suppose that the features relevant to the classification problem we are dealing with are sweetness and crunchiness. Generally speaking, fruit is sweeter than vegetables, while cereals are neither sweet nor crunchy. Accordingly, by assigning the abscissa axis to crunchiness and the ordinate axis to sweetness, a possible arrangement of the dataset elements is the one in the following figure:
+
+<p align="center">
+  <img src="knn_dataset.jpg" width="250" id="knn_algorithm">
+  <br>
+     <em>Figure 10. Illustrating the KNN algorithm.</em>
+</p>
+
+Typically, the likeness between “data points” in the “crunchiness-sweetness” plane is evaluated by a certain measure of distance, often the Euclidean distance, although other measures, as Hamming, Manhattan or Minkowsky distances are often adopted [\[6\]](#MACHINE_LEARNING_DISTANCES). From this point of view, given an instace to be classified, the lesser its distance from a data-point, the larger the likeness with the data-point. Besides distance, the algorithm determines also a parameter <img src="https://render.githubusercontent.com/render/math?math=k"> identifying the number of closest data points to the instance to be classified. The algorithm evaluates then the data-points with the <img src="https://render.githubusercontent.com/render/math?math=k"> smallest distances with the instance to classify, counts the number of closest data-points per class and the class achieving the greatest number of “nearnesses” is chosen in the forecast.
+
+In the considered example, on assuming <img src="https://render.githubusercontent.com/render/math?math=k=4">, the closest data-points to sweet potato are apple, green bean, lettuce and corn. Since the vegetables class receives <img src="https://render.githubusercontent.com/render/math?math=2"> “votes”, while the fruit and grains classes only <img src="https://render.githubusercontent.com/render/math?math=1">, the sweet potato is classified as vegetable.
+
+The KNN algorithm can be used also for regression problems. In this case, instead of returning the label of the majority class of the set of the <img src="https://render.githubusercontent.com/render/math?math=k"> selected instanced, KNN calculates the average value of the closest data-points as regression forecast.
+
+The KNN algorithm is very simple and its steps are <img src="https://render.githubusercontent.com/render/math?math=3">
+
 
 
 
@@ -1429,4 +1512,10 @@ https://andreaprovino.it/tensorflow-guida-italiano-primi-passi-con-tensorflow/
 </p>
 [4] P. Pareek, "All about “k-means” clustering," Medium page.
 
+<p align="center" id="NEAREST_NEIGHBOR" >
+</p>
+[5] Z. Zhang, "Introduction to machine learning: k-nearest neighbors," Ann. Transl. Med., vol. 4, n. 11, pp. 218--224, Jun. 2016.
 
+<p align="center" id="MACHINE_LEARNING_DISTANCES" >
+</p>
+[6] J. Brownlee, "K-Nearest Neighbors for Machine Learning," Apr. 2016.
