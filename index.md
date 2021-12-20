@@ -1352,8 +1352,52 @@ In the considered example, on assuming <img src="https://render.githubuserconten
 
 The KNN algorithm can be used also for regression problems. In this case, instead of returning the label of the majority class of the set of the <img src="https://render.githubusercontent.com/render/math?math=k"> selected instanced, KNN calculates the average value of the closest data-points as regression forecast.
 
-The KNN algorithm is very simple and its steps are <img src="https://render.githubusercontent.com/render/math?math=3">
+The KNN algorithm is very simple and its steps are <img src="https://render.githubusercontent.com/render/math?math=3">:
+  - compute the distances between the instance to be classified and the dataset elements;
+  - sort the computed distances in ascending order;
+  - choose the first <img src="https://render.githubusercontent.com/render/math?math=k"> distances; in case of a regression problem, the average of the <img src="https://render.githubusercontent.com/render/math?math=k"> determined labels can be returned; in case of a classification problem, the class including the largest number of individuals corresponding to the <img src="https://render.githubusercontent.com/render/math?math=k"> least distances is chosen.
 
+#### Nearest neighbor: Practice
+
+In this subsection, we show an implementation of the KNN algorithm for the simified case of <img src="https://render.githubusercontent.com/render/math?math=k=1">. The implementation is easily extended to <img src="https://render.githubusercontent.com/render/math?math=k>1">. The approach is applied to the above sketched MNIST dataset.
+
+We will perform an iterative and “progressive” training. In other words, to reduce the memory demands, we will break the dataset in batches as for logistic regression. For each instance to classify, we will compute the corresponding minimum element distance in the only batch. Iteration after iteration, the dataset is fully explored. Once identified the minimum distance element of the dataset, it is added to the data subset for the next iteration, to avoid to any loss of memory of such information.
+
+We will skip phases already widely discussed and later on we will dwell on the main loop only.
+
+The approach is very simple and can be summarized in the following code:
+
+``` python
+xTest = xTest[0 : numTests, :]
+xTest = tf.convert_to_tensor(xTest)
+
+for iter, (featuresBatch, classesBatch) in enumerate(trainData.take(numIter), 1):
+
+  if (iter > 1):
+    featuresBatch = tf.concat([featuresBatch, featurePredictions], 0)
+    classesBatch  = tf.concat([classesBatch,  classesPredictions], 0)
+  
+  expandedTrain                 = tf.expand_dims(featuresBatch, 0)
+  expandedTest                  = tf.expand_dims(xTest, 1)
+
+  distance                      = tf.reduce_sum(tf.square(tf.subtract(expandedTrain, expandedTest)), 2)
+
+  pred                          = tf.argmin(distance, 1)
+
+  featurePredictions            = tf.gather(featuresBatch, pred, axis = 0)
+  classesPredictions            = tf.gather(classesBatch, pred, axis = 0)
+
+  accuracy                      = 100. * np.sum(yTest[0 : numTests] == classesPredictions) / numTests
+  
+  print('accuracy {}'.format(accuracy))
+```  
+  
+To reduce the memory demands, the testing dataset is limited to a number of `numTests` elements.
+
+In a totally similar way to what done above, `tf.expand_dims` is used to expand the tensor dimensions so that `tf.reduce_sum` can act on an implicit meshgrid. The `distance`
+tensor contains then all the possible distances between the actual batch elements and those of the reduced testing dataset, while the `pred` tensor contains the indices of the elements closest to each element of the reduced testing dataset. By such indices, the elements closest to each element of the testing dataset as well as their labels are fetched from the batch by using `tf.gather`. If the interation is not the first one, such closest elements are added to the subsequent batch to keep trace of the training.
+
+Finally, the accuracy is computed as a percentage of the cases in which the forecasts coincide with the “ground-truth”.
 
 
 
