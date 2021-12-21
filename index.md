@@ -492,7 +492,7 @@ Il grafo consiste nella creazione di due variabili, `a` e `b`, e nella loro molt
      <em>Figure 5. Simple graph using TensorBoard.</em>
 </p>
 
-Ora si può comprendere l'utilità di assegnare un nome alle variabili. In particolare, alle variabili  `a` e `b` vengono assegnati i nomi di `variableA` e `variableB`, respectively. Come si vede, viene assegnato un nome anche all'operazione di moltiplicazione che viene indicata come `Mul`. I nomi assegnati sono chiaramente visibili nel grafo in Figure [5](#simpleTensorBoard).
+Ora si può comprendere l'utilità di assegnare un nome alle variabili. In particolare, alle variabili  `a` e `b` vengono assegnati i nomi di `variableA` e `variableB`, respectively. Come si vede, viene assegnato un nome anche all'operazione di moltiplicazione che viene indicata come `Mul`. I nomi assegnati sono chiaramente visibili nel grafo in figure [5](#simpleTensorBoard).
 
 ### Are TensorFlow constants really constant?
 
@@ -539,7 +539,7 @@ Linear regression models the relation of independent and dependent variables by 
      <em>Figure 5. Observation of birth rates against poverty level.</em>
 </p>
 
-In particular, Figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [5](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=y"> can be evaluated as
+In particular, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [5](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=y"> can be evaluated as
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=y=mx+b," id="linearRegression"> [6]
@@ -1399,7 +1399,63 @@ tensor contains then all the possible distances between the actual batch element
 
 Finally, the accuracy is computed as a percentage of the cases in which the forecasts coincide with the “ground-truth”.
 
+### Support Vector Machines with TensorFlow
 
+Support Vector Machine (SVM) is an automatic, supervised learning algorithm that can be used either for classification or regression. It is popular for applications like the processing of natural language processing, speech and imagerecognition and computer vision.
+
+The SVM algorithm is notably effective in binary classification problems, although it is used also for multiclass classification. In the present section, we will see SVM at work for binary classification.
+
+#### Support Vector Machine: Theory
+
+For a binary classification problem, and for a simple use case, SVM is based on the idea to determine a hyperplane dividing a dataset in two classes as illustrated by the figure below:
+
+<p align="center">
+  <img src="SVM_hyperplane.png" width="250" id="linearSeparation">
+  <br>
+     <em>Figure 11. Linear separation of dataset points.</em>
+</p>
+
+In order to understand the working principle, figure [12](#hyperplanes) depicts hyperplanes in the case of two (left) and three (right) only features. In the two-features case, a hyperplane is represented by a line, while, in the three-features case, it is represented by a plane.
+
+<p align="center">
+  <img src="hyperplanes.png" width="250" id="hyperplanes">
+  <br>
+     <em>Figure 12. Hyperplanes.</em>
+</p>
+
+A hyperplane linearly separating a dataset could not exist. In this case, a non-linear mapping becomes necessary to embed the dataset in a larger dimensional space moving, for example, from two to three dimensions and making the data linearly separable. In the following, we will consider the simple clas in which the data can be linearly separated.
+
+The SVM algorithm has the purpose of determining the hyperplane dividing, *at the best*, the support vectors in classes. *At the best* means that, if more than a hyperplane exists and to improve the classification accuracy on new observations, the algorithm searches for that having the largest margin to the support vectors. By support vectors we mean the closest dataset points to the dividing hyperplane, see figure [11](#linearSeparation). The margin, instead, is the distance between the support vectors of the two classes that are closest to the hyperplane, as in the below figure
+
+<p align="center">
+  <img src="SVM_margin.png" width="250" id="SVMmargin">
+  <br>
+     <em>Figure 13. Margin between support vectors.</em>
+</p>
+
+The hyperplane divides the distance in two equal parts. The maximization of the margin is related to the idea that, the farther the dataset points are from the hyperplane, the most probable is that they are correctly classified. When new dataset points are considered, they are classified depending on the region in which they fall with respect to the determined hyperplane.
+
+Going into more detail in the mathematics of the problem, the equation of a generic hyperplane is
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\underline{w}\cdot \underline{x}+w_0=0,">, [26]
+</p>
+
+where <img src="https://render.githubusercontent.com/render/math?math=\underline{x}"> is the independent variable of the features space, <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> is the *weight vector* and <img src="https://render.githubusercontent.com/render/math?math=w_0"> is the *bias*.
+
+On referring to figure [11](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot\underline{x}_n\geq 1," id="vincoloSVM1">, [27]
+</p>
+
+while, for points of class <img src="https://render.githubusercontent.com/render/math?math=-1">, we have
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math= w_0+\underline{w}\cdot\underline{x}_n\leq -1," id="vincoloSVM2">, [28]
+</p>
+
+where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points.
 
 
 FIGURA
@@ -1408,6 +1464,9 @@ FIGURA
   <br>
      <em>Figure 5. Example of logistic function.</em>
 </p>
+
+REFERENCE TO FIGURE
+Figure [5](#simpleTensorBoard)
 
 EQUATION
 <p align="center">
