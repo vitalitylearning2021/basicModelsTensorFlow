@@ -1455,9 +1455,52 @@ while, for points of class <img src="https://render.githubusercontent.com/render
   <img src="https://render.githubusercontent.com/render/math?math= w_0+\underline{w}\cdot\underline{x}_n\leq -1," id="vincoloSVM2">, [28]
 </p>
 
-where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points.
+where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot\underline{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot\underline{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\underline{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
+
+Nevertheless, in order to minimize <img src="https://render.githubusercontent.com/render/math?math=\|\underline{w}\|"> to achieve the desired hyperplane, it will be necessary to account also for the constraints [\[27\]](#vincoloSVM1) and [\[28\]](#vincoloSVM2). Such two constraints can be rewritten as a unique unequality as
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=y_n\left(w_0+\underline{w}\cdot\underline{x}_n\right)\geq 1," id="vincoloFinaleSVM">, [29]
+</p>
+
+where <img src="https://render.githubusercontent.com/render/math?math=y_n=1"> if the <img src="https://render.githubusercontent.com/render/math?math=n">-th element belongs to class <img src="https://render.githubusercontent.com/render/math?math=1">, otherwise <img src="https://render.githubusercontent.com/render/math?math=y_n=-1">. It can be shown that the minimization of <img src="https://render.githubusercontent.com/render/math?math=\|\underline{w}\|"> with constraint [\[29\]](#vincoloFinaleSVM) can be faced by minimizing the functional
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{w}, w_0)=\|\underline{w}\|+\frac{\alpha}{N}\sum_{n=1}^N\max\left\{0, 1-y_n\left(\underline{w}^T\underline{x}_n+w_0\right)\right\}," id="functionalSVM">, [30]
+</p>
+
+where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is a parameter balancing the need to maximize the margin with the need of satisfying constraint [\[29\]](#vincoloFinaleSVM).
+
+Once maximized functional <img src="https://render.githubusercontent.com/render/math?math=\Phi"> and once determined the optimal values of <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_{opt}"> and <img src="https://render.githubusercontent.com/render/math?math=w_{0_{opt}}">, then it is possible to determine the separating hyperplane. For a two-dimensional problem, namely, in the case when <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> has only two components, which is the case considered in the following subsections, the mentioned hyperplane becomes a straight line. On accounting that <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> represents the normal to the hyperplane, then its equation becomes
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=y=m\;x+x_0," id="rettaSeparazione">, [31]
+</p>
+
+where
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=m = -\frac{w_{opt_{1}}}{w_{opt_{0}}}" id="coefficienteAngolare">, [32]
+</p>
+
+and
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=x_0=-\frac{w_0}{w_{opt_{0}}}." id="intercetta">, [33]
+</p>
+
+Now that we have identified the functional to be optimized, let us show how the SVM algorithm can be implemented using TensorFlow. In particular, we will focus on a test case not considered before, namely, the so-called *Irisi test case*. Some words on such dataset are now in order.
+
+#### The Iris dataset
+
+The Iris dataset is a multivariate dataset introduced by Ronald Fisher in 1936. It consists into <img src="https://render.githubusercontent.com/render/math?math=150"> instances of <img src="https://render.githubusercontent.com/render/math?math=3"> Iris species: *Iris setosa*, *Iris virginica* and *Iris versicolor*. The four considered variables are sepal length, sepal width, petal length and petal width. The classes of the dataset element can be <img src="https://render.githubusercontent.com/render/math?math=0"> in the case of Iris setosa, <img src="https://render.githubusercontent.com/render/math?math=1"> in the case of Iris versicolor or <img src="https://render.githubusercontent.com/render/math?math=2"> for Iris virginica.
+
+Let us take a look now at the developed example.
+
+#### Support Vector Machine: Practice
 
 
+_____________________________________________________________________________________________
 FIGURA
 <p align="center">
   <img src="logistic.png" width="250" id="logistic">
