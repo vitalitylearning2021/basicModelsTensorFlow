@@ -701,7 +701,7 @@ for iter in range(1, numIter + 1):
         costFunctionValue = costFunction(y_model, Y)
         print("iteration number: %i, cost function: %f, m: %f, b: %f" % (iter, costFunctionValue, m.numpy(), b.numpy()))
 ```
-<p align="center" id="xxx" >
+<p align="center" id="optimizationStepLinearRegression" >
      <em>Listing 8. Optimization step for linear regression.</em>
 </p>
 
@@ -1498,6 +1498,175 @@ The Iris dataset is a multivariate dataset introduced by Ronald Fisher in 1936. 
 Let us take a look now at the developed example.
 
 #### Support Vector Machine: Practice
+
+The purpose of this example is to classify, using the only sepal length and petal width features, the Iris species in setosa or not-setosa.
+
+Apart from standard imports, we have
+
+``` python
+from sklearn import datasets
+```
+
+Indeed, we will use the Iris database held in the Si utilizzerà infatti l'Iris database held in the `sklearn` library.
+
+The following parameters are also defined:
+
+``` python
+alpha               = 0.01    
+numIter             = 5000    
+batchSize           = 64     
+```
+
+where `alpha` is the weight appearing in functional [\[30\]](#functionalSVM) and the training will be performed on a number of `batchSize` elements in `numIter` iterations.
+
+It is now time to load the dataset
+
+``` python
+numFeatures         = 2
+
+irisDataset     = datasets.load_iris()
+```
+
+and to extract the two features of interest
+
+``` python
+xDataset        = np.array([[x[0], x[3]] for x in irisDataset.data])
+yDataset        = np.array([1 if y == 0 else -1 for y in irisDataset.target])
+```
+
+In this way, `xDataset` will assume the only sepal length and petal width values, while `yDataset` will be equal to `1` for a setosa Iris, to `-1` otherwise.
+
+The dataset should be now partitioned in a portion for training and a portion for performance verification. We decide to use <img src="https://render.githubusercontent.com/render/math?math=90\%"> of the dataset for training and the remaining <img src="https://render.githubusercontent.com/render/math?math=10\%"> for testing. To this end, we use
+
+``` python
+trainIndices    = np.random.choice(len(xDataset), round(len(xDataset) * 0.9), replace = False)
+```
+
+which generates a set of `round(len(xDataset) * 0.9)` indices between `0` and `len(xDataset)` without repetitions. Such indices will serve to address the dataset samples to use for training. Later one, we compute the remaining indices to be used for testing as
+
+``` python
+testIndices     = np.array(list(set(range(len(xDataset))) - set(trainIndices)))
+```
+
+In the instruction above, `set` transforms the complete indices list `range(len(xDataset))` as well as the training indices list `trainIndices` to sets of unordered elements and the two sets are subtracted to obtain the test indices. Finally, features and labels for the training and testing databases are extracted:
+
+``` python
+xTrain          = xDataset[trainIndices]
+xTest           = xDataset[testIndices]
+yTrain          = yDataset[trainIndices]
+yTest           = yDataset[testIndices]
+```
+
+The rest of the code is similar to what we have already done previously with other approaches. In particular, an initializer is defined as well as the variables that will hold the unknowns:
+
+``` python
+randomInitWeights = tf.initializers.Zeros()
+
+w = tf.Variable(randomInitWeights([numFeatures, 1], dtype = np.float64))
+w0 = tf.Variable(randomInitWeights([1, 1], dtype = np.float64))
+```
+
+Then, the cost function is defined as follows:
+
+``` python
+# --- Cost function
+def costFunction(xData, yTarget):
+  #model               = tf.subtract(tf.matmul(xData, w), b)
+  model               = tf.add(tf.matmul(xData, w), w0)
+  regularizationTerm  = tf.reduce_sum(tf.square(w))
+  classificationTerm  = tf.reduce_mean(tf.maximum(0., tf.subtract(1., tf.multiply(model, yTarget))))
+  return tf.add(classificationTerm, tf.multiply(alpha, regularizationTerm))
+```
+
+The function `costFunction` computes the cost function reported in [\[30\]](#functionalSVM).
+
+The definitions of `optimizer` and of `optimizationStep` are similar to those in Listings [6](#SGD) and Listings [6](#optimizationStepLinearRegression) and are not repeated here. We give only some details on the training loop:
+
+``` python
+costFunctionVec   = []
+testAccuracyVec   = []
+
+for i in range(numIter):
+  indexBatch    = np.random.choice(len(xTrain), size = batchSize)
+  xBatch        = xTrain[indexBatch]
+  yBatch        = np.transpose([yTrain[indexBatch]])
+  
+  optimizationStep(xBatch, yBatch)
+
+  currentCost             = costFunction(xBatch, yBatch)
+  currentTestPrediction   = predictionAccuracy(xTest, yTest)
+  print('Cost function = {}; accuracy = {}'.format(currentCost, currentTestPrediction))
+
+  costFunctionVec.append(currentCost)
+  testAccuracyVec.append(currentTestPrediction)
+```
+
+As it can be seen, the training is performed with a fixed number of iterations equal to `numIter` and, at each step, a subset of the training dataset is selected by using the indices of `indexBatch`. Such indices are in a number equal to `batchSize` and generated within the `0`-`len(xTrain)` interval. Moreover, at each step, the `predictionAccuracy` is invoked:
+
+``` python
+def predictionAccuracy(xData, yTarget):
+  
+  #model        = tf.subtract(tf.matmul(xData, A), w0)
+  model        = tf.add(tf.matmul(xData, w), w0)
+  prediction   = tf.reshape(tf.sign(model), [-1])
+  accuracy     = tf.reduce_mean(tf.cast(tf.equal(prediction, yTarget), tf.float32))
+
+  return accuracy
+```
+
+Such function evaluates first the model for each element of the testing dataset, namely, <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot \underline{x}_n"> and then evaluates the sign thereof and compares it with the sign of the observations of the training dataset, by counting the number of times equality takes place. The use of the `tf.sign()` function enables to verify whether equations [\[27\]](#vincoloSVM1) or [\[28\]](#vincoloSVM2) hold.
+
+Once completed the training, the angular coefficient [\[32\]](#coefficienteAngolare) and the intercept [\[33\]](#intercetta) of the separation line [\[31\]](#rettaSeparazione) are calculated by
+
+``` python
+m             = -w[1] / w[0]
+x0            = -w0    / w[0]
+```
+
+and later on the separation line is computed for each dataset point
+
+``` python
+xSep          = [x[1] for x in xDataset]
+ySep          = [m * x + x0 for x in xSep]
+```
+
+In order to proceed to the plotting of the results, the data are separated in the two *setosa* and *not setosa* classes
+
+``` python
+setosaX       = [d[1] for i, d in enumerate(xDataset) if yDataset[i] ==  1]
+setosaY       = [d[0] for i, d in enumerate(xDataset) if yDataset[i] ==  1]
+notSetosaX    = [d[1] for i, d in enumerate(xDataset) if yDataset[i] == -1]
+notSetosaY    = [d[0] for i, d in enumerate(xDataset) if yDataset[i] == -1]
+```
+
+and the results represented by
+
+``` python
+plt.plot(setosaX,    setosaY,     'ro', label = 'Setosa')
+plt.plot(notSetosaX, notSetosaY,  'g*', label = 'Not setosa')
+plt.plot(np.reshape(xSep, (len(xSep), 1)), np.reshape(ySep, (len(ySep), 1)), 'b-', label='Dividing line')
+plt.ylim([2, 10])
+plt.title('Setosa and not setosa separation')
+plt.xlabel('Pedal width')
+plt.ylabel('Sepal length')
+plt.legend(loc = 'lower right')
+plt.show()
+
+plt.plot(testAccuracyVec, 'r--', label = 'Test accuracy')
+plt.title('Test set accuracy')
+plt.xlabel('Iteration')
+plt.ylabel('accuracy')
+plt.legend(loc = 'lower right')
+plt.show()
+
+plt.plot(costFunctionVec, 'k-')
+plt.title('Cost functional per iteration')
+plt.xlabel('Iteration')
+plt.ylabel('Cost functional')
+plt.show()
+```
+
+As it can be seen from the following figure, the separation between the setosa and not setosa species is satisfactory
 
 
 _____________________________________________________________________________________________
