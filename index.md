@@ -1,5 +1,15 @@
 # Basic machine learning models with TensorFlow
 
+Nonostante il machine learning sia collegato all’informatica e alla programmazione, gli approcci utilizzati nel machine learning sono diversi da quelli della tradizionale pratica informatica. In quest'ultima, gli algoritmi sono un pacchetto di istruzioni predefinite che vengono seguite da un computer per effettuare calcoli o risolvere problemi. Gli algoritmi di machine learning, invece, permettono ad un calcolatore di allenarsi su un certo insieme di dati di input corrispondenti ad un certo numero di situazioni note e utilizzare l'addestramento effettuato per prevedere output corrispondenti a situazioni non ancora verificatesi. Questo diventa possibile perché il machine learning costruisce, a partire dai dati di input, un modello attraverso il quale poi sviluppa un sistema automatico di risposte o decisioni.
+
+Ognuno di noi beneficia oggi del machine learning attraverso la tecnologia, anche se spesso non ce ne rendiamo conto. La tecnologia di riconoscimento facciale permette alle piattaforme di Social Media di aiutare gli utenti nell’inserimento di tag o nella condivisione di foto di amici. Il sistema di riconoscimento dei caratteri ottici (Optical Character Recognition o OCR) converte le immagini di testo in caratteri. I motori di suggerimenti, implementati dal machine learning, suggeriscono quale film o show televisivo guardare in base alle preferenze dell'utente. Le automobili che dispongono del pilota automatico, basato sul machine learning, sono in fase di sperimentazione per essere lanciate sul mercato.
+
+Il Machine Learning è ad oggi un campo in continua evoluzione. 
+
+In questo tutorial trovi un'introduzione ai principali metodi di Machine Learning dell’apprendimento supervisionato o non supervisionato e gli approcci algoritmici più comuni, incluso l’algoritmo k-nearest neighbor, l’apprendimento basato su alberi di decisione e il deep learning.
+
+Ti verranno anche spiegati quali linguaggi di programmazione sono più utilizzati nel machine learning, illustrando i vantaggi e gli svantaggi per ognuno di essi. Infine, porteremo alla tua attenzione i pregiudizi umani che rischiano di coinvolgere gli algoritmi di apprendimento automatico, e cosa si può tenere a mente per prevenire questi pregiudizi quando si creano algoritmi.
+
 ## Getting started
 
 Questo tutorial presuppone una conoscenza di base di Python 3 e un certo grado di familiarità con l'algebra lineare.
