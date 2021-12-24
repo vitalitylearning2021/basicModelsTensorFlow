@@ -1668,6 +1668,27 @@ plt.show()
 
 As it can be seen from the following figure, the separation between the setosa and not setosa species is satisfactory
 
+<p align="center">
+  <img src="setosa_not_setosa.png" width="250" id="setosaNotSetosa">
+  <br>
+     <em>Figure 14. Setosa/not-setosa SVM separation result.</em>
+</p>
+
+Finally, the following figures show the behavior, against the training iteration step, of the cost functional and of the accuracy, respectively:
+
+<p align="center">
+  <img src="SVMCostFunctional.png" width="250" id="SVMCostFunctional">
+  <br>
+     <em>Figure 15. SVM cost functional against training step.</em>
+</p>
+
+<p align="center">
+  <img src="SVMAccuracy.png" width="250" id="SVMaccuracy">
+  <br>
+     <em>Figure 16. SVM accuracy against training step.</em>
+</p>
+
+As it can be seen, as long as the training goes on, the value of the cost functional decreases, while accuracy improves.
 
 _____________________________________________________________________________________________
 FIGURA
