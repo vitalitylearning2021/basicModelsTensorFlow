@@ -1,16 +1,30 @@
 # Basic machine learning models with TensorFlow
 
+<p align="center">
+  <img src="machineLearning.jpg" width="400">
+</p>
+
 Nonostante il machine learning sia collegato all’informatica, gli approcci che ne vengono utilizzati sono diversi da quelli della tradizionale pratica programmativa. In quest'ultima, gli algoritmi sono concepiti come una sequenza di istruzioni predefinite che vengono seguite da un computer per effettuare calcoli o risolvere problemi. Gli algoritmi di machine learning, invece, permettono ad un calcolatore di allenarsi su un certo insieme di dati di input corrispondenti ad un certo numero di situazioni note e utilizzare l'addestramento effettuato per prevedere output corrispondenti a situazioni non ancora verificatesi. Questo diventa possibile perché il machine learning costruisce, a partire dai dati di input, un modello attraverso il quale poi sviluppa un sistema automatico di risposte o decisioni.
 
 Ognuno di noi beneficia oggi del machine learning attraverso la tecnologia, anche se spesso non ce ne rendiamo conto. La tecnologia di riconoscimento facciale permette alle piattaforme di Social Media di aiutare gli utenti nell’inserimento di tag o nella condivisione di foto di amici. Il sistema di riconoscimento dei caratteri ottici (Optical Character Recognition o OCR) converte le immagini di testo in caratteri. I motori di suggerimenti, implementati dal machine learning, suggeriscono quale film o show televisivo guardare in base alle preferenze dell'utente. Le automobili che dispongono del pilota automatico, basato sul machine learning, sono in fase di sperimentazione per essere lanciate sul mercato.
 
 Il Machine Learning è ad oggi un campo di estrema attualità ed in continua evoluzione in cui algoritmi sempre più complicati richiedono strutture di calcolo sempre più potenti.
 
-In questo progetto, si presenta un'introduzione ai principali metodi di Machine Learning, con riferimento sia all’apprendimento supervisionato che non supervisionato e agli approcci algoritmici più semplici e comuni, come la regressione lineare, la regressione logistica, l’algoritmo k-means, l'algoritmo nearest neighbor e il Support Vector Machine. Strutture più complesse come le reti neurali o le reti neurali profonde non saranno qui considerate per rendere questo progetto di semplice fruizione.
+In questo progetto, si presenta un'introduzione ai principali metodi di Machine Learning, con riferimento sia all’apprendimento supervisionato che non supervisionato e agli approcci algoritmici più semplici e comuni, come la regressione lineare, la regressione logistica, l’algoritmo k-means, l'algoritmo nearest neighbor e il Support Vector Machine. Strutture più complesse come le reti neurali o le reti neurali profonde non saranno qui considerate per rendere questo progetto di semplice fruizione. Sebbene algoritmi concettualmente semplici, la linear regression is a powerful statistical technique that can generate insights on consumer behavior, help to understand business better, and comprehend factors influencing profitability. It can also be put to service evaluating trends and forecasting data in a variety of fields. We can use linear regression to solve a few of our day-to-day problems related to supporting decision making, minimizing errors, increasing operational efficiency, discovering new insights, and creating predictive analytics. In maniera simile, la regressione logistica è diventata particolarmente popolare nella pubblicità online, consentendo ai marketer di prevedere, come percentuale sì o no, la probabilità che utenti specifici di un sito web facciano clic su determinati annunci pubblicitari.
 
-Verrà anche illustrata la open source library maggiormente utilizzata nel machine learning, ossia TensorFlow, focalizzando l'attenzione su aspetti peculiari di interesse come 
+Propedeuticamente alle tecniche di machine learning, verranno anche illustrate le principali features e trucchi programmativi della open source library maggiormente utilizzata nel machine learning, ossia TensorFlow, focalizzando l'attenzione anche su aspetti peculiari di interesse che è sempre bene conoscere come la lazy e la eager evaluations e l'automatic differentiation.
 
-Ti verranno anche spiegati quali linguaggi di programmazione sono più utilizzati nel machine learning, illustrando i vantaggi e gli svantaggi per ognuno di essi. Infine, porteremo alla tua attenzione i pregiudizi umani che rischiano di coinvolgere gli algoritmi di apprendimento automatico, e cosa si può tenere a mente per prevenire questi pregiudizi quando si creano algoritmi.
+In the present project, we will learn:
+
+  - Machine learning;
+  - TensorFlow 2.0;
+  - Lazy and eager evaluations;
+  - Automatic differentiation;
+  - Linear regression;
+  - Logistic regression;
+  - K-Means;
+  - Nearest neighbor;
+  - Support Vector Machine (SVM);
 
 ## Getting started
 
