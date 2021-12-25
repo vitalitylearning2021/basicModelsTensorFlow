@@ -8,7 +8,7 @@ Despite machine learning is linked to computer science, its approaches are diffe
 
 Everyone of use benefits today of machine learning through technology, although often we don't realize it. The face recognition technology enables social media platforms to help the users in adding tags or in sharing pictures of friends of theirs. The Optical Character Recognition, or OCR, converts text images into character strings. The suggestion engines, implemented by machine learning, suggest which film or TV show to watch according to User's preferences. Self-driving cars, based on machine learning, are being tested to be launched on the market.
 
-Machine learning is today a field of extreme timeliness and continuously evolving in which even more complicated algorithms require computing platform even more performing.
+Machine learning is today a field of extreme timeliness and continuously evolving in which ever more complicated algorithms require computing platform ever more performing.
 
 In this project, we present an introduction to the main machine learning methods, with reference to both supervised and unsupervised learning and to the simplest and most common approaches, as linear and logistic regression, the k-means algorithm, the nearest neighbor algorith and Support Vector Machine. More complex structures, as neural networks or deep neural networks will not be considered here for the sake of simplicity. Although conceptually simple, the presented algorithms, as linear regression, are powerful statistical techniques that can generate insights on consumer behavior, help to understand business better, and comprehend factors influencing profitability. They can also be employed to evaluate trends and forecast data in many fields. For example, we can use linear regression to solve a few of our daily problems related to supporting decision making, discovering new insights and creating predictive analytics. Likewise, logistic regression has become particularly popular in online advertisement enlabling the marketer to foresee, as percentage rate yes/not, the probability that specific users of specific websites click on specific advertisement banners.
 
@@ -28,7 +28,7 @@ In the present project, we will learn:
 
 ## Getting started
 
-Questo tutorial presuppone una conoscenza di base di Python 3 e un certo grado di familiarità con l'algebra lineare.
+The present project requires a basic knowledge of Python 3 and a certain degree of familiarity with linear algebra. All the mathematical aspects of the dealt with machine learning techniques will be provided for the project to be self-standing.
 
 ## What is Machine Learning?
 
@@ -182,9 +182,9 @@ It informs us that the `message` object is a TensorFlow tensor, having the value
 
 ## Basic operations in TensorFlow
 
-Internamente, Tensorflow rappresenta i tensor come array <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali di *datatypes* base (`int`, `string`, etc..). Il datatype di un tensore è sempre noto in qualsiasi momento dell'esecuzione del codice ed è condiviso da tutti gli elementi del tensore. Nella modalità di esecuzione lazy, la *shape* di un tensore, ossia il numero di dimensioni e la lunghezza di ogni dimensione, può invece essere anche solo parzialmente nota. Questo avviene perché le operazioni in un grafo producono tensori di dimensioni full-known solo se quelle degli input sono altrettanto conosciute. Dunque, spesso è possibile determinare la shape finale di un tensore solo al termine dell’esecuzione dei grafi. Il *rank* di un tensor è infine il numero di sue dimensioni. Datatype, shape and rank rappresentano le tre caratteristiche fondamentali di un tensore. Tutti i tensori hanno anche una dimensione, che è il numero totale di elementi al loro interno. Come si vede, i tensori di TensorFlow sono simili agli array della libreria NumPy.
+Internally, TensorFlow represents the tensors as <img src="https://render.githubusercontent.com/render/math?math=N">-dimensional arrays of basic *datatypes* (`int`, `string`, etc..). The tensor datatype is known at any moment of the code execution and is shared by all the tensor elements. In lazy execution, the *shape* of a tensor, namely, the number of dimensions and the size of each dimension, can be even partially known. This happens since the operations in a graph produce tensors of full-known shape only if that of the input is likewise known. Accordingly, often it is possible to determine the final shape of a tensor only at the end of the graph execution. The *rank* of a tensor is finally the number of its dimensions. Datatype, shape and rank represent the three fundamental features of a tensor. All the tensors have also a *dimension* which represents the total number of their elements. As it can be seen, TensorFlow's tensors are similar to the arrays of NumPy library.
 
-Nel seguito, mostreremo semplici esempi con difficoltà incrementale. The import of the TensorFlow library
+In the following, we will show simple examples with increasing complexity. The import of the TensorFlow library
 
 ``` python
 import tensorflow as tf
