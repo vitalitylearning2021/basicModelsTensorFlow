@@ -192,9 +192,9 @@ import tensorflow as tf
 
 will be always assumed and suppressed.
 
-### Tensori monodimensionali costanti
+### Constant, multi-dimensional tensors
 
-Facciamo un primo semplice esempio di tensore monodimensionale costante il cui prototipo generale è
+Let us give a first, simple example of constant, multi-dimensional tensor whose general prototype is
 
 ``` python
 tf.constant(
@@ -202,7 +202,7 @@ tf.constant(
 )
 ```
 
-Nell'esempio che segue, si creano due tensori monodimensionali costanti a partire da liste dei loro elementi. Il primo è un tensore di stringhe, mentre il secondo è un tensore di numeri razionali
+In the following snippet, two one-dimensional,constant tensors are created starting from lists of their elements. The first is a string tensor, while the secondo is a tensor of rational numbers
 
 ``` python
 instruments       = tf.constant(["Violin", "Piano"], tf.string)
@@ -212,9 +212,9 @@ print("`instruments` is a {}-d Tensor with shape: {}".format(tf.rank(instruments
 print("`rationalNumbers` is a {}-d Tensor with shape: {}".format(tf.rank(rationalNumbers).numpy(), tf.shape(rationalNumbers)))
 ```
 
-### Tensori <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionali costanti
+### Constant, <img src="https://render.githubusercontent.com/render/math?math=N">-dimensional tensors
 
-Nelle tipiche applicazioni di TensorFlow (e.g., image processing or computer vision), può essere necessario gestire anche immagini 2d o 3d o sequenze di immagini 2d o 3d. Da questo punto di vista, può essere necessario riuscire a gestire anche 4d tensor. Nell'esempio riportato di seguito, si definisce un 4d constant tensor doppia precisione per gestire 3 immagini 128 x 128 x 16. 
+In typical TensorFlow applications (e.g., image processing or computer vision), managing two-dimensional or three-dimensional images or sequences thereof can be necessary. From this point of view, dealing with up to four-dimensional tensors can be demanded. In the code snippet below, we define a double-precision, four-dimensional constant tensor to manage <img src="https://render.githubusercontent.com/render/math?math=3">, <img src="https://render.githubusercontent.com/render/math?math=128 \times 128 \times 16"> images. 
 
 ``` python
 images = tf.constant(tf.zeros((3, 128, 128, 16), tf.float64, "4d constant tensor definition"))
@@ -224,9 +224,9 @@ assert tf.rank(images).numpy() == 4, "Matrix must be of rank 4"
 assert tf.shape(images).numpy().tolist() == [3, 128, 128, 16], "Matrix has incorrect shape"
 ```
 
-Per attivare gli assert, è necessario modificare o la natura dell'oggetto, o il rank oppure lo shape.
+To activate the asserts, it is necessary to modify the nature of the object, its rank or its shape.
 
-Un tensore <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionale può anche essere costruito a partire da una lista <img src="https://render.githubusercontent.com/render/math?math=N">-dimensionale, come nell'esempio seguente
+An <img src="https://render.githubusercontent.com/render/math?math=N">-dimensional tensor can be also build up starting from an <img src="https://render.githubusercontent.com/render/math?math=N">-dimensional list, as in the example below
 
 ``` python
 threeDimensionalList = [[[0, 1, 2], 
@@ -241,7 +241,7 @@ print("The tensor data type is", rank3Tensor.dtype)
 print("The tensor size is", tf.size(rank3Tensor).numpy())
 ```
 
-Nell'esempio di sopra, vengono anche `print`-ed the number of dimensions, the shape, the data type and the size of the tensor. La size indica il numero totale di elementi di un tensore. Come si può vedere, non è possibile to `print` the size con un attributo dell'oggetto tensore. Invece, è necessario usare la funzione `tf.size()` e convertire il suo output con la funzione di istanza `.numpy()` per ottenere un risultato più leggibile.
+In the above example, the number of dimensions, the shape, the data type and the size of the tensor are also `print`-ed. The size indicates the total number of elements of a tensor. As it can be seen, it is not possible to `print` the size as an attribute of a tensor object. Opposite to that, it is necessary to use the `tf.size()` function and convert its output with the `.numpy()` instance function to achieve a more readable result.
 
 <p align="center">
   <img src="Tensor_Rank.png" width="250" id="tensorRank">
@@ -251,7 +251,7 @@ Nell'esempio di sopra, vengono anche `print`-ed the number of dimensions, the sh
 
 ### Indexing
 
-TensorFlow segue anche le regole di indicizzazione Python standard.
+TensorFlow follows standard Python indexing rules.
 
 ``` python
 aList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -262,16 +262,16 @@ print("The last element is:", aTensor[-1].numpy())
 print("Elements in between the first and the last:", aTensor[1 : -1].numpy())
 ```
 
-Nell'esempio sopra riportato, si può notare che:
+In the above reported example, we can notice that:
 
-  - gli indici iniziano da zero (`0`);
-  - il valore dell'indice negativo (`-n`) indica il conteggio all'indietro dalla fine;
+  - indexing starts from zero (`0`);
+  - a negative index value (`-n`) stands for backward indexing starting from the last element;
   - the colon syntax (`:`) is used to slide: `start : stop : step`.
   - not shown in the example above, but the comma syntax (`,`) vengono utilizzate per raggiungere livelli più profondi.
 
 ### Basic operations
 
-Nell'esempio che segue, si mostra come si possano eseguire operazioni matematiche di base su tensori come addizione, elementwise multiplication, matrix multiplication e determinare il massimo o l'indice di massimo di un tensore.
+In the below example, we show how it is possible to execute basic mathematical operations on tensors, like addition, elementwise multiplication, matrix multiplication and determining the maximum or the maximum index of a tensor.
 
 ``` python
 a = tf.constant([[3, 2], [-10, 7]], dtype=tf.float32)
@@ -290,7 +290,7 @@ print("The index position of the maximum element of b is:", tf.argmax(b).numpy()
 
 ### Reshaping
 
-Proprio come negli array NumPy, è possibile effettuare il reshaping di oggetti TensorFlow. L'operazione `tf.reshape()` è molto veloce poiché i dati sottostanti non devono essere elaborati, ma solo i parametri che descrivono le dimensioni modificati. 
+Just as in NumPy arrays, it is possible to perform reshaping of TensorFlow objects. The `tf.reshape()` operation is very fast since the underlying data must not be processed, and only the parameters describing the modified dimensions must be modified. 
 
 ``` python
 a = tf.constant([[1, 2, 3, 4, 5, 6]])
@@ -308,7 +308,7 @@ print('Flattening:', tf.reshape(a, [-1]))
 
 ### Operator overload
 
-Quando eseguiamo operazioni tra tensori di dimensioni diverse, la differenza delle dimensioni può essere gestita automaticamente da TensorFlow tramite opportuni overload delle operazioni in questione, esattamente come in NumPy. Ad esempio, quando si tenta di moltiplicare un tensore scalare con un tensore di rango `2`, ogni elemento tensore di rango `2` viene moltiplicato per lo scalare, come nell'esempio che segue:
+When we execute operations among tensors of different dimensions, the difference in dimensions can be automatically dealt with by TensorFlow by proper overloads of the operations at hand, just as as NumPy does. For example, when we attempt to multiply a scalar tensor with a rank-`2` tensor, each element of the rank-`2` tensor is multiplied by the scalar at hand, as in the below example:
 
 ``` python
 m = tf.constant([5])
@@ -320,7 +320,7 @@ tf.print(tf.multiply(m, n))
 
 ### Irregular tensors
 
-Generalmente, i tensori di interesse hanno forma rettangolare. Tuttavia, TensorFlow supporta anche tipi di tensori irregolari come:
+Generally speaking, the tensors of interest have rectangular shape. Nevertheless, TensorFlow supports also irregular tensors as:
 
   - ragged tensors,
   - string tensors,
@@ -334,7 +334,7 @@ Generalmente, i tensori di interesse hanno forma rettangolare. Tuttavia, TensorF
 
 #### Ragged tensors
 
-I ragged tensors sono tensori con un numero diverso di elementi lungo le varie dimensioni, come mostrato in Fig. [3](#irregularTensors). Un ragged tensor può essere costruito come segue:
+Ragged tensors are tensors with a different number of elements along their dimensions, as shown in Fig. [3](#irregularTensors). A ragged tensor can be build up as follows:
 
 ``` python
 raggedList = [[1, 2, 3], [4, 5], [6]]
@@ -346,7 +346,7 @@ tf.print(raggedTensor)
 
 #### String tensors
 
-I tensori stringa sono tensori che memorizzano gli oggetti stringa. Possiamo costruire un tensore stringa come un normale oggetto tensore passando oggetti stringa come elementi al posto di oggetti numerici, come mostrato di seguito:
+String tensors are tensors storing string objects. We can construct a string tensor as a normal tensor object passing string objects as elements instead of numerical objects, as shown below:
 
 ``` python
 stringTensor = tf.constant(["I like", 
@@ -358,7 +358,7 @@ tf.print(stringTensor)
 
 #### Sparse tensors
 
-Quando molti degli elementi di un tensore sono nulli anzicché diversi da zero, è conveniente utilizzare tensori sparsi. Essi si costruiscono indicando solo gli elementi non nulli e la loro posizione all'interno del tensore:
+When many elements of a tensor are vanishing, it is convenient to use sparse tensors. They are build up by specifying only the non-zero elements and their positions within the tensor:
 
 ``` python
 sparseTensor = tf.sparse.SparseTensor(indices      = [[0, 0], [2, 2], [4, 4]], 
@@ -371,9 +371,9 @@ tf.print(tf.sparse.to_dense(sparseTensor))
 
 #### Variable tensors
 
-Una variabile è un oggetto di TensorFlow che è possibile manipolare. Essa è registrata come `tf.Variable` e può essere aggiornata, ad esempio, con la funzione `tf.assign()`. 
+A variable is a manipulable TensorFlow object. It is stored as `tf.Variable` and can be updated, for example, by the `tf.assign()` function. 
 
-Così come per gli oggetti visti in precedenza, la forma di un oggetto `tf.Variable` può essere modificata con la funzione `tf.reshape()` e un oggetto `tf.Variable` ha attributi come `.shape` e `.dtype`. Tuttavia, le variabili hanno anche caratteristiche uniche come `.trainable`, `.device` e `.name`.
+As for the above seen objects, the shape of a `tf.Variable` object can be modified by the `tf.reshape()` function and a `tf.Variable` objects has attributes like `.shape` and `.dtype`. Nevertheless, all the variables have also unique features like `.trainable`, `.device` and `.name`.
 
 ``` python
 constantA = tf.constant([[0.0, 1.0],
@@ -397,9 +397,9 @@ variableE   = tf.Variable(stringListE)
 tf.print(variableE)
 ```
 
-Nell'esempio di sopra, si mostra come sia possibile inizializzare una `tf.Variable` con un `tf.constant`, un singolo `int`, un elenco di `float`, una singola `string` o un elenco di `string`. Ogni variabile deve essere opportunamente inizializzata, altrimenti TensorFlow genera un messaggio di errore. Durante la loro creazione, alle variabili può essere anche assegnato un nome, la cui utilità sarà maggiormente chiara nel seguito. Se non si specifica un nome, TensorFlow assegna un nome predefinito.
+In the above example, we show how is it possible to initialize a `tf.Variable` with a `tf.constant` tensor, a solitary `int`, a list of `float`s, a solitary `string` or a `string` list. Every variable must be properly initialized, otherwise TensorFlow returns an error message. During their creation, a name can be assigned to the variables. The usefulness of the name will be clearer in the sequel. If the name is not specified, TensorFlow assigns a pre-defined name.
 
-Nell'esempio di sotto, si mostra come, per poter visualizzare i valori di una variabile, possano utilizzare le funzioni `.value()` e `.numpy()`. Si mostra anche come, durante la creazione della variabile, le si possa assegnare un nome la cui utilità sarà chiara di sotto. Se non si specifica un nome, TensorFlow assegna un nome predefinito. L'esempio illustra anche le altre proprietà di una variabile analoghe a quelle già discusse per il caso `tf.constant`.
+In the below example, we show how, to visualize the values of a variable, functions like `.value()` and `.numpy()` can be used. The example illustrates also the other properties of a variable which are analogous to those already discussed for the `tf.constant` case.
 
 ``` python
 print("Values stored in variableA: \n", variableA.value())
@@ -417,7 +417,7 @@ print("Number of dimensions of variableA:", tf.rank(variableA).numpy())
 print("Number of elements of variableA:", tf.size(variableA).numpy())
 ```
 
-Le operazioni di base che è possibile eseguire con le funzioni di TensorFlow sono state già illustrate per il caso `tf.constant`. Oltre a ciò, si possono anche utilizzare gli operatori matematici. Inoltre, con `tf.assign()`, è possibile assegnare nuovi valori a un oggetto `tf.Variable` senza crearne uno nuovo. La possibilità di assegnare nuovi valori è appunto uno dei vantaggi delle variabili. Infine, proprio come per `tf.constant`, si può accedere facilmente a particolari elementi del tensore attraverso un opportuno indexing. L'esempio di seguito riassume queste considerazioni:
+The basic operations that it is possible to execute by TensorFlow functions have been already illustrated for the `tf.constant` case. Beside this, we can also use mathematical operators. Moreover, by `tf.assign()`, it is possible to assign new values to a `tf.Variable` object without creating a new one. The possibility of assigning new values is just one of the advantages of using variables. Finally, as for `tf.constant` objects, specific elements of the tensor can be easily accessed by a proper indexing. The following example summarized the above considerations:
 
 ``` python
 a = tf.Variable([[1.0, 2.0], [3.0, 4.0]])
@@ -438,7 +438,7 @@ print("The 1st element of the second level is:", a[0, 0].numpy())
 print("The 3rd element of the second level is:", a[0, 1].numpy())
 ```
 
-L'operator overload esiste anche per gli oggetti `tf.Variable` così come visto per gli oggetti `tf.constant`:
+The operator overload exists also for `tf.Variable` objects just as for `tf.constant` ones:
 
 ``` python
 b = tf.Variable([5])
@@ -446,7 +446,7 @@ c = tf.Variable([[1, 2], [3, 4]])
 tf.print(b * c)
 ```
 
-E' possibile effettuare il reshape di una `tf.Variable`:
+It is possible to reshape a `tf.Variable`:
 
 ``` python
 a = tf.Variable([[1.0, 2.0], [1.0, 2.0]])
@@ -454,7 +454,7 @@ a = tf.Variable([[1.0, 2.0], [1.0, 2.0]])
 tf.print(tf.reshape(a, (4, 1)))
 ```
 
-Infine, è possibile accelerare il processing con GPU e TPU e verificare con quale tipo di processore viene elaborata la nostra variabile tramite l'attributo `.device`:
+Finally, it is possible to accelerate the processing with GPUs and TPUs and verify, by the `.device` attribute, with what type of processor our variable is being processed:
 
 ``` python
 print("Device processing variable a:\n", a.device)
@@ -471,24 +471,24 @@ with tf.device('GPU:0'):
   print("Device processing the calculation:\n", k.device)
 ```
 
-Con riferimento al codice precedente, per farlo funzionare come inteso e se si sta utilizzando Google Colab, è necessario cambiare il tipo di runtime to GPU.
+On referring to the previous code, to make it run as meant and if we are using Google Colab, it is necessary to switch the runtime to GPU.
 
 ### Disabling and enabling the eager execution
 
-As already mentioned, eager execution means that le operazioni vengono eseguite passo passo, semplificando la fase di debug. Tuttavia, la eager execution previene una serie di accelerazioni altrimenti disponibili. Fortunatamente, c'è la possibilità di disabilitare la eager execution.
+As already mentioned, eager execution means that the operations are executed step-by-step, so simplifying the debugging. Nevertheless, eager execution prevents a whole bunch of accelerations otherwise not possible. Fortunately, there is the possibility to disable eager execution.
 
-Possiamo innanzitutto verificare che la eager execution è il modello di esecuzione di default:
+We can first verify whether eager execution is the default execution model:
 
 ``` python
 tf.executing_eagerly()
 tf.compat.v1.disable_eager_execution()
 ```
 
-Le righe di sopra verificano se la eager execution è il modello di esecuzione attivo e, successivamente, la disabilitano.
+The above lines verify whether eager execution is the active execution model and, then they disable it.
 
 ### Nodes, edges and TensorBoard
 
-Come menzionato precedentemente, al centro di TensorFlow c'è il concetto di grafo. Tuttavia, come si esamina un grafo una volta che è stato creato? E' possibile usare uno strumento noto come Tensorboard. Questo è uno strumento integrato con TensorFlow `2.x` e può essere utilizzato per visualizzare un grafo. Di seguito, un semplice esempio di uso di TensorBoard. L'esempio è stato conceived per essere eseguito su Google Colab e presuppone l'aver disabilitato la eager execution, come nell'esempio precedente. Come si vede, il codice è costruito nell'ambito della lazy execution e definisce un grafo che descrive le strutture dati e le loro operazioni, ma non contiene dati. 
+As previously mentioned, at the center of TensorFlow there is the graph concept. However, how do we inspect a graph once created? Inspecting a graph is possible thanks to a tool known as Tensorboard. Such tool is integrated in TensorFlow `2.x` and can be used to visualize a graph. In the following, we propose a simple use of TensorBoard. The example has been conceived to be executed on Google Colab and assumes to have disabled the eager execution, as in the previous example. As it can be seen, the code has been constructed in the framework of lazy execution and defines a graph describing the data structure and their operations, but it does not contains data. 
 
 ``` python
 %load_ext tensorboard
@@ -510,7 +510,7 @@ writer.close()
 %tensorboard --logdir='./graphs'
 ```
 
-Il grafo consiste nella creazione di due variabili, `a` e `b`, e nella loro moltiplicazione e viene mostrato di seguito.
+The graph consists into the creation of two variables, `a` and `b`, and in their multiplication and is shown in the following.
 
 <p align="center">
   <img src="simpleTensorBoard.png" width="120" id="simpleTensorBoard">
@@ -518,32 +518,32 @@ Il grafo consiste nella creazione di due variabili, `a` e `b`, e nella loro molt
      <em>Figure 5. Simple graph using TensorBoard.</em>
 </p>
 
-Ora si può comprendere l'utilità di assegnare un nome alle variabili. In particolare, alle variabili  `a` e `b` vengono assegnati i nomi di `variableA` e `variableB`, respectively. Come si vede, viene assegnato un nome anche all'operazione di moltiplicazione che viene indicata come `Mul`. I nomi assegnati sono chiaramente visibili nel grafo in figure [5](#simpleTensorBoard).
+Now we can understand the usefulness of assigning a name to the variables. In particular, variables `a` and `b` are named `variableA` and `variableB`, respectively. As it can be seen, the multiplication operations is named `Mul`, too. The assined names are clearly visible in the graph in figure [5](#simpleTensorBoard).
 
 ### Are TensorFlow constants really constant?
 
-Se proviamo ad eseguire l'operazione
+If we attempt to execute the operation
 
 ``` python
 a = tf.constant(2)
 a = a + 1
 ```
 
-e poi stampiamo il risultato con
+and then print the result by
 
 ``` python
 tf.print(a)
 ```
 
-ci accorgeremo che il risultato è `3`. Questo ci fa chiedere se i tensori costanti in TensorFlow siano davvero costanti.
+we realize that the result is `3`. This makes us ask ourself whether constant tensors in TensorFlow are really constant.
 
-In realtà, quando scriviamo
+Actually, when we write
 
 ``` python
 a = tf.constant(2)
 ```
 
-definiamo `a` come una variabile di Python that holds a constant node of the computational graph. Let us call it `constant:0`. Quando scriviamo
+we define `a` as a Python variable that holds a constant node of the computational graph. Let us call it `constant:0`. We we write
 
 ``` python
 a = a + 1
