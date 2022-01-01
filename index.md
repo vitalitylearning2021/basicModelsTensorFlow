@@ -592,7 +592,7 @@ On using the measure in equation [\[7\]](#MSELinearRegression), linear regressio
 
 The operations in the loop are repeated until the MSE “looks good”.
 
-In more detail, the adjustment, or update, of the unknown parameters can be operated using methods based on the gradient of the functional [\[7\]](#MSELinearRegression). Among various optimization algorithms based on the gradient, in the following, we will use the so called *gradient descent* which is very used in approaches of artificial intelligence and so it is useful to know. On denoting with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{p}=(m,b)"> the unknowns vector, the gradient descent updates the unknowns according to the following rule
+In more detail, the adjustment, or update, of the unknown parameters can be operated using methods based on the gradient of the functional [\[7\]](#MSELinearRegression). Among various optimization algorithms based on the gradient, in the following, we will use the so called *gradient descent* which is very used in approaches of artificial intelligence and so it is useful to know. On denoting with <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}=(m,b)"> the unknowns vector, the gradient descent updates the unknowns according to the following rule
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}=\underline{p}_{old}-\alpha \underline{\nabla}\Phi(\underline{p}_{old})," id="gradientDescent"> [9]
