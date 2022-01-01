@@ -595,7 +595,7 @@ The operations in the loop are repeated until the MSE “looks good”.
 In more detail, the adjustment, or update, of the unknown parameters can be operated using methods based on the gradient of the functional [\[7\]](#MSELinearRegression). Among various optimization algorithms based on the gradient, in the following, we will use the so called *gradient descent* which is very used in approaches of artificial intelligence and so it is useful to know. On denoting with <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}=(m,b)"> the unknowns vector, the gradient descent updates the unknowns according to the following rule
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}=\underline{p}_{old}-\alpha \underline{\nabla}\Phi(\underline{p}_{old})," id="gradientDescent"> [9]
+  <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}_{new}=\mathbf{p}_{old}-\alpha \mathbf{\nabla}\Phi(\mathbf{p}_{old})," id="gradientDescent"> [9]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{old}"> represents the value of the unknowns at the current step, <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}"> represents the updated unknowns vector, <img src="https://render.githubusercontent.com/render/math?math=\underline{\nabla}\Phi(\underline{p}_{old})"> is the value of the gradient at the current step and <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is the so-called *learning rate*. The learning rate is a parameter chosen by the user and represents how large the change of the unknowns vector must be for having a non-vanishing gradient.
