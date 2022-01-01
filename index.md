@@ -598,21 +598,21 @@ In more detail, the adjustment, or update, of the unknown parameters can be oper
   <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}_{new}=\mathbf{p}_{old}-\alpha \mathbf{\nabla}\Phi(\mathbf{p}_{old})," id="gradientDescent"> [9]
 </p>
 
-where <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{old}"> represents the value of the unknowns at the current step, <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}"> represents the updated unknowns vector, <img src="https://render.githubusercontent.com/render/math?math=\underline{\nabla}\Phi(\underline{p}_{old})"> is the value of the gradient at the current step and <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is the so-called *learning rate*. The learning rate is a parameter chosen by the user and represents how large the change of the unknowns vector must be for having a non-vanishing gradient.
+where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}_{old}"> represents the value of the unknowns at the current step, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}_{new}"> represents the updated unknowns vector, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\nabla}\Phi(\mathbf{p}_{old})"> is the value of the gradient at the current step and <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is the so-called *learning rate*. The learning rate is a parameter chosen by the User and represents how large the change of the unknowns vector must be for having a non-vanishing gradient.
 
 The iterations can be stopped using different stopping criteria. For example:
 
   - the algorithm is terminated once a specified number of iterations is reached;
-  - the algorithm once a specified maximum MSE is satisfied;
+  - the algorithm is terminated once a specified maximum MSE is satisfied;
   - the algorithm is terminated if the MSE does not decrease in the next iteration; for example, if the difference between two successive MSEs is less than <img src="https://render.githubusercontent.com/render/math?math=0.001">, then the algorithm is stopped.
 
-In the case when the observations are not one-dimensional, but multi-dimensional, the experimental observation become vectors <img src="https://render.githubusercontent.com/render/math?math=\underline{f}_n"> and model [\[6\]](#linearRegression) becomes
+In the case when the observations are not one-dimensional, but multi-dimensional, the experimental observation become vectors <img src="https://render.githubusercontent.com/render/math?math=\mathbf{f}_n"> and model [\[6\]](#linearRegression) becomes
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\underline{y}=\underline{\underline{M}} \underline{x}+\underline{b}," id="linearRegressionMultiDimensional"> [10]
+  <img src="https://render.githubusercontent.com/render/math?math=\mathbf{y}=\mathbf{\mathbf{M}} \mathbf{x}+\mathbf{b}," id="linearRegressionMultiDimensional"> [10]
 </p>
 
-dove <img src="https://render.githubusercontent.com/render/math?math=\underline{x}"> is the vector of independent parameters, <img src="https://render.githubusercontent.com/render/math?math=\underline{\underline{M}}"> is the coefficients matrix, <img src="https://render.githubusercontent.com/render/math?math=\underline{b}"> is the offset vector and <img src="https://render.githubusercontent.com/render/math?math=\underline{y}"> is the vector of the dependent variables. 
+where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}"> is the vector of independent parameters, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\mathbf{M}}"> is the coefficients matrix, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{b}"> is the offset vector and <img src="https://render.githubusercontent.com/render/math?math=\mathbf{y}"> is the vector of the dependent variables. 
 
 In next subsection, we will see how it is possible to put the exposed theory into practice using TensorFlow `2.x`.
 
@@ -699,7 +699,7 @@ optimizer = tf.optimizers.SGD(alpha)
      <em>Listing 6. Setting the optimizer for the linear regression method.</em>
 </p>
 
-On skipping further details, let us just mention that, with the setting in Listing [6](#SGD),  menzioniamo semplicemente che, con il setting in Listing \ref{SGD}, `optimizer` particularizes as the classical gradient descent.
+On skipping further details, let us just mention that, with the setting in Listing [6](#SGD),  `optimizer` particularizes as the classical gradient descent.
 
 Let us now present the main optimization loop:
 
@@ -733,7 +733,7 @@ for iter in range(1, numIter + 1):
      <em>Listing 8. Optimization step for linear regression.</em>
 </p>
 
-It should be noticed that the optimization step comprises also the computation of the gradient by automatic differentiation. In particular, the construct `with` serves to record all the operations to be performed when invoking `tf.GradientTape()` for the forward calculation of the functional. In this way, `tf.GradientTape()` returns the derivative of loss with respect to weight and bias later on. This information is passed to `optimizer.apply_gradients` which performs so that the optimization step occurs with gradient information.
+It should be noticed that the optimization step comprises also the computation of the gradient by automatic differentiation. In particular, the construct `with` serves to record all the operations to be performed when invoking `tf.GradientTape()` for the forward calculation of the functional. In this way, `tf.GradientTape()` returns the derivative of the loss with respect to weight and bias later on. This information is passed to `optimizer.apply_gradients` which performs so that the optimization step occurs with gradient information.
 
 The result of the processing is depicted in the following figure:
 
