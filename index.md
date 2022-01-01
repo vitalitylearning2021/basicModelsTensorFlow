@@ -549,7 +549,9 @@ we define `a` as a Python variable that holds a constant node of the computation
 a = a + 1
 ```
 
-since the assignment is a destructive operation, `a` is a new Python variable that holds the add operation between the `constant:0` node that is still defined in the graph and a new constant node, automatically created when using `1.0`.
+since the assignment is a destructive operation, `a` is a new Python variable that holds the add operation between the `constant:0` node that is still defined in the graph and a new constant node, automatically created when using the constant `1.0` in the addition. 
+
+Let us begin now our trip into simple machine learning techniques implemented by TensorFlow, beginning with linear regression.
 
 ## Linear regression with TensorFlow
 
@@ -565,13 +567,13 @@ Linear regression models the relation of independent and dependent variables by 
      <em>Figure 5. Observation of birth rates against poverty level.</em>
 </p>
 
-In particular, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [5](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=y"> can be evaluated as
+In particular, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [5](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=x"> can be evaluated as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=y=mx+b," id="linearRegression"> [6]
+  <img src="https://render.githubusercontent.com/render/math?math=y=mx %2B b," id="linearRegression"> [6]
 </p>
 
-where <img src="https://render.githubusercontent.com/render/math?math=m"> is the slope and <img src="https://render.githubusercontent.com/render/math?math=b"> the intercept with the <img src="https://render.githubusercontent.com/render/math?math=y"> axis. Once established the approximation in equation [\[6\]](#linearRegression), the line can be used to perform forecasts. In other words, whenever one is interested into estimating the birth rate corresponding to a certain poverty level <img src="https://render.githubusercontent.com/render/math?math=\overline{x}"> not present in the scatter plot, an estimate of the birth rate can be achieved as <img src="https://render.githubusercontent.com/render/math?math=m\overline{x}+b">.
+where <img src="https://render.githubusercontent.com/render/math?math=m"> is the slope and <img src="https://render.githubusercontent.com/render/math?math=b"> the intercept with the <img src="https://render.githubusercontent.com/render/math?math=y"> axis. Once established the approximation in equation [\[6\]](#linearRegression), the line can be used to perform forecasts. In other words, whenever one is interested into estimating the birth rate corresponding to a certain poverty level <img src="https://render.githubusercontent.com/render/math?math=\overline{x}"> not present in the scatter plot, an estimate of the birth rate can be achieved as <img src="https://render.githubusercontent.com/render/math?math=m\overline{x}%2B b">.
 
 In order to approximate the scatter plot with a line, a measure of the fidelity of the approximation must be introduced first and, afterwards, the values of <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b"> corresponding to the best approximation must be computed.
 
@@ -581,7 +583,7 @@ There are many measures of the goodness of our prediction, the most popular one 
   <img src="https://render.githubusercontent.com/render/math?math=\Phi(m,b)=\frac{1}{N}\sum_{n=1}^N \left(f_n-y_n\right)^2," id="MSELinearRegression"> [7]
 </p>
 
-dove <img src="https://render.githubusercontent.com/render/math?math=N"> is the number of experimental measurements corresponding to the scatter plot (<img src="https://render.githubusercontent.com/render/math?math=51"> for the example under examination), the <img src="https://render.githubusercontent.com/render/math?math=f_n">'s are the experimental observations and the <img src="https://render.githubusercontent.com/render/math?math=y_n">'s are the values returned by the model, namely, <img src="https://render.githubusercontent.com/render/math?math=y_n=mx_n+b">, where the <img src="https://render.githubusercontent.com/render/math?math=x_n">'s are the observed poverty levels. Functions like the one in equation [\[7\]](#MSELinearRegression) are called *loss functions* or *objective functions*.
+where <img src="https://render.githubusercontent.com/render/math?math=N"> is the number of experimental measurements corresponding to the scatter plot (<img src="https://render.githubusercontent.com/render/math?math=51"> for the example under examination), the <img src="https://render.githubusercontent.com/render/math?math=f_n">'s are the experimental observations and the <img src="https://render.githubusercontent.com/render/math?math=y_n">'s are the values returned by the model, namely, <img src="https://render.githubusercontent.com/render/math?math=y_n=mx_n  %2B b">, where the <img src="https://render.githubusercontent.com/render/math?math=x_n">'s are the observed poverty levels. Functions like the one in equation [\[7\]](#MSELinearRegression) are called *loss functions* or *objective functions*.
 
 On using the measure in equation [\[7\]](#MSELinearRegression), linear regression consists of determining the values of <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b"> minimizing the MSE. The search for the “optimal” parameters, namely, those minimizing <img src="https://render.githubusercontent.com/render/math?math=\Phi(m,b)">, can be iteratively performed using a loop that, following initial guesses for <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b">, essentially performs two main operations:
 
@@ -590,7 +592,7 @@ On using the measure in equation [\[7\]](#MSELinearRegression), linear regressio
 
 The operations in the loop are repeated until the MSE “looks good”.
 
-In more detail, the adjustment, or update, of the unknown parameters can be operated using methods based on the gradient of the functional [\[7\]](#MSELinearRegression). Among various optimization algorithms based on the gradient, in the following, we will use the so called *gradient descent* which is very used in approaches of artificial intelligence and so it is useful to know. On denoting with <img src="https://render.githubusercontent.com/render/math?math=\underline{p}=(m,b)"> the unknowns vector, the gradient descent updates the unknowns according to the following rule
+In more detail, the adjustment, or update, of the unknown parameters can be operated using methods based on the gradient of the functional [\[7\]](#MSELinearRegression). Among various optimization algorithms based on the gradient, in the following, we will use the so called *gradient descent* which is very used in approaches of artificial intelligence and so it is useful to know. On denoting with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{p}=(m,b)"> the unknowns vector, the gradient descent updates the unknowns according to the following rule
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_{new}=\underline{p}_{old}-\alpha \underline{\nabla}\Phi(\underline{p}_{old})," id="gradientDescent"> [9]
@@ -1768,6 +1770,9 @@ RIFERIMENTO BIBLIOGRAFICO
 CHIAMATA A RIFERIMENTO BIBLIOGRAFICO
 [\[1\]](#PYCUDA1)
 
+ADDIZIONE 
+
+%2B
 
 RIMANE DA METTERE QUALCOSA SU TENSORBOARD
 Ritorneremo successivamente sull'uso di TensorBoard quando costruiremo i primi esempi di learning con TensorFlow.
