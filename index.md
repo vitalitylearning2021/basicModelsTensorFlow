@@ -772,11 +772,11 @@ From the example of logisitic function represented in figure Figure [5](#logisti
 The problem now is how defining the parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> determining the shape of the logistic function starting from a training set. Let us suppose to have at our disposal a training set made up of a certain number of <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> to which the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> correspond. In the considered example, the observations <img src="https://render.githubusercontent.com/render/math?math=x_n"> represent the heights and the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> are equal to <img src="https://render.githubusercontent.com/render/math?math=0"> if a person, <img src="https://render.githubusercontent.com/render/math?math=x_n"> tall, is female or <img src="https://render.githubusercontent.com/render/math?math=1"> if he is male. Let us suppose now to use the model in equation [\[11\]](#logisticProbability). The probability that the classes <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> actually correspond to the observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> given the inputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> is given by
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=," id="jointProbability">, [12]
+  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\prod_{n=1}^{N}," id="jointProbability">, [12]
 </p>
 
 
-    \prod_{n=1}^{N}p(y_n=\overline{y}_n|x_n)
+    p(y_n=\overline{y}_n|x_n)
 
 being the events independent. We also observe that, according to model [\[11\]](#logisticProbability), 
 
