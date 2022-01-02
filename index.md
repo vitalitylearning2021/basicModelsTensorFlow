@@ -756,7 +756,7 @@ In the following, we will illustrate logistic regression with reference to a bin
 In a binary logistic regression problem, the probability that an input <img src="https://render.githubusercontent.com/render/math?math=x"> corresponds to the class <img src="https://render.githubusercontent.com/render/math?math=0"> is determined by the conditional probability <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)=\widetilde{p}">, while the probability that it belongs to the other class <img src="https://render.githubusercontent.com/render/math?math=1"> will obviously be <img src="https://render.githubusercontent.com/render/math?math=p(y=1|x)=1-\widetilde{p}">. Let us consider the illustrative problem of modelling the gender of people, like male or female, depending on the height. In this case, we will have two classes, like female, <img src="https://render.githubusercontent.com/render/math?math=0">, and male, <img src="https://render.githubusercontent.com/render/math?math=1">, and a single input <img src="https://render.githubusercontent.com/render/math?math=x">, i.e., the height. Given a person with a height of <img src="https://render.githubusercontent.com/render/math?math=150">cm, we want to determine whether it is most probable that he/she is female or male. For this kind of problem, logistic regression models <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)"> as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)=F(x,b_0,b_1)=\frac{e^{b_0 %2B b_1x}}{1 %2B e^{b_0 %2B b_1x}}," id="logisticProbability">, [11]
+  <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)=F(x,b_0,b_1)=\frac{e^{b_0 %2B b_1x}}{1 %2B e^{b_0 %2B b_1x}}" id="logisticProbability">, [11]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are parameters determining the shape. Obviously, having modelled <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">, the conditional probability <img src="https://render.githubusercontent.com/render/math?math=p(y=1|x)=1-p(y=0|x)"> remains equally modelled. Function <img src="https://render.githubusercontent.com/render/math?math=F(x,b_0,b_1)"> appearing at the right hand side of equation [\[11\]](#logisticProbability) and representing the model is also called *logistic function* or *sigmoid function* and an illustration of its shape is depicted in the following figure
@@ -772,19 +772,19 @@ From the example of logisitic function represented in figure Figure [5](#logisti
 The problem now is how defining the parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> determining the shape of the logistic function starting from a training set. Let us suppose to have at our disposal a training set made up of a certain number of <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> to which the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> correspond. In the considered example, the observations <img src="https://render.githubusercontent.com/render/math?math=x_n"> represent the heights and the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> are equal to <img src="https://render.githubusercontent.com/render/math?math=0"> if a person, <img src="https://render.githubusercontent.com/render/math?math=x_n"> tall, is female or <img src="https://render.githubusercontent.com/render/math?math=1"> if he is male. Let us suppose now to use the model in equation [\[11\]](#logisticProbability). The probability that the classes <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> actually correspond to the observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> given the inputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> is given by
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\prod_{n=1}^{N}p(y_n=\overline{y}_n|x_n)," id="jointProbability">, [12]
+  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\prod_{n=1}^{N}p(y_n=\overline{y}_n|x_n)" id="jointProbability">, [12]
 </p>
 
 being the events independent. We also observe that, according to model [\[11\]](#logisticProbability), 
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p(y_n=\overline{y}_n|x_n)=(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))," id="individualProbability">, [13]
+  <img src="https://render.githubusercontent.com/render/math?math=p(y_n=\overline{y}_n|x_n)=(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))" id="individualProbability">, [13]
 </p>
 
 so that probability [\[12\]](#jointProbability) can be expressed as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\prod_{n=1}^{N}[(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))]." id="jointProbability2">, [14]
+  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\prod_{n=1}^{N}[(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))]." id="jointProbability2"> [14]
 </p>
  
 
@@ -793,13 +793,13 @@ The most reasonable choice for parameters <img src="https://render.githubusercon
 Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the products and being the logarithm a strictly increasing function, then the logarithm of [\[14\]](#jointProbability2) is maximized. Actually, being minimization more popular than maximization, in order to employ minimization algorithms instead of maximization ones, then <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are chosen so to minimize the opposite of the probability [\[14\]](#jointProbability2), namely the following cost functional
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost">, [15]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost"> [15]
 </p>
 
 Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n,b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n,b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n,b_0,b_1))%2B\overline{y}_n\log((1-F(x_n,b_0,b_1)))." id="logisticRegressionCost2">, [16]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n,b_0,b_1))%2B\overline{y}_n\log((1-F(x_n,b_0,b_1)))." id="logisticRegressionCost2"> [16]
 </p>
 
 Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the technique already illustrated for linear regression. It should be noticed that functional [\[16\]](#logisticRegressionCost2) is convex and so it exhibits only one global minimum and no subsidiary minima. Finally, it should be observed that functional [\[16\]](#logisticRegressionCost2) can be rewritten as
