@@ -796,11 +796,10 @@ Nevertheless, it should be noticed that, to avoid the problem of dealing with a 
   <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost">, [15]
 </p>
 
-Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n;b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n;b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
+Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n,b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n,b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
-    -\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n;b_0,b_1))%2B\overline{y}_n\log((1-F(x_n;b_0,b_1)))." id="logisticRegressionCost2">, [16]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n,b_0,b_1))%2B\overline{y}_n\log((1-F(x_n,b_0,b_1)))." id="logisticRegressionCost2">, [16]
 </p>
 
 Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the technique already illustrated for linear regression. It should be noticed that functional [\[16\]](#logisticRegressionCost2) is convex and so it exhibits only one global minimum and no subsidiary minima. Finally, it should be observed that functional [\[16\]](#logisticRegressionCost2) can be rewritten as
