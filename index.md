@@ -609,7 +609,7 @@ The iterations can be stopped using different stopping criteria. For example:
 In the case when the observations are not one-dimensional, but multi-dimensional, the experimental observation become vectors <img src="https://render.githubusercontent.com/render/math?math=\mathbf{f}_n"> and model [\[6\]](#linearRegression) becomes
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\mathbf{y}=\mathbf{\mathbf{M}} \mathbf{x}+\mathbf{b}," id="linearRegressionMultiDimensional"> [10]
+  <img src="https://render.githubusercontent.com/render/math?math=\mathbf{y}=\mathbf{\mathbf{M}} \mathbf{x}%2B\mathbf{b}," id="linearRegressionMultiDimensional"> [10]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}"> is the vector of independent parameters, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\mathbf{M}}"> is the coefficients matrix, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{b}"> is the offset vector and <img src="https://render.githubusercontent.com/render/math?math=\mathbf{y}"> is the vector of the dependent variables. 
@@ -778,7 +778,7 @@ The problem now is how defining the parameters <img src="https://render.githubus
 being the events independent. We also observe that, according to model [\[11\]](#logisticProbability), 
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p(y_n=\overline{y}_n|x_n)=(1-\overline{y}_n)F(x_n,b_0,b_1)+\overline{y}_n(1-F(x_n,b_0,b_1))," id="individualProbability">, [13]
+  <img src="https://render.githubusercontent.com/render/math?math=p(y_n=\overline{y}_n|x_n)=(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))," id="individualProbability">, [13]
 </p>
 
 so that probability [\[12\]](#jointProbability) can be expressed as
@@ -790,18 +790,18 @@ so that probability [\[12\]](#jointProbability) can be expressed as
 
 The most reasonable choice for parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> is thus that of maximizing the probability [\[14\]](#jointProbability2), that is, of modelling each probability [\[13\]](#individualProbability) so that the joint one models the observations at the best.
 
-Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the products and being the logarithm a strictly increasing function, then the logarithm of [\[14\]](#jointProbability2) is maximized. Actually, being minimization more popular than maximization, in order to employ minimization algorithms instead of maximization ones, then <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are chosen so to minimize the opposite of the probability [\[14\]](#jointProbability2), namely the following cost functional is minimized
+Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the products and being the logarithm a strictly increasing function, then the logarithm of [\[14\]](#jointProbability2) is maximized. Actually, being minimization more popular than maximization, in order to employ minimization algorithms instead of maximization ones, then <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are chosen so to minimize the opposite of the probability [\[14\]](#jointProbability2), namely the following cost functional
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
-    -\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n;b_0,b_1)+\overline{y}_n(1-F(x_n;b_0,b_1)))." id="logisticRegressionCost">, [15]
+    -\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost">, [15]
 </p>
 
 Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n;b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n;b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
-    -\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n;b_0,b_1))+\overline{y}_n\log((1-F(x_n;b_0,b_1)))." id="logisticRegressionCost2">, [16]
+    -\sum_{n=1}^{N}(1-\overline{y}_n)\log(F(x_n;b_0,b_1))%2B\overline{y}_n\log((1-F(x_n;b_0,b_1)))." id="logisticRegressionCost2">, [16]
 </p>
 
 Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the technique already illustrated for linear regression. It should be noticed that functional [\[16\]](#logisticRegressionCost2) is convex and so it exhibits only one global minimum and no subsidiary minima. Finally, it should be observed that functional [\[16\]](#logisticRegressionCost2) can be rewritten as
@@ -814,7 +814,7 @@ Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the te
 In the case of a multiclass logistic regression problem with <img src="https://render.githubusercontent.com/render/math?math=K"> classes, then the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> can get values in <img src="https://render.githubusercontent.com/render/math?math=0,1,\ldots,K-1">. Moreover, in the general case, the observable <img src="https://render.githubusercontent.com/render/math?math=x"> is not just a single number, but a <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional array, namely, <img src="https://render.githubusercontent.com/render/math?math=\underline{x}=(x_0,x_1,\ldots,x_{P-1})">. Finally, the probability that the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> is equal to <img src="https://render.githubusercontent.com/render/math?math=k"> is modelled, analogously to [\[11\]](#logisticProbability), as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x})=\frac{e^{b_k+\underline{w}_k\cdot \underline{x}}}{1+\sum_{k=0}^{K-1}e^{b_k+\underline{w}_k\cdot \underline{x}}}." id="logisticProbabilityMulticlass">, [18]
+  <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x})=\frac{e^{b_k %2B \underline{w}_k\cdot \underline{x}}}{1 %2B \sum_{k=0}^{K-1}e^{b_k %2B \underline{w}_k\cdot \underline{x}}}." id="logisticProbabilityMulticlass">, [18]
 </p>
 
 while, given <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=(\underline{x}_n, \underline{y}_n)">, functional [\[17\]](#logisticRegressionCost3) generalizes as
@@ -1465,7 +1465,7 @@ The hyperplane divides the distance in two equal parts. The maximization of the 
 Going into more detail in the mathematics of the problem, the equation of a generic hyperplane is
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\underline{w}\cdot \underline{x}+w_0=0,">, [26]
+  <img src="https://render.githubusercontent.com/render/math?math=\underline{w}\cdot \underline{x} %2B w_0=0,">, [26]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=\underline{x}"> is the independent variable of the features space, <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> is the *weight vector* and <img src="https://render.githubusercontent.com/render/math?math=w_0"> is the *bias*.
@@ -1473,27 +1473,27 @@ where <img src="https://render.githubusercontent.com/render/math?math=\underline
 On referring to figure [11](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot\underline{x}_n\geq 1," id="vincoloSVM1">, [27]
+  <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n\geq 1," id="vincoloSVM1">, [27]
 </p>
 
 while, for points of class <img src="https://render.githubusercontent.com/render/math?math=-1">, we have
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math= w_0+\underline{w}\cdot\underline{x}_n\leq -1," id="vincoloSVM2">, [28]
+  <img src="https://render.githubusercontent.com/render/math?math= w_0 %2B \underline{w}\cdot\underline{x}_n\leq -1," id="vincoloSVM2">, [28]
 </p>
 
-where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot\underline{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot\underline{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\underline{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
+where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\underline{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
 
 Nevertheless, in order to minimize <img src="https://render.githubusercontent.com/render/math?math=\|\underline{w}\|"> to achieve the desired hyperplane, it will be necessary to account also for the constraints [\[27\]](#vincoloSVM1) and [\[28\]](#vincoloSVM2). Such two constraints can be rewritten as a unique unequality as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=y_n\left(w_0+\underline{w}\cdot\underline{x}_n\right)\geq 1," id="vincoloFinaleSVM">, [29]
+  <img src="https://render.githubusercontent.com/render/math?math=y_n\left(w_0 %2B \underline{w}\cdot\underline{x}_n\right)\geq 1," id="vincoloFinaleSVM">, [29]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=y_n=1"> if the <img src="https://render.githubusercontent.com/render/math?math=n">-th element belongs to class <img src="https://render.githubusercontent.com/render/math?math=1">, otherwise <img src="https://render.githubusercontent.com/render/math?math=y_n=-1">. It can be shown that the minimization of <img src="https://render.githubusercontent.com/render/math?math=\|\underline{w}\|"> with constraint [\[29\]](#vincoloFinaleSVM) can be faced by minimizing the functional
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{w}, w_0)=\|\underline{w}\|+\frac{\alpha}{N}\sum_{n=1}^N\max\left\{0, 1-y_n\left(\underline{w}^T\underline{x}_n+w_0\right)\right\}," id="functionalSVM">, [30]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{w}, w_0)=\|\underline{w}\| %2B \frac{\alpha}{N}\sum_{n=1}^N\max\left\{0, 1-y_n\left(\underline{w}^T\underline{x}_n %2B w_0\right)\right\}," id="functionalSVM">, [30]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is a parameter balancing the need to maximize the margin with the need of satisfying constraint [\[29\]](#vincoloFinaleSVM).
@@ -1501,7 +1501,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> i
 Once maximized functional <img src="https://render.githubusercontent.com/render/math?math=\Phi"> and once determined the optimal values of <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_{opt}"> and <img src="https://render.githubusercontent.com/render/math?math=w_{0_{opt}}">, then it is possible to determine the separating hyperplane. For a two-dimensional problem, namely, in the case when <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> has only two components, which is the case considered in the following subsections, the mentioned hyperplane becomes a straight line. On accounting that <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> represents the normal to the hyperplane, then its equation becomes
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=y=m\;x+x_0," id="rettaSeparazione">, [31]
+  <img src="https://render.githubusercontent.com/render/math?math=y=m\;x %2B x_0," id="rettaSeparazione">, [31]
 </p>
 
 where
@@ -1641,7 +1641,7 @@ def predictionAccuracy(xData, yTarget):
   return accuracy
 ```
 
-Such function evaluates first the model for each element of the testing dataset, namely, <img src="https://render.githubusercontent.com/render/math?math=w_0+\underline{w}\cdot \underline{x}_n"> and then evaluates the sign thereof and compares it with the sign of the observations of the training dataset, by counting the number of times equality takes place. The use of the `tf.sign()` function enables to verify whether equations [\[27\]](#vincoloSVM1) or [\[28\]](#vincoloSVM2) hold.
+Such function evaluates first the model for each element of the testing dataset, namely, <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot \underline{x}_n"> and then evaluates the sign thereof and compares it with the sign of the observations of the training dataset, by counting the number of times equality takes place. The use of the `tf.sign()` function enables to verify whether equations [\[27\]](#vincoloSVM1) or [\[28\]](#vincoloSVM2) hold.
 
 Once completed the training, the angular coefficient [\[32\]](#coefficienteAngolare) and the intercept [\[33\]](#intercetta) of the separation line [\[31\]](#rettaSeparazione) are calculated by
 
