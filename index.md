@@ -793,8 +793,7 @@ The most reasonable choice for parameters <img src="https://render.githubusercon
 Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the products and being the logarithm a strictly increasing function, then the logarithm of [\[14\]](#jointProbability2) is maximized. Actually, being minimization more popular than maximization, in order to employ minimization algorithms instead of maximization ones, then <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are chosen so to minimize the opposite of the probability [\[14\]](#jointProbability2), namely the following cost functional
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
-    -\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost">, [15]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost">, [15]
 </p>
 
 Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n;b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n;b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
