@@ -784,7 +784,7 @@ being the events independent. We also observe that, according to model [\[11\]](
 so that probability [\[12\]](#jointProbability) can be expressed as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=[\prod_{n=1}^{N}(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))]." id="jointProbability2">, [14]
+  <img src="https://render.githubusercontent.com/render/math?math=p((y_1,y_2,\ldots,y_N)=(\overline{y}_1,\overline{y}_2,\ldots,\overline{y}_N)|(x_1,x_2,\ldots,x_N))=\prod_{n=1}^{N}[(1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1))]." id="jointProbability2">, [14]
 </p>
  
 
