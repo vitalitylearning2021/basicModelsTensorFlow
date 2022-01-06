@@ -805,8 +805,7 @@ Finally, being the presence of the terms <img src="https://render.githubusercont
 Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the technique already illustrated for linear regression. It should be noticed that functional [\[16\]](#logisticRegressionCost2) is convex and so it exhibits only one global minimum and no subsidiary minima. Finally, it should be observed that functional [\[16\]](#logisticRegressionCost2) can be rewritten as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
-    -\sum_{n=1}^{N}\log(p(y=\overline{y}_n|x_n))." id="logisticRegressionCost3"> [17]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log(p(y=\overline{y}_n|x_n))." id="logisticRegressionCost3"> [17]
 </p>
 
 In the case of a multiclass logistic regression problem with <img src="https://render.githubusercontent.com/render/math?math=K"> classes, then the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> can get values in <img src="https://render.githubusercontent.com/render/math?math=0,1,\ldots,K-1">. Moreover, in the general case, the observable <img src="https://render.githubusercontent.com/render/math?math=x"> is not just a single number, but a <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional array, namely, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}=(x_0,x_1,\ldots,x_{P-1})">. Finally, the probability that the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> is equal to <img src="https://render.githubusercontent.com/render/math?math=k"> is modelled, analogously to [\[11\]](#logisticProbability), as
