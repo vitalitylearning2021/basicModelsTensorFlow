@@ -806,10 +806,10 @@ Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the te
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=
-    -\sum_{n=1}^{N}\log(p(y=\overline{y}_n|x_n))." id="logisticRegressionCost3">, [17]
+    -\sum_{n=1}^{N}\log(p(y=\overline{y}_n|x_n))." id="logisticRegressionCost3"> [17]
 </p>
 
-In the case of a multiclass logistic regression problem with <img src="https://render.githubusercontent.com/render/math?math=K"> classes, then the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> can get values in <img src="https://render.githubusercontent.com/render/math?math=0,1,\ldots,K-1">. Moreover, in the general case, the observable <img src="https://render.githubusercontent.com/render/math?math=x"> is not just a single number, but a <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional array, namely, <img src="https://render.githubusercontent.com/render/math?math=\underline{x}=(x_0,x_1,\ldots,x_{P-1})">. Finally, the probability that the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> is equal to <img src="https://render.githubusercontent.com/render/math?math=k"> is modelled, analogously to [\[11\]](#logisticProbability), as
+In the case of a multiclass logistic regression problem with <img src="https://render.githubusercontent.com/render/math?math=K"> classes, then the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> can get values in <img src="https://render.githubusercontent.com/render/math?math=0,1,\ldots,K-1">. Moreover, in the general case, the observable <img src="https://render.githubusercontent.com/render/math?math=x"> is not just a single number, but a <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional array, namely, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}=(x_0,x_1,\ldots,x_{P-1})">. Finally, the probability that the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> is equal to <img src="https://render.githubusercontent.com/render/math?math=k"> is modelled, analogously to [\[11\]](#logisticProbability), as
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x})=\frac{e^{b_k %2B \underline{w}_k\cdot \underline{x}}}{1 %2B \sum_{k=0}^{K-1}e^{b_k %2B \underline{w}_k\cdot \underline{x}}}." id="logisticProbabilityMulticlass">, [18]
