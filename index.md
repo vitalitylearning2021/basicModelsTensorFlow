@@ -626,7 +626,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 ```
-<p align="center" id="xxx" >
+<p align="center" id="linearRegressionImports" >
      <em>Listing 1. Imports for the linear regression code.</em>
 </p>
 
@@ -645,7 +645,7 @@ alpha     = 0.0001
 numIter   = 1000    
 skipIter  = 50      
 ```
-<p align="center" id="xxx" >
+<p align="center" id="linearRegressionOptimizationParameters" >
      <em>Listing 2. Optimization parameters for the linear regression code.</em>
 </p>
 
@@ -666,7 +666,7 @@ These data have been taken from [\[2\]](#MIND_ON_STATISTICS). Subsequently, two 
 m = tf.Variable(rng.randn())
 b = tf.Variable(rng.randn())
 ```
-<p align="center" id="xxx" >
+<p align="center" id="unknownVariablesLinearRegression" >
      <em>Listing 3. Unknown variables definition for the linear regression algorithm.</em>
 </p>
 
@@ -676,7 +676,7 @@ Now we need to define two functions. The first function represents the linear mo
 def linearModel(x):
     return m * x + b
 ```
-<p align="center" id="xxx" >
+<p align="center" id="linearModelLinearRegression" >
      <em>Listing 4. Linear model for linear regression.</em>
 </p>
 
@@ -686,7 +686,7 @@ The second represents functional [\[7\]](#MSELinearRegression), namely
 def costFunction(y_model, y_data):
     return tf.reduce_mean(tf.square(y_model - y_data))
 ```
-<p align="center" id="xxx" >
+<p align="center" id="costFunctionalLinearRegression" >
      <em>Listing 5. Cost functional for linear regression.</em>
 </p>
 
@@ -713,7 +713,7 @@ def optimizationStep():
     
     optimizer.apply_gradients(zip(gradients, [m, b]))
 ```
-<p align="center" id="xxx" >
+<p align="center" id="optimizationLoopLinearRegression" >
      <em>Listing 7. Optimization loop for linear regression.</em>
 </p>
 
@@ -793,7 +793,7 @@ The most reasonable choice for parameters <img src="https://render.githubusercon
 Nevertheless, it should be noticed that, to avoid the problem of dealing with a cost functional whose values can become exceedingly small due to the presence of the products and being the logarithm a strictly increasing function, then the logarithm of [\[14\]](#jointProbability2) is maximized. Actually, being minimization more popular than maximization, in order to employ minimization algorithms instead of maximization ones, then <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are chosen so to minimize the opposite of the probability [\[14\]](#jointProbability2), namely the following cost functional
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="logisticRegressionCost"> [15]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(b_0,b_1)=-\sum_{n=1}^{N}\log((1-\overline{y}_n)F(x_n,b_0,b_1)%2B\overline{y}_n(1-F(x_n,b_0,b_1)))." id="Cost"> [15]
 </p>
 
 Finally, being the presence of the terms <img src="https://render.githubusercontent.com/render/math?math=(1-\overline{y}_n)F(x_n,b_0,b_1)"> and <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n(1-F(x_n,b_0,b_1))"> mutually exclusive, functional [\[15\]](#logisticRegressionCost) can be rewritten as
@@ -811,38 +811,36 @@ Functional [\[16\]](#logisticRegressionCost2) can be then optimized using the te
 In the case of a multiclass logistic regression problem with <img src="https://render.githubusercontent.com/render/math?math=K"> classes, then the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> can get values in <img src="https://render.githubusercontent.com/render/math?math=0,1,\ldots,K-1">. Moreover, in the general case, the observable <img src="https://render.githubusercontent.com/render/math?math=x"> is not just a single number, but a <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional array, namely, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}=(x_0,x_1,\ldots,x_{P-1})">. Finally, the probability that the random variable <img src="https://render.githubusercontent.com/render/math?math=y"> is equal to <img src="https://render.githubusercontent.com/render/math?math=k"> is modelled, analogously to [\[11\]](#logisticProbability), as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x})=\frac{e^{b_k %2B \underline{w}_k\cdot \underline{x}}}{1 %2B \sum_{k=0}^{K-1}e^{b_k %2B \underline{w}_k\cdot \underline{x}}}." id="logisticProbabilityMulticlass">, [18]
+  <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\mathbf{x})=\frac{e^{b_k %2B \mathbf{w}_k\cdot \mathbf{x}}}{1 %2B \sum_{k=0}^{K-1}e^{b_k %2B \mathbf{w}_k\cdot \mathbf{x}}}" id="logisticProbabilityMulticlass">, [18]
 </p>
 
-while, given <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=(\underline{x}_n, \underline{y}_n)">, functional [\[17\]](#logisticRegressionCost3) generalizes as
+while, given <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=(\mathbf{x}_n, \mathbf{y}_n)">, functional [\[17\]](#logisticRegressionCost3) generalizes as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{\underline{W}},\underline{b})=
-    -\sum_{n=1}^{N}\log(p(y=\overline{y}_n|\underline{x}_n))." id="logisticRegressionCost4">, [19]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\mathbf{\mathbf{W}},\mathbf{b})=-\sum_{n=1}^{N}\log(p(y=\overline{y}_n|\mathbf{x}_n))." id="logisticRegressionCost4"> [19]
 </p>
 
-In [\[18\]](#logisticProbabilityMulticlass), the <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_k">'s are <img src="https://render.githubusercontent.com/render/math?math=K">, <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional arrays, while, in [\[19\]](#logisticRegressionCost4), matrix <img src="https://render.githubusercontent.com/render/math?math=\underline{\underline{W}}"> performs a row-wise collection of the arrays <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_k">'s, while <img src="https://render.githubusercontent.com/render/math?math=\underline{b}"> is a column array collecting the <img src="https://render.githubusercontent.com/render/math?math=K"> <img src="https://render.githubusercontent.com/render/math?math=b_k">'s.
+In [\[18\]](#logisticProbabilityMulticlass), the <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}_k">'s are <img src="https://render.githubusercontent.com/render/math?math=K">, <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional arrays, while, in [\[19\]](#logisticRegressionCost4), matrix <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\mathbf{W}}"> performs a row-wise collection of the arrays <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}_k">'s, while <img src="https://render.githubusercontent.com/render/math?math=\mathbf{b}"> is a column array collecting the <img src="https://render.githubusercontent.com/render/math?math=K"> <img src="https://render.githubusercontent.com/render/math?math=b_k">'s.
 
 Let us finally code the generinc training output <img src="https://render.githubusercontent.com/render/math?math=y_n"> as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\overline{\underline{y}}_n=(0 0 \ldots 1 0 \ldots 0)," id="oneHotVector">, [20]
+  <img src="https://render.githubusercontent.com/render/math?math=\overline{\mathbf{y}}_n=(0 0 \ldots 1 0 \ldots 0)," id="oneHotVector">, [20]
 </p>
 
-namely, with an array whose elements are identically equal to zero except for the <img src="https://render.githubusercontent.com/render/math?math=k">-th if <img src="https://render.githubusercontent.com/render/math?math=y_n=k"> and let us group the various probabilities <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\underline{x}_n)"> in the array
+namely, with an array whose elements are identically equal to zero except for the <img src="https://render.githubusercontent.com/render/math?math=k">-th if <img src="https://render.githubusercontent.com/render/math?math=y_n=k"> and let us group the various probabilities <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\mathbf{x}_n)"> in the array
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\underline{p}_n=(p(y=0|\underline{x}_n), p(y=1|\underline{x}_n), \ldots,p(y=K-1|\underline{x}_n))." id="oneHotVector">, [21]
+  <img src="https://render.githubusercontent.com/render/math?math=\mathbf{p}_n=(p(y=0|\mathbf{x}_n), p(y=1|\mathbf{x}_n), \ldots,p(y=K-1|\mathbf{x}_n))." id="oneHotVector"> [21]
 </p>
 
 Then, functional [\[19\]](#logisticRegressionCost4) can be rewritten as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{\underline{W}},\underline{b})=
-    -\sum_{n=1}^{N}\overline{\underline{y}}^T_n\log(\underline{p}_n)." id="logisticRegressionCost5">, [22]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\mathbf{\mathbf{W}},\mathbf{b})=-\sum_{n=1}^{N}\overline{\mathbf{y}}^T_n\log(\mathbf{p}_n)." id="logisticRegressionCost5"> [22]
 </p>
 
-Before proceeding with practice, let us take some time for three digressions. One concerns the organization of a dataset to be used during the training with shuffling and batching operations. The second regards some words on the training dataset used in the practical example. The last regards some works on *Keras*. In the next subsection, let us begin with the first one.
+Before proceeding with practice, let us take some time for three digressions. One concerns the organization of a dataset to be used during the training with shuffling and batching operations. The second regards some words on the training dataset used in the practical example. The last regards some words on *Keras*. In the next subsection, let us begin with the first one.
 
 <p align="center" id="shufflingBatching" >
 </p>
@@ -907,7 +905,7 @@ dataset = dataset.shuffle(3)
 
 The input parameter of `dataset.shuffle` is the size of the shuffle buffer. In other words, a buffer of <img src="https://render.githubusercontent.com/render/math?math=3"> elements is created and initially populated with the first three elements of `dataset`. Later on, an element is picked up from the buffer randomly and the picked up element is replaced with the first element of `dataset` not yet withdrawn. In the next step, a second element is randomly picked up from the buffer and replaced with the second, noy-yet-withdrawn element of `dataset`. The operations proceed until all the elements of `dataset` have been withdrawn.
 
-Once operated the shuffling, batching takes place thanks to, for example, to
+Once operated the shuffling, batching takes place thanks, for example, to
 
 ``` python
 dataset = dataset.batch(2)
@@ -998,7 +996,7 @@ Differently from the example in the [Dataset shuffling and batching](#shufflingB
 
 The following operations retrace those already discussed for the case of linear regression.
 
-In particular, analogously to Listing [3](#unknownVariablesLinearRegression), the variables appointed to contain the weights matrix <img src="https://render.githubusercontent.com/render/math?math=\underline{\underline{W}}"> and the bias vector <img src="https://render.githubusercontent.com/render/math?math=\underline{b}"> are defined, namely
+In particular, analogously to Listing [3](#unknownVariablesLinearRegression), the variables appointed to contain the weights matrix <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\mathbf{W}}"> and the bias vector <img src="https://render.githubusercontent.com/render/math?math=\mathbf{b}"> are defined, namely
 
 ``` python
 W = tf.Variable(tf.ones([numFeatures, numClasses]))
@@ -1025,7 +1023,7 @@ def costFunction(pVector, yOverbar):
     return tf.reduce_mean(-tf.reduce_sum(yOverbar * tf.math.log(pVector), 1))
 ```
 
-Let us now spend some words to clarify the main points of the above snippet. Firstly, `tf.one_hot` converts the `tf.numClasses` classes in arrays whose elements are identically zero expect for the `yOverbar`-th which is set equal to `1`, according to [\[20\]](#oneHotVector). Moreover, by `tf.clip_by_value`, we clip the low probabilities to <img src="https://render.githubusercontent.com/render/math?math=10^{-9}"> to avoid the computation of logarithms with argument close to <img src="https://render.githubusercontent.com/render/math?math=0">. We highest probabilities are obviouslty clipped to <img src="https://render.githubusercontent.com/render/math?math=1">. Finally, functional [\[22\]](#logisticRegressionCost5) is computed by a double reduction implemented by `tf.reduce_sum` which performs row-wise reductions, namely, it reduces the <img src="https://render.githubusercontent.com/render/math?math=10"> element of the “one-hot” vectors, and by `tf.reduce_mean` which executes a reduction along the elements of the batch.
+Let us now spend some words to clarify the main points of the above snippet. Firstly, `tf.one_hot` converts the `tf.numClasses` classes in arrays whose elements are identically zero except for the `yOverbar`-th which is set equal to `1`, according to [\[20\]](#oneHotVector). Moreover, by `tf.clip_by_value`, we clip the low probabilities to <img src="https://render.githubusercontent.com/render/math?math=10^{-9}"> to avoid the computation of logarithms with argument close to <img src="https://render.githubusercontent.com/render/math?math=0">. The highest probabilities are obviouslty clipped to <img src="https://render.githubusercontent.com/render/math?math=1">. Finally, functional [\[22\]](#logisticRegressionCost5) is computed by a double reduction implemented by `tf.reduce_sum` which performs row-wise reductions, namely, it reduces the <img src="https://render.githubusercontent.com/render/math?math=10"> element of the “one-hot” vectors, and by `tf.reduce_mean` which executes a reduction along the elements of the batch.
 
 Once defined the cost function to minimize, it is necessary to define the optimizer to be employed. This occurs by the same snippet as in Listing [6](#SGD) which is not reported here again.
 
@@ -1097,11 +1095,11 @@ This concludes the description of the code implementing logistic regression. Nex
 
 ## K-Means algorithm in TensorFlow
 
-In everyday life, we happen to group objects according to a certain likeness, starting from clothes in wardrobe to food on supermarket shelves. Even Google groups all its documents contained in its huge databes according to keywords.
+In everyday life, we happen to group objects according to a certain likeness, starting from clothes in the wardrobe to food on supermarket shelves. Even Google groups all its documents contained in its huge database according to keywords.
 
 The purpose of grouping is to simplfy the way in which we relate to objects so that, for example, it is easier to find them when needed. Using the technical jargon of machine learning, grouping is addressed to as *clustering*. In machine learning, clustering is one of the most important techniques to group unlabelled objects.
 
-Clustering can be worked out using different methodologies. One of the most used is based in the k-means algorithm which will be discussed in the next section.
+Clustering can be worked out using different methodologies. One of the most used is based on the k-means algorithm which will be discussed in the next section.
 
 k-means is an algorithm very often used in practice. One of the most recent applications regard the identification of places where criminal activities take place most probably [\[3\]](#KMEANS_CRIMINAL). 
 
@@ -1111,7 +1109,7 @@ The k-means algorithm has the advantage of being computationally light and fast.
 
 The k-means algorithm is a non-supervised learning algorithm which retrieves a fixed number of clusters from a dataset. In other words, it determines groups of objects sharing a “likeness” relation. The number of clusters is chosen *a priori* by the User.
 
-The likeness relation between the dataset elements is expressed by defining a centroid for each cluster. The centroid can coincide with a dataset element or be a “virtual” element. In the below image, a two-dimensional example is illustrated. In the example, the dataset elements are represented by red bullets, while the centroids for a possible clustering are depicted by the three coloured blue, red and green stars.
+The likeness relation between the dataset elements is expressed by defining a centroid for each cluster. The centroid can coincide with a dataset element or can be a “virtual” element. In the below image, a two-dimensional example is illustrated. In the example, the dataset elements are represented by red bullets, while the centroids for a possible clustering are depicted by the three coloured blue, red and green stars.
 
 <p align="center">
   <img src="Clustering.png" width="250" id="clustering">
@@ -1125,7 +1123,7 @@ The k-means algorithm is an iterative algorithm organized in three steps:
   - *Assignment of the dataset elements to the clusters*. Each dataset point is assigned to the closest cluster. In other words, for each dataset point <img src="https://render.githubusercontent.com/render/math?math=x">, the centroid is chosen as
   
   <p align="center">
-      <img src="https://render.githubusercontent.com/render/math?math=\arg \min_{\underline{c} \in {\mathcal S}}d(\underline{c}, \underline{x})^2," id="choiceCentroids">, [23]
+      <img src="https://render.githubusercontent.com/render/math?math=\arg \min_{\mathbf{c} \in {\mathcal S}}d(\mathbf{c}, \mathbf{x})^2," id="choiceCentroids"> [23]
   </p>
 
   where <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i"> is the generic centroid, <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}"> is the set of the current centroids and <img src="https://render.githubusercontent.com/render/math?math=d(\underline{c}_i, \underline{x})"> is the distance between <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i"> and <img src="https://render.githubusercontent.com/render/math?math=\underline{x}">. In equation [\[23\]](#choiceCentroids), we have assumed to represent the dataset points and the centroids as multidimensional arrays having <img src="https://render.githubusercontent.com/render/math?math=M"> dimensions, namely, <img src="https://render.githubusercontent.com/render/math?math=\underline{x}=(x_1,x_2,\ldots, x_M)">. A popular choice, which will be considered in the following subsection, consists of choosing the Euclidean distance for <img src="https://render.githubusercontent.com/render/math?math=d">, namely
@@ -1871,7 +1869,7 @@ https://andreaprovino.it/tensorflow-guida-italiano-primi-passi-con-tensorflow/
 </p>
 [3] V. Jain, Y. Sharma, A. Bhatia, V. Arora, "Crime prediction using k-means algorithm," Global Res. Dev. J. for Eng., vol. 2, n. 5, pp. 206-209, Apr. 2017.
 
-<p align="center" id="KMEANS_CRIMINAL" >
+<p align="center" id="TOTAL_VARIATION_KMEANS" >
 </p>
 [4] P. Pareek, "All about “k-means” clustering," Medium page.
 
