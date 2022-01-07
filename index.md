@@ -1126,16 +1126,16 @@ The k-means algorithm is an iterative algorithm organized in three steps:
       <img src="https://render.githubusercontent.com/render/math?math=\arg \min_{\mathbf{c} \in {\mathcal S}}d(\mathbf{c}, \mathbf{x})^2," id="choiceCentroids"> [23]
   </p>
 
-  where <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i"> is the generic centroid, <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}"> is the set of the current centroids and <img src="https://render.githubusercontent.com/render/math?math=d(\underline{c}_i, \underline{x})"> is the distance between <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i"> and <img src="https://render.githubusercontent.com/render/math?math=\underline{x}">. In equation [\[23\]](#choiceCentroids), we have assumed to represent the dataset points and the centroids as multidimensional arrays having <img src="https://render.githubusercontent.com/render/math?math=M"> dimensions, namely, <img src="https://render.githubusercontent.com/render/math?math=\underline{x}=(x_1,x_2,\ldots, x_M)">. A popular choice, which will be considered in the following subsection, consists of choosing the Euclidean distance for <img src="https://render.githubusercontent.com/render/math?math=d">, namely
+where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}_i"> is the generic centroid, <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}"> is the set of the current centroids and <img src="https://render.githubusercontent.com/render/math?math=d(\mathbf{c}_i, \mathbf{x})"> is the distance between <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}_i"> and <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}">. In equation [\[23\]](#choiceCentroids), we have assumed to represent the dataset points and the centroids as multidimensional arrays having <img src="https://render.githubusercontent.com/render/math?math=M"> dimensions, namely, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}=(x_1,x_2,\ldots, x_M)">. A popular choice, which will be considered in the following subsection, consists of choosing the Euclidean distance for <img src="https://render.githubusercontent.com/render/math?math=d">, namely
   
   <p align="center">
-      <img src="https://render.githubusercontent.com/render/math?math=d(\underline{x}, \underline{y})^2=\sum_{m=1}^M |x_i-y_i|^2." id="euclideanDistance">, [24]
+      <img src="https://render.githubusercontent.com/render/math?math=d(\mathbf{x}, \mathbf{y})^2=\sum_{m=1}^M |x_i-y_i|^2." id="euclideanDistance"> [24]
   </p>
   
   - *Centroids update*. Following the previous step, the formation of new clusters is likely since dataset points could have been added to or removed from the clusters. As a consequence, the centroids position is computed again as the average of all the dataset points assigned to the new cluster, namely
 
   <p align="center">
-      <img src="https://render.githubusercontent.com/render/math?math=\underline{c}_i=\frac{1}{|{\mathcal S}_i|}\sum_{\underline{x}_i\in {\mathcal S}_i}\underline{x}_i," id="averageDistance">, [25]
+      <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}_i=\frac{1}{|{\mathcal S}_i|}\sum_{\mathbf{x}_i\in {\mathcal S}_i}\mathbf{x}_i," id="averageDistance"> [25]
   </p>
 
     where <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}_i"> represents the <img src="https://render.githubusercontent.com/render/math?math=i">-th cluster and <img src="https://render.githubusercontent.com/render/math?math=|{\mathcal S}_i|"> is the corresponding number of elements.
@@ -1146,7 +1146,7 @@ After the theory, let us discuss a practical application of the k-means algorith
 
 ### K-means algorithm: Practice
 
-It is now time to discuss a simple implementation example of the k-means algorithm in TensorFlow 2.0. We will present both a customized version of the k-means algorith and its native, TensorFlow 2.0 version. We will arbitrarily set the number of clusters to a value equal to the number of actual clusters. We will begin by first discussing the customized version and then switch to the native one.
+It is now time to discuss a simple implementation example of the k-means algorithm in TensorFlow 2.0. We will present both a customized version of the k-means algorithm and its native, TensorFlow 2.0 version. We will arbitrarily set the number of clusters to a value equal to the number of actual clusters. We will begin by first discussing the customized version and then switch to the native one.
 
 #### Customized k-means
 
@@ -1219,7 +1219,7 @@ plt.plot(func)
 plt.show()
 ```
 
-The stopping rule intervenes when the centroids at the current step are not significantly changed, in a percentage meaning, as compared to the previous step. For this reason, the variable evaluating the percentage error, namely, `updateNorm`, is initialized to infinity. The iterations are handled by a `while` which breaks if `updateNorm` gets smaller than <img src="https://render.githubusercontent.com/render/math?math=10^{-4}">.
+The stopping rule intervenes when the centroids at the current step are not significantly changed, in a percentage meaning, as compared to the previous step. For this reason, the variable evaluating the percentage error, namely, `updateNorm`, is initialized to infinity. The iterations are handled by a `while` loop which breaks if `updateNorm` gets smaller than <img src="https://render.githubusercontent.com/render/math?math=10^{-4}">.
 
 The `initializeCentroids` functions implements step #1 of the k-means algorithm and is reported in the following:
 
@@ -1231,7 +1231,7 @@ def initializeCentroids(samples, numClusters, numSamples):
     return initialCentroids
 ```
 
-The purpose is initializing the centroids using random choices of the dataset elements. To this end, a random index vector, with indices ranging from `0` to `numSamples - 1` (`tf.range(0, numSamples)`) is initialized. Later one, a slice of `numClusters` size is extracted starting from the beginning of `randomIndices` by using `tf.slice` and forming `centroidIndices`. The dataset elements corresponding to `centroidIndices` are collected in `initialCentroids` by `tf.gather`.
+The purpose is initializing the centroids using random choices of the dataset elements. To this end, a random index vector, with indices ranging from `0` to `numSamples - 1` (`tf.range(0, numSamples)`), is initialized. Later on, a slice of `numClusters` size is extracted starting from the beginning of `randomIndices` by using `tf.slice` and forming `centroidIndices`. The dataset elements corresponding to `centroidIndices` are collected in `initialCentroids` by `tf.gather`.
 
 Besides the centroids, an array is also initialized which will contain, iteration after iteration, the value of the percentage error between the centroids at the current step and those at the previous step with the aim of showing, at the end of the loop, the iterations behavior.
 
@@ -1333,7 +1333,7 @@ and returns the entire dataset, cast to a single precision tensor, a number `num
 clusterCenters = kmeans.cluster_centers()
 ```
 
-Once completed the training loop, a list of labels corresponding to the clusters to which each dataset element belongs is built up by
+Once completed the training loop, a list of labels corresponding to the clusters to which each dataset element belongs to is built up by
 
 ``` python
 for i, point in enumerate(points):
@@ -1346,7 +1346,7 @@ plotClusters(samples, clusterLabels, clusterCenters)
 
 ### Nearest neighbor with TensorFlow
 
-K-Nearest Neighbors (KNN) is a supervised learning algorithm and one of the most known and employed approach of machin learning thanks to its simplicity and to its often satisfactory results.
+K-Nearest Neighbors (KNN) is a supervised learning algorithm and one of the most known and employed approach of machine learning thanks to its simplicity and to its often satisfactory results.
 
 The KNN algorithm is one of the first choices when facing classification problems. The applications of the KNN algorithm are different and range from political sciences to classify the vote of potential voters to the handwriting detection and facial recognition.
 
@@ -1383,7 +1383,7 @@ The KNN algorithm is very simple and its steps are <img src="https://render.gith
 
 In this subsection, we show an implementation of the KNN algorithm for the simified case of <img src="https://render.githubusercontent.com/render/math?math=k=1">. The implementation is easily extended to <img src="https://render.githubusercontent.com/render/math?math=k>1">. The approach is applied to the above sketched MNIST dataset.
 
-We will perform an iterative and “progressive” training. In other words, to reduce the memory demands, we will break the dataset in batches as for logistic regression. For each instance to classify, we will compute the corresponding minimum element distance in the only batch. Iteration after iteration, the dataset is fully explored. Once identified the minimum distance element of the dataset, it is added to the data subset for the next iteration, to avoid to any loss of memory of such information.
+We will perform an iterative and “progressive” training. In other words, to reduce the memory demands, we will break the dataset in batches as for logistic regression. For each instance to classify, we will compute the corresponding minimum element distance in the only batch. Iteration after iteration, the dataset is fully explored. Once identified the minimum distance element of the dataset, it is added to the data subset for the next iteration, to avoid any loss of memory of such information.
 
 We will skip phases already widely discussed and later on we will dwell on the main loop only.
 
@@ -1417,13 +1417,13 @@ for iter, (featuresBatch, classesBatch) in enumerate(trainData.take(numIter), 1)
 To reduce the memory demands, the testing dataset is limited to a number of `numTests` elements.
 
 In a totally similar way to what done above, `tf.expand_dims` is used to expand the tensor dimensions so that `tf.reduce_sum` can act on an implicit meshgrid. The `distance`
-tensor contains then all the possible distances between the actual batch elements and those of the reduced testing dataset, while the `pred` tensor contains the indices of the elements closest to each element of the reduced testing dataset. By such indices, the elements closest to each element of the testing dataset as well as their labels are fetched from the batch by using `tf.gather`. If the interation is not the first one, such closest elements are added to the subsequent batch to keep trace of the training.
+tensor contains then all the possible distances between the actual batch elements and those of the reduced testing dataset, while the `pred` tensor contains the indices of the elements closest to each element of the reduced testing dataset. By such indices, the elements closest to each element of the testing dataset as well as their labels are fetched from the batch by using `tf.gather`. If the iteration is not the first one, such closest elements are added to the subsequent batch to keep trace of the training.
 
 Finally, the accuracy is computed as a percentage of the cases in which the forecasts coincide with the “ground-truth”.
 
 ### Support Vector Machines with TensorFlow
 
-Support Vector Machine (SVM) is an automatic, supervised learning algorithm that can be used either for classification or regression. It is popular for applications like the processing of natural language processing, speech and imagerecognition and computer vision.
+Support Vector Machine (SVM) is an automatic, supervised learning algorithm that can be used either for classification or regression. It is popular for applications like the processing of natural language processing, speech and image recognition and computer vision.
 
 The SVM algorithm is notably effective in binary classification problems, although it is used also for multiclass classification. In the present section, we will see SVM at work for binary classification.
 
@@ -1445,7 +1445,7 @@ In order to understand the working principle, figure [12](#hyperplanes) depicts 
      <em>Figure 12. Hyperplanes.</em>
 </p>
 
-A hyperplane linearly separating a dataset could not exist. In this case, a non-linear mapping becomes necessary to embed the dataset in a larger dimensional space moving, for example, from two to three dimensions and making the data linearly separable. In the following, we will consider the simple clas in which the data can be linearly separated.
+A hyperplane linearly separating a dataset could not exist. In this case, a non-linear mapping becomes necessary to embed the dataset in a larger dimensional space moving, for example, from two to three dimensions and making the data linearly separable. In the following, we will consider the simple case in which the data can be linearly separated.
 
 The SVM algorithm has the purpose of determining the hyperplane dividing, *at the best*, the support vectors in classes. *At the best* means that, if more than a hyperplane exists and to improve the classification accuracy on new observations, the algorithm searches for that having the largest margin to the support vectors. By support vectors we mean the closest dataset points to the dividing hyperplane, see figure [11](#linearSeparation). The margin, instead, is the distance between the support vectors of the two classes that are closest to the hyperplane, as in the below figure
 
