@@ -1460,10 +1460,10 @@ The hyperplane divides the distance in two equal parts. The maximization of the 
 Going into more detail in the mathematics of the problem, the equation of a generic hyperplane is
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\underline{w}\cdot \underline{x} %2B w_0=0,">, [26]
+  <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}\cdot \mathbf{x} %2B w_0=0,"> [26]
 </p>
 
-where <img src="https://render.githubusercontent.com/render/math?math=\underline{x}"> is the independent variable of the features space, <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> is the *weight vector* and <img src="https://render.githubusercontent.com/render/math?math=w_0"> is the *bias*.
+where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}"> is the independent variable of the features space, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> is the *weight vector* and <img src="https://render.githubusercontent.com/render/math?math=w_0"> is the *bias*.
 
 On referring to figure [11](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
 
