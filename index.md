@@ -1474,7 +1474,7 @@ On referring to figure [13](#SVMmargin), we assume that the red points belong to
 while, for points of class <img src="https://render.githubusercontent.com/render/math?math=-1">, we have
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\leq -1," id="vincoloSVM1"> [28]
+  <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\leq -1," id="vincoloSVM2"> [28]
 </p>
 
 
