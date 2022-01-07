@@ -1477,18 +1477,18 @@ while, for points of class <img src="https://render.githubusercontent.com/render
   <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\leq -1," id="vincoloSVM2"> [28]
 </p>
 
-where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\underline{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
+where the <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\mathbf{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
 
-Nevertheless, in order to minimize <img src="https://render.githubusercontent.com/render/math?math=\|\underline{w}\|"> to achieve the desired hyperplane, it will be necessary to account also for the constraints [\[27\]](#vincoloSVM1) and [\[28\]](#vincoloSVM2). Such two constraints can be rewritten as a unique unequality as
+Nevertheless, in order to minimize <img src="https://render.githubusercontent.com/render/math?math=\|\mathbf{w}\|"> to achieve the desired hyperplane, it will be necessary to account also for the constraints [\[27\]](#vincoloSVM1) and [\[28\]](#vincoloSVM2). Such two constraints can be rewritten as a unique unequality as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=y_n\left(w_0 %2B \underline{w}\cdot\underline{x}_n\right)\geq 1," id="vincoloFinaleSVM">, [29]
+  <img src="https://render.githubusercontent.com/render/math?math=y_n\left(w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\right)\geq 1," id="vincoloFinaleSVM"> [29]
 </p>
 
-where <img src="https://render.githubusercontent.com/render/math?math=y_n=1"> if the <img src="https://render.githubusercontent.com/render/math?math=n">-th element belongs to class <img src="https://render.githubusercontent.com/render/math?math=1">, otherwise <img src="https://render.githubusercontent.com/render/math?math=y_n=-1">. It can be shown that the minimization of <img src="https://render.githubusercontent.com/render/math?math=\|\underline{w}\|"> with constraint [\[29\]](#vincoloFinaleSVM) can be faced by minimizing the functional
+where <img src="https://render.githubusercontent.com/render/math?math=y_n=1"> if the <img src="https://render.githubusercontent.com/render/math?math=n">-th element belongs to class <img src="https://render.githubusercontent.com/render/math?math=1">, otherwise <img src="https://render.githubusercontent.com/render/math?math=y_n=-1">. It can be shown that the minimization of <img src="https://render.githubusercontent.com/render/math?math=\|\mathbf{w}\|"> with constraint [\[29\]](#vincoloFinaleSVM) can be faced by minimizing the functional
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\underline{w}, w_0)=\|\underline{w}\| %2B \frac{\alpha}{N}\sum_{n=1}^N\max\left\{0, 1-y_n\left(\underline{w}^T\underline{x}_n %2B w_0\right)\right\}," id="functionalSVM">, [30]
+  <img src="https://render.githubusercontent.com/render/math?math=\Phi(\mathbf{w}, w_0)=\|\mathbf{w}\| %2B \frac{\alpha}{N}\sum_{n=1}^N\max\left\{0, 1-y_n\left(\mathbf{w}^T\mathbf{x}_n %2B w_0\right)\right\}," id="functionalSVM"> [30]
 </p>
 
 where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is a parameter balancing the need to maximize the margin with the need of satisfying constraint [\[29\]](#vincoloFinaleSVM).
