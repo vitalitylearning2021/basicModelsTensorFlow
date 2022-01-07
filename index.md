@@ -1465,16 +1465,16 @@ Going into more detail in the mathematics of the problem, the equation of a gene
 
 where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}"> is the independent variable of the features space, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> is the *weight vector* and <img src="https://render.githubusercontent.com/render/math?math=w_0"> is the *bias*.
 
-On referring to figure [11](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
+On referring to figure [13](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n\geq 1," id="vincoloSVM1">, [27]
+  <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\geq 1," id="vincoloSVM1"> [27]
 </p>
 
 while, for points of class <img src="https://render.githubusercontent.com/render/math?math=-1">, we have
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math= w_0 %2B \underline{w}\cdot\underline{x}_n\leq -1," id="vincoloSVM2">, [28]
+  <img src="https://render.githubusercontent.com/render/math?math= w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\leq -1," id="vincoloSVM2"> [28]
 </p>
 
 where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\underline{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
