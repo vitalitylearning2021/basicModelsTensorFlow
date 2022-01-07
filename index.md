@@ -1474,8 +1474,10 @@ On referring to figure [13](#SVMmargin), we assume that the red points belong to
 while, for points of class <img src="https://render.githubusercontent.com/render/math?math=-1">, we have
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math= w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\leq -1," id="vincoloSVM2"> [28]
+  <img src="https://render.githubusercontent.com/render/math?math= w_0 %2B ," id="vincoloSVM2"> [28]
 </p>
+
+\mathbf{w}\cdot\mathbf{x}_n\leq -1
 
 where the <img src="https://render.githubusercontent.com/render/math?math=\underline{x}_n">'s are the dataset points. It can be shown that the distance between the two hyperplanes <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n= 1"> and <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot\underline{x}_n=-1"> is <img src="https://render.githubusercontent.com/render/math?math=2/\|\underline{w}\|">. This means that, by minimizing the norm of the weight vector, we reach the optimal hyperplane, namely, that with maximum margin.
 
