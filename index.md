@@ -1438,7 +1438,7 @@ A hyperplane linearly separating a dataset could not exist. In this case, a non-
 The SVM algorithm has the purpose of determining the hyperplane dividing, *at the best*, the support vectors in classes. *At the best* means that, if more than a hyperplane exists and to improve the classification accuracy on new observations, the algorithm searches for that having the largest margin to the support vectors. By support vectors we mean the closest dataset points to the dividing hyperplane, see figure [11](#linearSeparation). The margin, instead, is the distance between the support vectors of the two classes that are closest to the hyperplane, as in the below figure
 
 <p align="center">
-  <img src="SVM_margin.jpg" width="250" id="SVMmargin">
+  <img src="SVM_margin.jpg" width="450" id="SVMmargin">
   <br>
      <em>Figure 13. Margin between support vectors.</em>
 </p>
