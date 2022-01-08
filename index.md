@@ -1496,26 +1496,26 @@ where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> i
 Once maximized functional <img src="https://render.githubusercontent.com/render/math?math=\Phi"> and once determined the optimal values of <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}_{opt}"> and <img src="https://render.githubusercontent.com/render/math?math=w_{0_{opt}}">, then it is possible to determine the separating hyperplane. For a two-dimensional problem, namely, in the case when <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> has only two components, which is the case considered in the following subsections, the mentioned hyperplane becomes a straight line. On accounting that <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> represents the normal to the hyperplane, then its equation becomes
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=y=m x %2B x_0," id="rettaSeparazione">, [31]
+  <img src="https://render.githubusercontent.com/render/math?math=y=m x %2B x_0," id="rettaSeparazione"> [31]
 </p>
 
 where
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=m = -\frac{w_{opt_{1}}}{w_{opt_{0}}}" id="coefficienteAngolare">, [32]
+  <img src="https://render.githubusercontent.com/render/math?math=m = -\frac{w_{opt_{1}}}{w_{opt_{0}}}," id="coefficienteAngolare"> [32]
 </p>
 
 and
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=x_0=-\frac{w_0}{w_{opt_{0}}}." id="intercetta">, [33]
+  <img src="https://render.githubusercontent.com/render/math?math=x_0=-\frac{w_0}{w_{opt_{0}}}." id="intercetta"> [33]
 </p>
 
-Now that we have identified the functional to be optimized, let us show how the SVM algorithm can be implemented using TensorFlow. In particular, we will focus on a test case not considered before, namely, the so-called *Irisi test case*. Some words on such dataset are now in order.
+Now that we have identified the functional to be optimized, let us show how the SVM algorithm can be implemented using TensorFlow. In particular, we will focus on a test case not considered before, namely, the so-called *Iris test case*. Some words on such dataset are now in order.
 
 #### The Iris dataset
 
-The Iris dataset is a multivariate dataset introduced by Ronald Fisher in 1936. It consists into <img src="https://render.githubusercontent.com/render/math?math=150"> instances of <img src="https://render.githubusercontent.com/render/math?math=3"> Iris species: *Iris setosa*, *Iris virginica* and *Iris versicolor*. The four considered variables are sepal length, sepal width, petal length and petal width. The classes of the dataset element can be <img src="https://render.githubusercontent.com/render/math?math=0"> in the case of Iris setosa, <img src="https://render.githubusercontent.com/render/math?math=1"> in the case of Iris versicolor or <img src="https://render.githubusercontent.com/render/math?math=2"> for Iris virginica.
+The Iris dataset is a multivariate dataset introduced by Ronald Fisher in 1936. It consists of <img src="https://render.githubusercontent.com/render/math?math=150"> instances of <img src="https://render.githubusercontent.com/render/math?math=3"> Iris species: *Iris setosa*, *Iris virginica* and *Iris versicolor*. The four considered variables are sepal length, sepal width, petal length and petal width. The classes of the dataset element can be <img src="https://render.githubusercontent.com/render/math?math=0"> in the case of Iris setosa, <img src="https://render.githubusercontent.com/render/math?math=1"> in the case of Iris versicolor or <img src="https://render.githubusercontent.com/render/math?math=2"> for Iris virginica.
 
 Let us take a look now at the developed example.
 
@@ -1529,9 +1529,7 @@ Apart from standard imports, we have
 from sklearn import datasets
 ```
 
-Indeed, we will use the Iris database held in the Si utilizzerà infatti l'Iris database held in the `sklearn` library.
-
-The following parameters are also defined:
+Indeed, we will use the Iris database held in the `sklearn` library.
 
 ``` python
 alpha               = 0.01    
@@ -1558,7 +1556,7 @@ yDataset        = np.array([1 if y == 0 else -1 for y in irisDataset.target])
 
 In this way, `xDataset` will assume the only sepal length and petal width values, while `yDataset` will be equal to `1` for a setosa Iris, to `-1` otherwise.
 
-The dataset should be now partitioned in a portion for training and a portion for performance verification. We decide to use <img src="https://render.githubusercontent.com/render/math?math=90\%"> of the dataset for training and the remaining <img src="https://render.githubusercontent.com/render/math?math=10\%"> for testing. To this end, we use
+The dataset should be now partitioned in a portion for training and a portion for performance verification. We decide to use <img src="https://render.githubusercontent.com/render/math?math=90">% of the dataset for training and the remaining <img src="https://render.githubusercontent.com/render/math?math=10\%"> for testing. To this end, we use
 
 ``` python
 trainIndices    = np.random.choice(len(xDataset), round(len(xDataset) * 0.9), replace = False)
