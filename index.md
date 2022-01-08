@@ -1269,7 +1269,7 @@ def plotClusters(samples, labels, centroids):
 Such function exploits the `rainbow` colormap by picking `numCentroids`, “equispaced” colors between `0` and `1`. Each color is then used to perform the plot of a different cluster. A possible result is shown in the below figure:
 
 <p align="center">
-  <img src="Customized_kmeans.png" width="250" id="logistic">
+  <img src="Customized_kmeans.png" width="400" id="logistic">
   <br>
      <em>Figure 8. k-means result example. Dots are cluster points, crosses are cluster centroids.</em>
 </p>
@@ -1277,7 +1277,7 @@ Such function exploits the `rainbow` colormap by picking `numCentroids`, “equi
 A possible behavior of the percentage centroid variation against the previous step is shown in the following:
 
 <p align="center">
-  <img src="Customized_kmeans_functional.png" width="250" id="logistic">
+  <img src="Customized_kmeans_functional.png" width="400" id="logistic">
   <br>
      <em>Figure 9. k-means result example. Percentage variation of the centroids with respect to the previous step.</em>
 </p>
