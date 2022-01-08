@@ -726,7 +726,7 @@ It should be noticed that the optimization step comprises also the computation o
 The result of the processing is depicted in the following figure:
 
 <p align="center">
-  <img src="LinearRegression.png" width="250" id="LinearRegression">
+  <img src="LinearRegression.png" width="350" id="LinearRegression">
   <br>
      <em>Figure 4. Linear regression results on the observation of birth rates against poverty level.</em>
 </p>
