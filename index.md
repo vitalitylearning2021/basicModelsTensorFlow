@@ -320,12 +320,6 @@ Generally speaking, the tensors of interest have rectangular shape. Nevertheless
   - string tensors,
   - sparse tensors.
 
-<p align="center">
-  <img src="irregularTensors.png" width="120" id="irregularTensors">
-  <br>
-     <em>Figure 4. Irregular tensor.</em>
-</p>
-
 #### Ragged tensors
 
 Ragged tensors are tensors with a different number of elements along their dimensions, as shown in Fig. [3](#irregularTensors). A ragged tensor can be build up as follows:
