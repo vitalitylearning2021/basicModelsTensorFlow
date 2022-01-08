@@ -243,12 +243,6 @@ print("The tensor size is", tf.size(rank3Tensor).numpy())
 
 In the above example, the number of dimensions, the shape, the data type and the size of the tensor are also `print`-ed. The size indicates the total number of elements of a tensor. As it can be seen, it is not possible to `print` the size as an attribute of a tensor object. Opposite to that, it is necessary to use the `tf.size()` function and convert its output with the `.numpy()` instance function to achieve a more readable result.
 
-<p align="center">
-  <img src="Tensor_Rank.png" width="250" id="tensorRank">
-  <br>
-     <em>Figure 3. Tensor rank.</em>
-</p>
-
 ### Indexing
 
 TensorFlow follows standard Python indexing rules.
