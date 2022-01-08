@@ -501,7 +501,7 @@ writer.close()
 The graph consists into the creation of two variables, `a` and `b`, and in their multiplication and is shown in the following.
 
 <p align="center">
-  <img src="simpleTensorBoard.png" width="120" id="simpleTensorBoard">
+  <img src="simpleTensorBoard.png" width="320" id="simpleTensorBoard">
   <br>
      <em>Figure 5. Simple graph using TensorBoard.</em>
 </p>
