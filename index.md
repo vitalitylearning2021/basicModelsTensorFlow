@@ -1493,10 +1493,10 @@ where <img src="https://render.githubusercontent.com/render/math?math=y_n=1"> if
 
 where <img src="https://render.githubusercontent.com/render/math?math=\alpha"> is a parameter balancing the need to maximize the margin with the need of satisfying constraint [\[29\]](#vincoloFinaleSVM).
 
-Once maximized functional <img src="https://render.githubusercontent.com/render/math?math=\Phi"> and once determined the optimal values of <img src="https://render.githubusercontent.com/render/math?math=\underline{w}_{opt}"> and <img src="https://render.githubusercontent.com/render/math?math=w_{0_{opt}}">, then it is possible to determine the separating hyperplane. For a two-dimensional problem, namely, in the case when <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> has only two components, which is the case considered in the following subsections, the mentioned hyperplane becomes a straight line. On accounting that <img src="https://render.githubusercontent.com/render/math?math=\underline{w}"> represents the normal to the hyperplane, then its equation becomes
+Once maximized functional <img src="https://render.githubusercontent.com/render/math?math=\Phi"> and once determined the optimal values of <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}_{opt}"> and <img src="https://render.githubusercontent.com/render/math?math=w_{0_{opt}}">, then it is possible to determine the separating hyperplane. For a two-dimensional problem, namely, in the case when <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> has only two components, which is the case considered in the following subsections, the mentioned hyperplane becomes a straight line. On accounting that <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> represents the normal to the hyperplane, then its equation becomes
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=y=m\;x %2B x_0," id="rettaSeparazione">, [31]
+  <img src="https://render.githubusercontent.com/render/math?math=y=m x %2B x_0," id="rettaSeparazione">, [31]
 </p>
 
 where
