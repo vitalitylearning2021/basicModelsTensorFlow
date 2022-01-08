@@ -1556,13 +1556,13 @@ yDataset        = np.array([1 if y == 0 else -1 for y in irisDataset.target])
 
 In this way, `xDataset` will assume the only sepal length and petal width values, while `yDataset` will be equal to `1` for a setosa Iris, to `-1` otherwise.
 
-The dataset should be now partitioned in a portion for training and a portion for performance verification. We decide to use <img src="https://render.githubusercontent.com/render/math?math=90">% of the dataset for training and the remaining <img src="https://render.githubusercontent.com/render/math?math=10\%"> for testing. To this end, we use
+The dataset should be now partitioned in a portion for training and a portion for performance verification. We decide to use <img src="https://render.githubusercontent.com/render/math?math=90">% of the dataset for training and the remaining <img src="https://render.githubusercontent.com/render/math?math=10">% for testing. To this end, we use
 
 ``` python
 trainIndices    = np.random.choice(len(xDataset), round(len(xDataset) * 0.9), replace = False)
 ```
 
-which generates a set of `round(len(xDataset) * 0.9)` indices between `0` and `len(xDataset)` without repetitions. Such indices will serve to address the dataset samples to use for training. Later one, we compute the remaining indices to be used for testing as
+which generates a set of `round(len(xDataset) * 0.9)` indices between `0` and `len(xDataset)` without repetitions. Such indices will serve to address the dataset samples to use for training. Later on, we compute the remaining indices to be used for testing as
 
 ``` python
 testIndices     = np.array(list(set(range(len(xDataset))) - set(trainIndices)))
@@ -1600,7 +1600,7 @@ def costFunction(xData, yTarget):
 
 The function `costFunction` computes the cost function reported in [\[30\]](#functionalSVM).
 
-The definitions of `optimizer` and of `optimizationStep` are similar to those in Listings [6](#SGD) and Listings [6](#optimizationStepLinearRegression) and are not repeated here. We give only some details on the training loop:
+The definitions of `optimizer` and of `optimizationStep` are similar to those in Listings [6](#SGD) and Listings [7](#optimizationStepLinearRegression) and are not repeated here. We give only some details on the training loop:
 
 ``` python
 costFunctionVec   = []
@@ -1634,7 +1634,7 @@ def predictionAccuracy(xData, yTarget):
   return accuracy
 ```
 
-Such function evaluates first the model for each element of the testing dataset, namely, <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \underline{w}\cdot \underline{x}_n"> and then evaluates the sign thereof and compares it with the sign of the observations of the training dataset, by counting the number of times equality takes place. The use of the `tf.sign()` function enables to verify whether equations [\[27\]](#vincoloSVM1) or [\[28\]](#vincoloSVM2) hold.
+Such function evaluates first the model for each element of the testing dataset, namely, <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot \mathbf{x}_n"> and then evaluates the sign thereof and compares it with the sign of the observations of the training dataset, by counting the number of times equality takes place. The use of the `tf.sign()` function enables to verify whether equations [\[27\]](#vincoloSVM1) or [\[28\]](#vincoloSVM2) hold true.
 
 Once completed the training, the angular coefficient [\[32\]](#coefficienteAngolare) and the intercept [\[33\]](#intercetta) of the separation line [\[31\]](#rettaSeparazione) are calculated by
 
@@ -1686,7 +1686,7 @@ plt.ylabel('Cost functional')
 plt.show()
 ```
 
-As it can be seen from the following figure, the separation between the setosa and not setosa species is satisfactory
+As it can be seen from the following figure, the separation between the setosa and not setosa species is satisfactory.
 
 <p align="center">
   <img src="setosa_not_setosa.png" width="250" id="setosaNotSetosa">
