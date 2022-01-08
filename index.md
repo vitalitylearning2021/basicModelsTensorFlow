@@ -920,7 +920,7 @@ The logistic regression algorithm will be employed on the MNIST data.
 MNIST stands for Modified National Institute of Standards and Technology database and is a database of handwritten digits. The digits are in the form of <img src="https://render.githubusercontent.com/render/math?math=28\times 28"> grayscale images that is commonly used for training image processing systems and contains <img src="https://render.githubusercontent.com/render/math?math=55,000"> training images and <img src="https://render.githubusercontent.com/render/math?math=10,000"> test examples. Samples from the MNIST dataset can be appreciated below.
 
 <p align="center">
-  <img src="MNIST.png" width="350" id="MNIST">
+  <img src="MNIST.png" width="550" id="MNIST">
   <br>
      <em>Figure 6. Samples from the MNIST dataset.</em>
 </p>
