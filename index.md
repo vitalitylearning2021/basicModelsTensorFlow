@@ -819,7 +819,7 @@ In [\[18\]](#logisticProbabilityMulticlass), the <img src="https://render.github
 Let us finally code the generinc training output <img src="https://render.githubusercontent.com/render/math?math=y_n"> as
 
 <p align="center">
-  <img src="https://render.githubusercontent.com/render/math?math=\overline{\mathbf{y}}_n=(0 0 \ldots 1 0 \ldots 0)," id="oneHotVector">, [20]
+  <img src="https://render.githubusercontent.com/render/math?math=\overline{\mathbf{y}}_n=(0 0 \ldots 1 0 \ldots 0)," id="oneHotVector"> [20]
 </p>
 
 namely, with an array whose elements are identically equal to zero except for the <img src="https://render.githubusercontent.com/render/math?math=k">-th if <img src="https://render.githubusercontent.com/render/math?math=y_n=k"> and let us group the various probabilities <img src="https://render.githubusercontent.com/render/math?math=p(y=k|\mathbf{x}_n)"> in the array
@@ -1129,7 +1129,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}
   - *Centroids update*. Following the previous step, the formation of new clusters is likely since dataset points could have been added to or removed from the clusters. As a consequence, the centroids position is computed again as the average of all the dataset points assigned to the new cluster, namely
 
   <p align="center">
-      <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}_i=\frac{1}{|{\mathcal S}_i|}\sum_{\mathbf{x}_i\in {\mathcal S}_i}\mathbf{x}_i," id="averageDistance"> [25]
+      <img src="https://render.githubusercontent.com/render/math?math=\mathbf{c}_i=\frac{1}{|{\mathcal S}_i|}\sum_{\mathbf{x}_i\in {\mathcal S}_i}\mathbf{x}_i." id="averageDistance"> [25]
   </p>
 
     where <img src="https://render.githubusercontent.com/render/math?math={\mathcal S}_i"> represents the <img src="https://render.githubusercontent.com/render/math?math=i">-th cluster and <img src="https://render.githubusercontent.com/render/math?math=|{\mathcal S}_i|"> is the corresponding number of elements.
