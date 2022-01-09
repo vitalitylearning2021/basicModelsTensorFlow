@@ -571,7 +571,13 @@ There are many measures of the goodness of our prediction, the most popular one 
   <img src="https://render.githubusercontent.com/render/math?math=\Phi(m,b)=\frac{1}{N}\sum_{n=1}^N \left(f_n-y_n\right)^2," id="MSELinearRegression"> [7]
 </p>
 
-where <img src="https://render.githubusercontent.com/render/math?math=N"> is the number of experimental measurements corresponding to the scatter plot (<img src="https://render.githubusercontent.com/render/math?math=51"> for the example under examination), the <img src="https://render.githubusercontent.com/render/math?math=f_n">'s are the experimental observations and the <img src="https://render.githubusercontent.com/render/math?math=y_n">'s are the values returned by the model, namely, <img src="https://render.githubusercontent.com/render/math?math=y_n=mx_n  %2B b">, where the <img src="https://render.githubusercontent.com/render/math?math=x_n">'s are the observed poverty levels. Functions like the one in equation [\[7\]](#MSELinearRegression) are called *loss functions* or *objective functions*.
+where <img src="https://render.githubusercontent.com/render/math?math=N"> is the number of experimental measurements corresponding to the scatter plot (<img src="https://render.githubusercontent.com/render/math?math=51"> for the example under examination), the <img src="https://render.githubusercontent.com/render/math?math=f_n">'s are the experimental observations and the <img src="https://render.githubusercontent.com/render/math?math=y_n">'s are the values returned by the model, namely, 
+
+<p align="center">
+  <img src="https://render.githubusercontent.com/render/math?math=y_n=mx_n  %2B b," id="xxx"> [8]
+</p>
+
+where the <img src="https://render.githubusercontent.com/render/math?math=x_n">'s are the observed poverty levels. Functions like the one in equation [\[7\]](#MSELinearRegression) are called *loss functions* or *objective functions*.
 
 On using the measure in equation [\[7\]](#MSELinearRegression), linear regression consists of determining the values of <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b"> minimizing the MSE. The search for the “optimal” parameters, namely, those minimizing <img src="https://render.githubusercontent.com/render/math?math=\Phi(m,b)">, can be iteratively performed using a loop that, following initial guesses for <img src="https://render.githubusercontent.com/render/math?math=m"> and <img src="https://render.githubusercontent.com/render/math?math=b">, essentially performs two main operations:
 
