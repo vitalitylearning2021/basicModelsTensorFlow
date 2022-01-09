@@ -756,7 +756,7 @@ In a binary logistic regression problem, the probability that an input <img src=
 where <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> are parameters determining the shape. Obviously, having modelled <img src="https://render.githubusercontent.com/render/math?math=p(y=0|x)">, the conditional probability <img src="https://render.githubusercontent.com/render/math?math=p(y=1|x)=1-p(y=0|x)"> remains equally modelled. Function <img src="https://render.githubusercontent.com/render/math?math=F(x,b_0,b_1)"> appearing at the right hand side of equation [\[11\]](#logisticProbability) and representing the model is also called *logistic function* or *sigmoid function* and an illustration of its shape is depicted in the following figure
 
 <p align="center">
-  <img src="logistic.png" width="350" id="logistic">
+  <img src="logistic2.png" width="350" id="logistic">
   <br>
      <em>Figure 6. Example of logistic function.</em>
 </p>
