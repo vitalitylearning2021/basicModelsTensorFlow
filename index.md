@@ -503,10 +503,10 @@ The graph consists into the creation of two variables, `a` and `b`, and in their
 <p align="center">
   <img src="simpleTensorBoard.png" width="540" id="simpleTensorBoard">
   <br>
-     <em>Figure 5. Simple graph using TensorBoard.</em>
+     <em>Figure 3. Simple graph using TensorBoard.</em>
 </p>
 
-Now we can understand the usefulness of assigning a name to the variables. In particular, variables `a` and `b` are named `variableA` and `variableB`, respectively. As it can be seen, the multiplication operations is named `Mul`, too. The assined names are clearly visible in the graph in figure [5](#simpleTensorBoard).
+Now we can understand the usefulness of assigning a name to the variables. In particular, variables `a` and `b` are named `variableA` and `variableB`, respectively. As it can be seen, the multiplication operations is named `Mul`, too. The assined names are clearly visible in the graph in figure [3](#simpleTensorBoard).
 
 ### Are TensorFlow constants really constant?
 
@@ -552,10 +552,10 @@ Linear regression models the relation of independent and dependent variables by 
 <p align="center">
   <img src="LinearRegressionData.png" width="400" id="LinearRegressionData">
   <br>
-     <em>Figure 5. Observation of birth rates against poverty level.</em>
+     <em>Figure 4. Observation of birth rates against poverty level.</em>
 </p>
 
-In particular, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [5](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [5](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=x"> can be evaluated as
+In particular, figure [4](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=x"> axis, the poverty level for each of the <img src="https://render.githubusercontent.com/render/math?math=50"> states of USA in addition to the District of Columbia, evaluated for the year <img src="https://render.githubusercontent.com/render/math?math=2000"> and measured as the percentage of each state's population living in households with incomes below the federally defined poverty level. Moreover, figure [4](#LinearRegressionData) reports, on the <img src="https://render.githubusercontent.com/render/math?math=y"> axis, the birth rate, for the year <img src="https://render.githubusercontent.com/render/math?math=2002">, for <img src="https://render.githubusercontent.com/render/math?math=1000"> females <img src="https://render.githubusercontent.com/render/math?math=15"> to <img src="https://render.githubusercontent.com/render/math?math=17"> years old. From figure [4](#LinearRegressionData), it can be understood how the link between birth rate and poverty level can be approximated as linear. In other words, the relation between the dependent  variable <img src="https://render.githubusercontent.com/render/math?math=y"> and the independent variable <img src="https://render.githubusercontent.com/render/math?math=x"> can be evaluated as
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=y=mx %2B b," id="linearRegression"> [6]
@@ -758,10 +758,10 @@ where <img src="https://render.githubusercontent.com/render/math?math=b_0"> and 
 <p align="center">
   <img src="logistic.png" width="350" id="logistic">
   <br>
-     <em>Figure 5. Example of logistic function.</em>
+     <em>Figure 6. Example of logistic function.</em>
 </p>
 
-From the example of logisitic function represented in figure Figure [5](#logistic), we deduce that, if <img src="https://render.githubusercontent.com/render/math?math=x=150">cm, then the probability that <img src="https://render.githubusercontent.com/render/math?math=y=0"> is larger than <img src="https://render.githubusercontent.com/render/math?math=0.5">. This tells us that, if a person is <img src="https://render.githubusercontent.com/render/math?math=150">cm tall, then there would be a larger probability that such a person is female rather than male. In other words, we will assign a person <img src="https://render.githubusercontent.com/render/math?math=150">cm tall to class <img src="https://render.githubusercontent.com/render/math?math=0"> because there is a larger probability that he/she belongs to such a class rather than class <img src="https://render.githubusercontent.com/render/math?math=1">.
+From the example of logisitic function represented in figure [6](#logistic), we deduce that, if <img src="https://render.githubusercontent.com/render/math?math=x=150">cm, then the probability that <img src="https://render.githubusercontent.com/render/math?math=y=0"> is larger than <img src="https://render.githubusercontent.com/render/math?math=0.5">. This tells us that, if a person is <img src="https://render.githubusercontent.com/render/math?math=150">cm tall, then there would be a larger probability that such a person is female rather than male. In other words, we will assign a person <img src="https://render.githubusercontent.com/render/math?math=150">cm tall to class <img src="https://render.githubusercontent.com/render/math?math=0"> because there is a larger probability that he/she belongs to such a class rather than class <img src="https://render.githubusercontent.com/render/math?math=1">.
 
 The problem now is how defining the parameters <img src="https://render.githubusercontent.com/render/math?math=b_0"> and <img src="https://render.githubusercontent.com/render/math?math=b_1"> determining the shape of the logistic function starting from a training set. Let us suppose to have at our disposal a training set made up of a certain number of <img src="https://render.githubusercontent.com/render/math?math=N"> observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> to which the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> correspond. In the considered example, the observations <img src="https://render.githubusercontent.com/render/math?math=x_n"> represent the heights and the binary outputs <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> are equal to <img src="https://render.githubusercontent.com/render/math?math=0"> if a person, <img src="https://render.githubusercontent.com/render/math?math=x_n"> tall, is female or <img src="https://render.githubusercontent.com/render/math?math=1"> if he is male. Let us suppose now to use the model in equation [\[11\]](#logisticProbability). The probability that the classes <img src="https://render.githubusercontent.com/render/math?math=\overline{y}_n"> actually correspond to the observations <img src="https://render.githubusercontent.com/render/math?math=\lbrace \overline{y}_n\rbrace_{n=1}^N"> given the inputs <img src="https://render.githubusercontent.com/render/math?math=\lbrace x_n\rbrace_{n=1}^N"> is given by
 
@@ -928,7 +928,7 @@ MNIST stands for Modified National Institute of Standards and Technology databas
 <p align="center">
   <img src="MNIST.png" width="550" id="MNIST">
   <br>
-     <em>Figure 6. Samples from the MNIST dataset.</em>
+     <em>Figure 7. Samples from the MNIST dataset.</em>
 </p>
 
 Finally, some words on Keras.
@@ -1108,7 +1108,7 @@ The likeness relation between the dataset elements is expressed by defining a ce
 <p align="center">
   <img src="Clustering.png" width="250" id="clustering">
   <br>
-     <em>Figure 7. Illustrating the clustering process.</em>
+     <em>Figure 8. Illustrating the clustering process.</em>
 </p>
 
 The k-means algorithm is an iterative algorithm organized in three steps:
@@ -1277,7 +1277,7 @@ Such function exploits the `rainbow` colormap by picking `numCentroids`, “equi
 <p align="center">
   <img src="Customized_kmeans.png" width="400" id="logistic">
   <br>
-     <em>Figure 8. k-means result example. Dots are cluster points, crosses are cluster centroids.</em>
+     <em>Figure 9. k-means result example. Dots are cluster points, crosses are cluster centroids.</em>
 </p>
 
 A possible behavior of the percentage centroid variation against the previous step is shown in the following:
@@ -1285,7 +1285,7 @@ A possible behavior of the percentage centroid variation against the previous st
 <p align="center">
   <img src="Customized_kmeans_functional.png" width="400" id="logistic">
   <br>
-     <em>Figure 9. k-means result example. Percentage variation of the centroids with respect to the previous step.</em>
+     <em>Figure 10. k-means result example. Percentage variation of the centroids with respect to the previous step.</em>
 </p>
 
 This completes the description of the customized k-means approach. Let us investigate the TensorFlow native one.
@@ -1359,7 +1359,7 @@ Suppose that the features relevant to the classification problem we are dealing 
 <p align="center">
   <img src="knn_dataset.jpg" width="450" id="knn_algorithm">
   <br>
-     <em>Figure 10. Illustrating the KNN algorithm.</em>
+     <em>Figure 11. Illustrating the KNN algorithm.</em>
 </p>
 
 Typically, the likeness between “data points” in the “crunchiness-sweetness” plane is evaluated by a certain measure of distance, often the Euclidean distance, although other measures, as Hamming, Manhattan or Minkowsky distances are often adopted [\[6\]](#MACHINE_LEARNING_DISTANCES). From this point of view, given an instace to be classified, the lesser its distance from a data-point, the larger the likeness with the data-point. Besides distance, the algorithm determines also a parameter <img src="https://render.githubusercontent.com/render/math?math=k"> identifying the number of closest data points to the instance to be classified. The algorithm evaluates then the data-points with the <img src="https://render.githubusercontent.com/render/math?math=k"> smallest distances with the instance to classify, counts the number of closest data-points per class and the class achieving the greatest number of “nearnesses” is chosen in the forecast.
@@ -1428,25 +1428,25 @@ For a binary classification problem, and for a simple use case, SVM is based on 
 <p align="center">
   <img src="SVM_hyperplane.png" width="450" id="linearSeparation">
   <br>
-     <em>Figure 11. Linear separation of dataset points.</em>
+     <em>Figure 12. Linear separation of dataset points.</em>
 </p>
 
-In order to understand the working principle, figure [12](#hyperplanes) depicts hyperplanes in the case of two (left) and three (right) only features. In the two-features case, a hyperplane is represented by a line, while, in the three-features case, it is represented by a plane.
+In order to understand the working principle, figure [13](#hyperplanes) depicts hyperplanes in the case of two (left) and three (right) only features. In the two-features case, a hyperplane is represented by a line, while, in the three-features case, it is represented by a plane.
 
 <p align="center">
   <img src="hyperplanes.png" width="450" id="hyperplanes">
   <br>
-     <em>Figure 12. Hyperplanes.</em>
+     <em>Figure 13. Hyperplanes.</em>
 </p>
 
 A hyperplane linearly separating a dataset could not exist. In this case, a non-linear mapping becomes necessary to embed the dataset in a larger dimensional space moving, for example, from two to three dimensions and making the data linearly separable. In the following, we will consider the simple case in which the data can be linearly separated.
 
-The SVM algorithm has the purpose of determining the hyperplane dividing, *at the best*, the support vectors in classes. *At the best* means that, if more than a hyperplane exists and to improve the classification accuracy on new observations, the algorithm searches for that having the largest margin to the support vectors. By support vectors we mean the closest dataset points to the dividing hyperplane, see figure [11](#linearSeparation). The margin, instead, is the distance between the support vectors of the two classes that are closest to the hyperplane, as in the below figure
+The SVM algorithm has the purpose of determining the hyperplane dividing, *at the best*, the support vectors in classes. *At the best* means that, if more than a hyperplane exists and to improve the classification accuracy on new observations, the algorithm searches for that having the largest margin to the support vectors. By support vectors we mean the closest dataset points to the dividing hyperplane, see figure [12](#linearSeparation). The margin, instead, is the distance between the support vectors of the two classes that are closest to the hyperplane, as in the below figure
 
 <p align="center">
   <img src="SVM_margin.jpg" width="450" id="SVMmargin">
   <br>
-     <em>Figure 13. Margin between support vectors.</em>
+     <em>Figure 14. Margin between support vectors.</em>
 </p>
 
 The hyperplane divides the distance in two equal parts. The maximization of the margin is related to the idea that, the farther the dataset points are from the hyperplane, the most probable is that they are correctly classified. When new dataset points are considered, they are classified depending on the region in which they fall with respect to the determined hyperplane.
@@ -1459,7 +1459,7 @@ Going into more detail in the mathematics of the problem, the equation of a gene
 
 where <img src="https://render.githubusercontent.com/render/math?math=\mathbf{x}"> is the independent variable of the features space, <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}"> is the *weight vector* and <img src="https://render.githubusercontent.com/render/math?math=w_0"> is the *bias*.
 
-On referring to figure [13](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
+On referring to figure [14](#SVMmargin), we assume that the red points belong to class <img src="https://render.githubusercontent.com/render/math?math=1">, while the blue points to class <img src="https://render.githubusercontent.com/render/math?math=-1">. The figure shows a case in which a hyperplane separating the two classes has already been determined. In this case, it is possible to choose the weights so that, for points of class <img src="https://render.githubusercontent.com/render/math?math=1"> we have
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=w_0 %2B \mathbf{w}\cdot\mathbf{x}_n\geq 1," id="vincoloSVM1"> [27]
@@ -1685,7 +1685,7 @@ As it can be seen from the following figure, the separation between the setosa a
 <p align="center">
   <img src="setosa_not_setosa.png" width="450" id="setosaNotSetosa">
   <br>
-     <em>Figure 14. Setosa/not-setosa SVM separation result.</em>
+     <em>Figure 15. Setosa/not-setosa SVM separation result.</em>
 </p>
 
 Finally, the following figures show the behavior, against the training iteration step, of the cost functional and of the accuracy, respectively:
@@ -1693,13 +1693,13 @@ Finally, the following figures show the behavior, against the training iteration
 <p align="center">
   <img src="SVMCostFunctional.png" width="450" id="SVMCostFunctional">
   <br>
-     <em>Figure 15. SVM cost functional against training step.</em>
+     <em>Figure 16. SVM cost functional against training step.</em>
 </p>
 
 <p align="center">
   <img src="SVMAccuracy.png" width="450" id="SVMaccuracy">
   <br>
-     <em>Figure 16. SVM accuracy against training step.</em>
+     <em>Figure 17. SVM accuracy against training step.</em>
 </p>
 
 As it can be seen, as long as the training goes on, the value of the cost functional decreases, while accuracy improves.
