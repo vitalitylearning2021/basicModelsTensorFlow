@@ -1357,7 +1357,7 @@ A possible dataset can be one containing, within the three mentioned classes:
 Suppose that the features relevant to the classification problem we are dealing with are sweetness and crunchiness. Generally speaking, fruit is sweeter than vegetables, while cereals are neither sweet nor crunchy. Accordingly, by assigning the abscissa axis to crunchiness and the ordinate axis to sweetness, a possible arrangement of the dataset elements is the one in the following figure:
 
 <p align="center">
-  <img src="knn_dataset.jpg" width="450" id="knn_algorithm">
+  <img src="knn.png" width="450" id="knn_algorithm">
   <br>
      <em>Figure 11. Illustrating the KNN algorithm.</em>
 </p>
