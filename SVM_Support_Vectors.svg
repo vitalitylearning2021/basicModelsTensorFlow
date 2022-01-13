@@ -119,7 +119,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -189,7 +189,7 @@
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 53.181249,14.022916 120.38542,104.24583"
+       d="M 59.002082,11.906249 126.20625,102.12916"
        id="path1277" />
     <circle
        style="fill:#008000;stroke:#000000;stroke-width:0.499999;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
