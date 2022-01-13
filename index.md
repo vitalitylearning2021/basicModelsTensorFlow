@@ -1426,7 +1426,7 @@ The SVM algorithm is notably effective in binary classification problems, althou
 For a binary classification problem, and for a simple use case, SVM is based on the idea to determine a hyperplane dividing a dataset in two classes as illustrated by the figure below:
 
 <p align="center">
-  <img src="SVM_hyperplane.png" width="450" id="linearSeparation">
+  <img src="SVM_Support_Vectors.png" width="450" id="linearSeparation">
   <br>
      <em>Figure 12. Linear separation of dataset points.</em>
 </p>
