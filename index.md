@@ -1434,7 +1434,7 @@ For a binary classification problem, and for a simple use case, SVM is based on 
 In order to understand the working principle, figure [13](#hyperplanes) depicts hyperplanes in the case of two (left) and three (right) only features. In the two-features case, a hyperplane is represented by a line, while, in the three-features case, it is represented by a plane.
 
 <p align="center">
-  <img src="SVM_Hyperplanes.png" width="450" id="hyperplanes">
+  <img src="SVM_Hyperplanes.png" width="550" id="hyperplanes">
   <br>
      <em>Figure 13. Hyperplanes.</em>
 </p>
