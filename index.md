@@ -816,7 +816,7 @@ while, given <img src="https://render.githubusercontent.com/render/math?math=N">
 
 In [\[18\]](#logisticProbabilityMulticlass), the <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}_k">'s are <img src="https://render.githubusercontent.com/render/math?math=K">, <img src="https://render.githubusercontent.com/render/math?math=P">-dimensional arrays, while, in [\[19\]](#logisticRegressionCost4), matrix <img src="https://render.githubusercontent.com/render/math?math=\mathbf{\mathbf{W}}"> performs a row-wise collection of the arrays <img src="https://render.githubusercontent.com/render/math?math=\mathbf{w}_k">'s, while <img src="https://render.githubusercontent.com/render/math?math=\mathbf{b}"> is a column array collecting the <img src="https://render.githubusercontent.com/render/math?math=K"> <img src="https://render.githubusercontent.com/render/math?math=b_k">'s.
 
-Let us finally code the generinc training output <img src="https://render.githubusercontent.com/render/math?math=y_n"> as
+Let us finally code the generic training output <img src="https://render.githubusercontent.com/render/math?math=y_n"> as
 
 <p align="center">
   <img src="https://render.githubusercontent.com/render/math?math=\overline{\mathbf{y}}_n=(0 0 \ldots 1 0 \ldots 0)," id="oneHotVector"> [20]
